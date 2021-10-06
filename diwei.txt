@@ -1485,7 +1485,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 1484	準	之尹	XVJ	tɕʷi̋n
 1485	尹	余準	lVJ	ɥi̋n
 1486	筍	思尹	QVJ	sʷɹi̋n
-1487	蝡	而允	cVJ	ɲʷi̋n
+1487	蝡	而兖	cfJ	ɲʷe̋n
 1488	蠢	尺尹	YVJ	tɕʷʰi̋n
 1489	盾	食尹	bVJ	ʑʷǐn
 1490	偆	癡準	KVJ	tɹʷʰi̋n
@@ -2850,7 +2850,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 2849	諎	千過	OlC	tsʰa᷇
 2850	貨	呼臥	ilK	χʷa᷇
 2851	惰	徒臥	GlK	dʷa᷅
-2852	縛	符臥	ClC	ba᷅
+2852	縛	符臥	CmC	bβa᷅
 2853	䇔	魯過	IlK	lʷa᷅
 2854	𣑫	都唾	ElK	tʷa᷇
 2855	磋	七過	OlC	tsʰa᷇
@@ -3669,7 +3669,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 3668	𪐏	竹益	JuD	tɹíæk
 3669	彳	丑亦	KuD	tɹʰíæk
 3670	𦳮	之役	XuL	tɕʷíæk
-3671	𥄎	七役	iuL	hʷíæk
+3671	𥄎	火役	iuL	hʷíæk
 3672	錫	先擊	QvD	sék
 3673	激	古歷	dvD	qék
 3674	霹	普擊	BvD	pʰék
