@@ -1,5 +1,6 @@
 from QieyunEncoder import 常量, 音韻地位
 from yuntu_lib import *
+from yuntu_history import *
 
 顯示增補小韻 = False
 
@@ -131,7 +132,7 @@ class 小韻屬性類:
             結果 += ' ' + self.地位.描述
         return 結果
 
-    def __rime_prop内容(self) -> str:
+    def __rime_prop內容(self) -> str:
         if self.is當刪小韻:
             return self.unt擬音
 
@@ -146,7 +147,7 @@ class 小韻屬性類:
             描述 = f'{描述[:-2]}{self.來源韻}<sup>→{描述[-2]}</sup>{描述[-1]}'
         return 描述 + ' ' + self.unt擬音
 
-    def __rime_num内容(self) -> str:
+    def __rime_num內容(self) -> str:
         if self.is增補小韻:
             return f'增補小韻<hanla></hanla>{self.小韻號 - 4000}{self.小韻號後綴}'
 
@@ -157,19 +158,19 @@ class 小韻屬性類:
             f'<a href="https://ytenx.org/kyonh/sieux/{self.小韻號}/" target="_blank">韻典網</a>'
         ])
 
-    def __tooltip_box内容(self) -> str:
+    def __tooltip_box內容(self) -> str:
         rime_comment內容 = ''
         if self.is當刪小韻:
             rime_comment內容 = 當刪小韻字典[self.小韻號][1]
         elif '(' in self.unt擬音 and self.小韻號 < 4000:
             rime_comment內容 = '如正常演變應讀' + 茝等字典[self.小韻號]
 
-        return f'<div class="rime-prop">{self.__rime_prop内容()}</div>' + \
+        return f'<div class="rime-prop">{self.__rime_prop內容()}</div>' + \
             (f'<div class="rime-comment">{rime_comment內容}</div>' if rime_comment內容 else '') + \
-            f'<div class="rime-num">{self.__rime_num内容()}</div>'
+            f'<div class="rime-num">{self.__rime_num內容()}</div>'
 
     def toHTML(self) -> str:
-        onMouse字符串 = 'onMouseOver="show(this)" onMouseOut="hide(this)"'
+        onmouse字符串 = 'onmouseover="show(this)" onmouseout="hide(this)"'
         小韻class = ['text']
         字頭 = self.字頭
         if self.來源等:
@@ -185,11 +186,11 @@ class 小韻屬性類:
                     '<span style="transform: scaleY(0.6) translateY(0.4em);display: inline-block;margin-left: -1em">父</span>'
         小韻class = ' '.join(小韻class)
 
-        return f'<span class="{小韻class}" {onMouse字符串}>{字頭}</span>' + \
-            f'<span class="tooltip-wrapper" {onMouse字符串}>' + \
+        return f'<span class="{小韻class}" {onmouse字符串}>{字頭}</span>' + \
+            f'<span class="tooltip-wrapper" {onmouse字符串}>' + \
             '<span class="tooltip-hitbox1"></span>' + \
             '<span class="tooltip-hitbox2"></span>' + \
-            f'<span class="tooltip-box">{self.__tooltip_box内容()}</span>' + \
+            f'<span class="tooltip-box">{self.__tooltip_box內容()}</span>' + \
             '</span>'
 
 
@@ -233,6 +234,9 @@ class 格子類:
                 格子內層class.append('has-2')
             else:
                 格子內層class.append('has-3')
+        elif len(self.顯示的小韻列表):
+            if self.顯示的小韻列表[0].來源等:
+                格子內層class.append('has-from-div')
         if self.顯示的合法性符號:
             格子外層class.append('has-icon')
             if self.顯示的合法性符號 in 合法性符號_無字則隱藏列表:
@@ -324,8 +328,10 @@ def 插入小韻(小韻: 小韻屬性類) -> None:
             列號 = get列號('1')
         if 小韻.字頭 == '虵':
             列號 = get列號('1')
-        elif 小韻.字頭 == '礥' and 小韻.地位.母 == '匣':
+        if 小韻.字頭 == '礥' and 小韻.地位.母 == '匣':
             列號 = get列號('4')
+        if 小韻.地位.組 == '幫' and 小韻.地位.韻 == '咍':
+            圖號 -= 1  # 歸開口
     elif 小韻.字頭 in '𠁫烋抑':
         列號 = get列號('B')
     elif 小韻.字頭 in '茝佁䑂':
@@ -413,26 +419,33 @@ def 添加td(內容):
     return f'<td>{內容}</td>'
 
 
-def get韻圖標題(圖號, is目錄=False):
+def get回到索引():
+    return'<a class="back" onclick="scrollToId(\'toc\')"></a>'
+
+
+def get韻圖標題(圖號, is索引=False):
     號 = str(圖號 + 1)
     標題 = '<span class="ipa">⫽' + 韻圖屬性列表[圖號].國際音標 + '⫽</span>'
-    if is目錄:
+    if is索引:
         包含的韻 = ''.join([韻 for 韻 in 常量.所有韻 if 韻 in 韻圖屬性列表[圖號].韻列表]
                        ).replace('眞', '真').replace('欣', '臻殷').replace('嚴', '嚴凡')
         呼 = 韻圖屬性列表[圖號].呼
         呼 = f'（{呼}）' if 呼 and '凡' not in 包含的韻 else ''
-        return f'<li><a href="#table{號}"><span class="body">{標題}{包含的韻}</span>{呼}</a></li>'
+        附加 = ' checked="checked"' if 號 == '1' else ''
+        按鈕 = f'<input type="radio" id="show-table" name="show-table" value="{號}" onclick="showTable(this)"{附加}>'
+        return f'<li><label>{按鈕}<a onclick="scrollToId(\'table{號}\')"><span class="body">{標題}{包含的韻}</span>{呼}</a></label></li>'
     標題 = 號 + '. ' + 標題 + \
-        '<a href="#toc" class="back"></a>' + \
+        get回到索引() + \
         '<span class="she"><span class="brac">（</span><span class="she-sub">演變成：</span>' + \
         韻圖屬性列表[圖號].對應攝 + '<span class="brac">）</span></span>'
-    return f'<h2 id="table{號}">{標題}</h2>'
+    附加 = ' class="shown"' if 號 == '1' else ''
+    return f'<h2 id="table{號}"{附加}>{標題}</h2>'
 
 
-def get目錄():
+def get索引():
     結果 = [
         '<div id="toc">',
-        '<div class="toc-title-container"><p class="toc-title">目錄</p></div>',
+        '<div class="toc-title-container"><p class="toc-title">索引</p></div>',
         '<nav>',
     ]
     for i in range(len(韻圖列表)):
@@ -443,11 +456,12 @@ def get目錄():
         結果.append(get韻圖標題(i, True))
         if i % 10 == 9:
             結果.append('</ol>')
-    結果.append('<p><a href="#history">版本歷史</a></p>')
+    結果.append('<p><label><input type="checkbox" id="show-all" name="show-all" onclick="showAllTables(this)">顯示所有韻圖（可能卡頓）</label></p>')
+    結果.append('<p><a onclick="scrollToId(\'history\')">版本歷史</a></p>')
     結果.append('</ol>')
     結果.append('</nav>')
     結果.append('</div>')
-    return '\n'.join(結果)
+    return ''.join(結果)
 
 
 def get表頭行(韻圖屬性: 韻圖屬性類):
@@ -486,6 +500,13 @@ def get表體(韻圖: list[list[list[格子類]]]):
     return ['<tbody>'] + [get表體行(行號, 行) for 行號, 行 in enumerate(韻圖)] + [get表尾行(), '</tbody>']
 
 
+def get版本歷史():
+    內容 = ['\n'.join([f'<p><strong>{版本}</strong></p>', '<ul>'] +
+                    [f'<li>{條目}</li>' for 條目 in 版本歷史字典[版本]] +
+                    ['</ul>']) for 版本 in 版本歷史字典]
+    return ['<div class="history">'] + 內容 + ['</div>']
+
+
 def 輸出網頁文件(文件名):
     with open('yuntu_gen.js', 'r', encoding='utf-8') as 文件:
         script = 文件.read()
@@ -497,23 +518,23 @@ def 輸出網頁文件(文件名):
             '<html lang="zh-CN">',
             '<head>',
             '<script>', script, '</script>',
-            '<title>切韻新韻圖（測試版）</title>'
+            '<title>切韻新韻圖</title>'
             '<meta charset="utf-8">',
             '<meta name="viewport" content="width=device-width">',
             '<link rel="icon" href="https://phesoca.com/wp-content/uploads/logo/icon.png">',
             '<style>', style, '</style>',
             '</head>',
-            '<body>', '<div class="site">', '<div class="content">',
+            '<body>', '<div class="site">', '<div class="content" id="content">',
             '<h1>切韻新韻圖</h1>',
             '<p class="author-info">unt<hanla></hanla>設計、校訂、製作</p>',
             '<p>《切韻》成書與首款《韻鏡》式韻圖誕生相隔二百年，其間中古漢語語音發生了一定變化，因此切韻音系和《韻鏡》式韻圖音系是兩個不同的音系。本韻圖是專爲切韻音系新設計的，故名切韻新韻圖。</p>',
             '<p>切韻三等還可根據介音的不同分爲<hanla></hanla>A、B、C<hanla></hanla>三類；本韻圖將它們分置三列。C<hanla></hanla>類韻簡單來說就是非前元音三等韻。</p>',
             '<p>特別感謝<hanla></hanla><a href="https://nk2028.shn.hk/" title="The Ngiox Khyen 2028 Project" target="_blank">nk2028</a><hanla></hanla>的支持。</p>',
         ]))
-        文件.writelines(get目錄())
+        文件.writelines(get索引())
         文件.writelines('\n'.join([
-            '<input id="check" type="checkbox">',
-            '<p class="legend-head">格子合法性圖例及說明<span>：</span><label for="check"></label></p>',
+            '<input id="legend-check" type="checkbox">',
+            '<p class="legend-head">格子合法性圖例及說明<span>：</span><label for="legend-check"></label></p>',
             '<div class="legend">',
             '<p><div class="icon icon0"></div><div class="legality">強合法</div><div class="desc">非以下的情況（圓圈僅在格子無字時顯示）</div></p>',
             '<p><div class="icon icon1"></div><div class="legality">稀有合法</div><div class="desc">語音學上沒有明確的約束，但範圍內有字率低于<hanla></hanla>15%<hanla></hanla>而不都是僻字的情況</div></p>',
@@ -530,24 +551,12 @@ def 輸出網頁文件(文件名):
             結果 += '\n'
             文件.writelines([結果])
         文件.writelines('\n'.join([
-            '<h2 id="history">版本歷史<a href="#toc" class="back"></a></h2>',
-            '<div class="history">'
-            '<p><strong>2021.9.30 測試版</strong></p>',
-            '<ul>',
-            '<li>適配手機端屏幕尺寸</li>',
-            '<li>在標題後添加“回到目錄”</li>',
-            '<li>使小韻信息懸浮窗不超出頁面</li>',
-            '</ul>',
-            '<p><strong>2021.9.29 測試版</strong></p>',
-            '<ul>',
-            '<li>網頁版切韻新韻圖完成</li>',
-            '<li>前期準備工作：<ul>',
-            '<li>7.31 修訂一些邊緣小韻的<hanla></hanla>unt<hanla></hanla>切韻朗讀音</li>',
-            '<li>7.10 完成格子合法性判斷規則</li>',
-            '<li>6.30 完成《廣韻》爭議小韻和邊緣小韻校訂</li>',
-            '<li>6.12 完成切韻新韻圖設計</li></ul></li>',
-            '</ul>',
+            '<div class="table-buttons">',
+            '<input type="button" id="button-prev" value="< 上一圖" onclick="showPrevTable()" disabled>',
+            '<input type="button" id="button-next" value="下一圖 >" onclick="showNextTable()">',
             '</div>',
+            '<h2 id="history" class="shown">版本歷史' + get回到索引() + '</h2>'] +
+            get版本歷史() + [
             '<div class="license"><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="知识共享许可协议" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png"></a>本作品采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名－非商业性使用<hanla></hanla>4.0<hanla></hanla>国际许可协议</a>进行许可。</div>'
             '</div>', '</div>', '</body>',
             '</html>',
@@ -555,6 +564,7 @@ def 輸出網頁文件(文件名):
 
 
 讀取文件('diwei.txt')
+讀取文件('diwei_added.txt')
 設置合法性()
 統計合法性()
 輸出文本文件('yuntu.txt')

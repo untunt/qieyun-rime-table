@@ -7,6 +7,8 @@ body {
     background-color: #60c0e8;
     margin: 0;
     color: #1a1a1e;
+    line-height: 1.33em;
+    font-size: 16px;
 }
 body:before, body:after {
     background: inherit;
@@ -29,7 +31,8 @@ a {
     text-decoration: none;
     box-shadow: 0 1px 0 0 currentColor;
 }
-a:hover {
+a:hover,
+#toc ol label:hover a {
     color: #686878;
     box-shadow: none;
 }
@@ -42,9 +45,6 @@ h1 {
 }
 h2 {
     margin-top: 3em;
-}
-h2:first-of-type {
-    margin-top: 2em;
 }
 .site {
     background-color: #f0f4f8;
@@ -71,10 +71,12 @@ h2:first-of-type {
     }
 }
 p, div.legend, div.history {
-    max-width: 720px;
     margin-left: auto;
     margin-right: auto;
-    line-height: 1.33em;
+}
+.content > p {
+    max-width: 720px;
+    min-width: 31em;
 }
 p, table {
     font-size: 16px;
@@ -95,7 +97,7 @@ th, td {
         line-height: 1.2em;
     }
 }
-@media screen and (max-width: 540px) {
+@media screen and (max-width: 560px) {
     th, td {
         line-height: 1.1em;
     }
@@ -118,6 +120,14 @@ table {
     border-spacing: 0;
     border-width: 1px 0 0 1px;
     margin: 0 0 1.75em;
+}
+#content:not(.showing-all) table {
+    margin-bottom: 1em;
+}
+#content:not(.showing-all) h2:not(.shown),
+#content:not(.showing-all) h2:not(.shown) + table,
+#content.showing-all .table-buttons {
+    display: none;
 }
 th,
 tr:nth-of-type(4) td,
@@ -171,7 +181,7 @@ td:nth-of-type(6n+9),
 .text {
     z-index: 0;
 }
-.has-2, .has-3 {
+.has-2, .has-3, .has-from-div {
     margin: 0 -5em;
 }
 .has-2 .text {
@@ -205,7 +215,7 @@ th .has-2 .text {
         margin: 0 -12%;
     }
 }
-@media screen and (max-width: 540px) {
+@media screen and (max-width: 560px) {
     .has-2:not(.text-in-icon-hollow) .text, .has-3 .text {
         transform: scale(0.6, 0.9);
         margin: 0 -20%;
@@ -271,6 +281,7 @@ td:nth-of-type(6n+9) .text-in-icon-hollow .text {
 }
 .icon {
     margin-bottom: -0.15em;
+    margin-top: -0.5em;
 }
 .icon2 {
     margin-bottom: -0.175em;
@@ -332,7 +343,7 @@ h2 .back{
     font-weight: initial;
 }
 h2 .back:after {
-    content: '回到目錄↩︎';
+    content: '回到索引↩︎';
 }
 .div-sub {
     font-size: 85%;
@@ -441,7 +452,7 @@ h2 .back:after {
     padding: 15px;
     margin: 24px auto;
 }
-#toc, #toc p {
+#toc, #toc p:not(.toc-title) {
     font-size: 14px;
 }
 #toc .toc-title {
@@ -454,10 +465,14 @@ h2 .back:after {
 }
 #toc ol {
     margin: 0;
-    padding-inline-start: 1.5em;
+    padding-inline-start: 3.5em;
+    padding-inline-end: 1.5em;
     display: inline-block;
     vertical-align: top;
-    width: 12.5em;
+    width: 11.25em;
+}
+#toc ol:first-of-type, #toc ol:nth-of-type(3) {
+    border-right: 1px solid #aaaaae;
 }
 #toc ol a {
     box-shadow: none;
@@ -472,16 +487,58 @@ h2 .back:after {
 #toc ol:nth-of-type(3) .ipa {
     min-width: 3.75em;
 }
+#toc ol:nth-of-type(4) .ipa {
+    min-width: 4.75em;
+}
 #toc ol a .body {
     width: 8.75em;
     white-space: nowrap;
     display: inline-block;
 }
-#toc ol:nth-of-type(4) .body {
-    width: 9.75em;
-}
 #toc ol p {
     margin-left: -1.6em;
+}
+#toc ol li {
+    white-space: nowrap;
+}
+#toc input {
+    margin: 0;
+    vertical-align: middle;
+    position: relative;
+    right: 3em;
+    width: 1em;
+    margin-right: -1em;
+}
+#content:not(.showing-all) #toc li a {
+    pointer-events: none;
+    cursor: default;
+}
+#content:not(.showing-all) #toc li input:checked ~ a {
+    font-weight: 700;
+    color: inherit;
+}
+#content.showing-all #toc input#show-table {
+    display: none;
+}
+#toc input#show-all {
+    right: 1.3em;
+}
+#toc, #toc p:not(.toc-title) {
+    line-height: 1.5em;
+}
+@media screen and (max-width: 560px) {
+    #toc {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    #toc ol {
+        padding-inline-start: 3.25em;
+        padding-inline-end: 0.75em;
+    }
+}
+hr {
+    border-style: none;
+    border-top: 1px solid #aaaaae;
 }
 .history {
     line-height: 1.5em;
@@ -493,13 +550,13 @@ h2 .back:after {
     margin: 0;
     padding-inline-start: 1.5em;
 }
-input[type="checkbox"] {
+#legend-check {
     display: none;
 }
 .legend-head {
     margin-bottom: 0;
 }
-input:not(:checked) ~ .legend-head span {
+input:not(#legend-check:checked) ~ .legend-head span {
     color: transparent;
 }
 .legend-head label {
@@ -515,10 +572,10 @@ input:not(:checked) ~ .legend-head span {
     content: '>';
     display: inline-block;
 }
-input:checked ~ .legend-head label:before  {
+#legend-check:checked ~ .legend-head label:before  {
     content: '收起 ';
 }
-input:checked ~ .legend-head label:after  {
+#legend-check:checked ~ .legend-head label:after  {
     transform: rotate(-90deg);
 }
 .legend {
@@ -526,11 +583,11 @@ input:checked ~ .legend-head label:after  {
     overflow: hidden;
     transition: max-height .4s;
 }
-input:checked ~ .legend {
+#legend-check:checked ~ .legend {
     max-height: 10.5em;
 }
 @media screen and (max-width: 750px) {
-    input:checked ~ .legend {
+    #legend-check:checked ~ .legend {
         max-height: 15.8em;
     }
 }
@@ -539,4 +596,11 @@ input:checked ~ .legend {
     vertical-align: middle;
     margin-right: 10px;
     display: inline-block;
+}
+.table-buttons input {
+    min-width: 15%;
+    height: 2.5em;
+}
+.table-buttons input#button-next {
+    float: right;
 }
