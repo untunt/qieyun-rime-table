@@ -112,6 +112,10 @@ from yuntu_history import *
     1464: '以開三魚上/以開三之上',  # 䑂
 }
 
+直音字典 = {
+    1919: '音蒸上聲',
+    3177: '音黯去聲',
+}
 
 class 小韻屬性類:
     def __init__(self, 小韻號: int, 小韻號後綴: str, 字頭: str, 地位: 音韻地位, unt擬音: str, 反切: str) -> None:
@@ -154,7 +158,7 @@ class 小韻屬性類:
         當刪 = ' <span class="rime-deleted">(當刪)</span>' if self.is當刪小韻 else ''
         return '<span class="separator"></span>'.join([
             f'小韻<hanla></hanla>{self.小韻號}{self.小韻號後綴}{當刪}',
-            f'{self.反切}切',
+            直音字典[self.小韻號] if self.小韻號 in 直音字典 else f'{self.反切}切',
             f'<a href="https://ytenx.org/kyonh/sieux/{self.小韻號}/" target="_blank">韻典網</a>'
         ])
 
