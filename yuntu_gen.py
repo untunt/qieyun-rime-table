@@ -7,6 +7,14 @@ from yuntu_history import *
 合法性符號列表 = '○◎△●▲■'
 合法性符號_有字則隱藏列表 = '○'
 合法性符號_無字則隱藏列表 = '●▲■'
+合法性名稱字典 = {
+    '○': '強合法',
+    '◎': '稀有合法',
+    '△': '弱合法',
+    '●': '弱非法',
+    '▲': '強非法',
+    '■': '無效',
+}
 
 左側聲母列表 = [
     ['', '', '幫'],
@@ -117,6 +125,7 @@ from yuntu_history import *
     3177: '音黯去聲',
 }
 
+
 class 小韻屬性類:
     def __init__(self, 小韻號: int, 小韻號後綴: str, 字頭: str, 地位: 音韻地位, unt擬音: str, 反切: str) -> None:
         self.小韻號 = 小韻號
@@ -136,10 +145,10 @@ class 小韻屬性類:
             結果 += ' ' + self.地位.描述
         return 結果
 
-    def __rime_prop內容(self) -> str:
+    @property
+    def 描述(self) -> str:
         if self.is當刪小韻:
-            return self.unt擬音
-
+            return ''
         描述 = self.地位.描述.replace('眞', '真').replace('欣', '殷').replace('A清', '清')
         if self.小韻號 == 996 or self.小韻號 in [1043, 3708] and self.小韻號後綴 == 'b':
             # 𠁫、烋、抑
@@ -149,7 +158,19 @@ class 小韻屬性類:
             描述 = 描述.replace('二', '三').replace('三', '四<sup>(?)</sup>')
         if self.來源韻:
             描述 = f'{描述[:-2]}{self.來源韻}<sup>→{描述[-2]}</sup>{描述[-1]}'
-        return 描述 + ' ' + self.unt擬音
+        return 描述
+
+    def __rime_prop內容(self) -> str:
+        if self.is當刪小韻:
+            return self.unt擬音
+        return self.描述 + ' ' + self.unt擬音
+
+    def __rime_comment內容(self) -> str:
+        if self.is當刪小韻:
+            return 當刪小韻字典[self.小韻號][1]
+        if '(' in self.unt擬音 and self.小韻號 < 4000:
+            return '如正常演變應讀' + 茝等字典[self.小韻號]
+        return ''
 
     def __rime_num內容(self) -> str:
         if self.is增補小韻:
@@ -163,12 +184,7 @@ class 小韻屬性類:
         ])
 
     def __tooltip_box內容(self) -> str:
-        rime_comment內容 = ''
-        if self.is當刪小韻:
-            rime_comment內容 = 當刪小韻字典[self.小韻號][1]
-        elif '(' in self.unt擬音 and self.小韻號 < 4000:
-            rime_comment內容 = '如正常演變應讀' + 茝等字典[self.小韻號]
-
+        rime_comment內容 = self.__rime_comment內容()
         return f'<div class="rime-prop">{self.__rime_prop內容()}</div>' + \
             (f'<div class="rime-comment">{rime_comment內容}</div>' if rime_comment內容 else '') + \
             f'<div class="rime-num">{self.__rime_num內容()}</div>'
@@ -196,6 +212,30 @@ class 小韻屬性類:
             '<span class="tooltip-hitbox2"></span>' + \
             f'<span class="tooltip-box">{self.__tooltip_box內容()}</span>' + \
             '</span>'
+
+    def to小韻列表(self, 合法性符號) -> tuple[str, str]:
+        小韻號 = str(self.小韻號) + self.小韻號後綴
+        聲母, 開合, 等和重紐, 韻母, 聲調 = [''] * 5
+        描述 = self.描述.replace('<sup>', '').replace('</sup>', '')
+        if 描述:
+            剩餘 = 描述
+            聲母, 剩餘, 聲調 = 剩餘[0], 剩餘[1:-1], 剩餘[-1]
+            if 剩餘[0] in '開合':
+                開合, 剩餘 = 剩餘[0], 剩餘[1:]
+            else:
+                開合 = ''
+            if len(剩餘) <= 3 or '→' not in 剩餘:
+                等和重紐, 韻母 = 剩餘[:-1], 剩餘[-1]
+            else:
+                等和重紐, 韻母 = 剩餘[:-3], 剩餘[-3:]
+        return (小韻號, '\t'.join([
+            小韻號, self.字頭, self.反切, '' if self.is當刪小韻 else self.地位.編碼, self.unt擬音,  # 這是輸入文件的幾列
+            描述,
+            聲母, 開合, 等和重紐, 韻母, 聲調,
+            合法性符號,
+            self.__rime_comment內容().replace('<sub>', '〈').replace(
+                '</sub>', '〉') or 直音字典.get(self.小韻號, ''),
+        ]))
 
 
 class 格子類:
@@ -408,6 +448,26 @@ def 輸出文本文件(文件名):
             文件.writelines(結果)
 
 
+def 輸出小韻列表(文件名):
+    小韻字典 = {}
+    for 圖號, 韻圖 in enumerate(韻圖列表):
+        for 行號, 行 in enumerate(韻圖):
+            for 聲號, 聲調行 in enumerate(行):
+                for 列號, 格子 in enumerate(聲調行):
+                    for 小韻 in 格子.顯示的小韻列表:
+                        小韻號, 內容 = 小韻.to小韻列表(合法性名稱字典[格子.合法性符號])
+                        if len(小韻號) < 4:
+                            小韻號 = '0' * (4 - len(小韻號)) + 小韻號
+                        小韻字典[小韻號] = 內容
+    小韻列表 = []
+    小韻列表.append(
+        '小韻號 字頭 反切 編碼 unt擬音 描述 聲母 開合 等和重紐 韻母 聲調 合法性 備註\n'.replace(' ', '\t'))
+    for 小韻號 in sorted(小韻字典):
+        小韻列表.append(小韻字典[小韻號] + '\n')
+    with open(文件名, 'w', encoding='utf-8') as 文件:
+        文件.writelines(小韻列表)
+
+
 def 添加tr(內容):
     return f'<tr>{內容}</tr>'
 
@@ -574,8 +634,8 @@ def 輸出網頁文件(文件名):
             '<h2 id="history" class="shown">版本歷史' + get回到索引() + '</h2>'] +
             get版本歷史() + [
             '<div class="license">',
-            '<div class="pic"><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="知識共享許可協議" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png"></a></div>' + \
-            '<div class="desc">本作品使用的小韻原始數據（反切及音韻地位）來自<a href="https://ytenx.org/" title="韻典網" target="_blank">韻典網</a>和<hanla></hanla><a href="https://nk2028.shn.hk/" title="The Ngiox Khyen 2028 Project" target="_blank">nk2028</a>。' + \
+            '<div class="pic"><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="知識共享許可協議" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png"></a></div>' +
+            '<div class="desc">本作品使用的小韻原始數據（反切及音韻地位）來自<a href="https://ytenx.org/" title="韻典網" target="_blank">韻典網</a>和<hanla></hanla><a href="https://nk2028.shn.hk/" title="The Ngiox Khyen 2028 Project" target="_blank">nk2028</a>。' +
             '<br>本作品的設計採用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知識共享署名－非商業性使用<hanla></hanla>4.0<hanla></hanla>國際許可協議</a>進行許可。</div>',
             '</div>',
             '<div class="footer">'
@@ -594,3 +654,4 @@ def 輸出網頁文件(文件名):
 統計合法性()
 輸出文本文件('yuntu.txt')
 輸出網頁文件('index.html')
+輸出小韻列表('data.txt')
