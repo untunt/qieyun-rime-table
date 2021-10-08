@@ -28,6 +28,7 @@ function scrollToId(id) {
     });
 }
 var lastShownNum = '1';
+var isShowingAll = false;
 function setShownTableNum(num) {
     if (num == lastShownNum) return;
     document.getElementById('table' + lastShownNum).classList.remove('shown');
@@ -36,22 +37,27 @@ function setShownTableNum(num) {
     document.getElementById('button-next').disabled = num == 34 ? true : false;
     lastShownNum = num;
 }
+function checkRadio() {
+    document.getElementsByName('show-table')[lastShownNum - 1].checked = true;
+}
 function showTable(x) {
+    if (isShowingAll) return;
     scrollToId('table' + lastShownNum);
     setShownTableNum(x.value);
 }
 function showPrevTable(isPrev = true) {
     setShownTableNum(Number(lastShownNum) + (isPrev ? -1 : 1) + '');
-    document.getElementsByName('show-table')[lastShownNum - 1].checked = true;
+    checkRadio();
 }
 function showNextTable() {
     showPrevTable(false);
 }
 function showAllTables(x) {
     let div = document.getElementById('content');
-    if (x.checked) {
+    if (isShowingAll = x.checked) {
         div.classList.add('showing-all');
     } else {
+        checkRadio();
         div.classList.remove('showing-all');
     }
 }

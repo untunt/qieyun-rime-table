@@ -432,8 +432,8 @@ def get韻圖標題(圖號, is索引=False):
         呼 = 韻圖屬性列表[圖號].呼
         呼 = f'（{呼}）' if 呼 and '凡' not in 包含的韻 else ''
         附加 = ' checked="checked"' if 號 == '1' else ''
-        按鈕 = f'<input type="radio" id="show-table" name="show-table" value="{號}" onclick="showTable(this)"{附加}>'
-        return f'<li><label>{按鈕}<a onclick="scrollToId(\'table{號}\')"><span class="body">{標題}{包含的韻}</span>{呼}</a></label></li>'
+        按鈕 = f'<input type="radio" id="show-table" name="show-table" value="{號}" autocomplete="off" onclick="showTable(this)"{附加}>'
+        return f'<label><li>{按鈕}<a onclick="scrollToId(\'table{號}\')"><span class="body">{標題}{包含的韻}</span>{呼}</a></li></label>'
     標題 = 號 + '. ' + 標題 + \
         get回到索引() + \
         '<span class="she"><span class="brac">（</span><span class="she-sub">演變成：</span>' + \
@@ -456,7 +456,7 @@ def get索引():
         結果.append(get韻圖標題(i, True))
         if i % 10 == 9:
             結果.append('</ol>')
-    結果.append('<p><label><input type="checkbox" id="show-all" name="show-all" onclick="showAllTables(this)">顯示所有韻圖（可能卡頓）</label></p>')
+    結果.append('<p><label><input type="checkbox" id="show-all" name="show-all" autocomplete="off" onclick="showAllTables(this)">顯示所有韻圖（可能卡頓）</label></p>')
     結果.append('<p><a onclick="scrollToId(\'history\')">版本歷史</a></p>')
     結果.append('</ol>')
     結果.append('</nav>')
@@ -512,16 +512,28 @@ def 輸出網頁文件(文件名):
         script = 文件.read()
     with open('yuntu_gen.css', 'r', encoding='utf-8') as 文件:
         style = 文件.read()
+    首段 = '《切韻》成書與首款《韻鏡》式韻圖誕生相隔二百年，其間中古漢語語音發生了一定變化，因此切韻音系和《韻鏡》式韻圖音系是兩個不同的音系。本韻圖是專爲切韻音系新設計的，故名切韻新韻圖。'
     with open(文件名, 'w', encoding='utf-8') as 文件:
         文件.writelines('\n'.join([
             '<!DOCTYPE html>',
             '<html lang="zh-CN">',
             '<head>',
             '<script>', script, '</script>',
-            '<title>切韻新韻圖</title>'
             '<meta charset="utf-8">',
             '<meta name="viewport" content="width=device-width">',
-            '<link rel="icon" href="https://phesoca.com/wp-content/uploads/logo/icon.png">',
+            '<meta name="robots" content="index, follow">',
+            '<title>切韻新韻圖</title>',
+            f'<meta name="description" content="{首段}">',
+            '<link rel="canonical" href="https://phesoca.com/rime-table/">',
+            '<meta property="og:type" content="article">',
+            '<meta property="og:title" content="切韻新韻圖">',
+            f'<meta property="og:description" content="{首段}">',
+            '<meta property="og:url" content="https://phesoca.com/rime-table/">',
+            '<meta property="og:site_name" content="绯索卡 · Phesoca">',
+            '<link rel="icon" href="https://phesoca.com/wp-content/uploads/logo/cropped-icon-32x32.png" sizes="32x32">',
+            '<link rel="icon" href="https://phesoca.com/wp-content/uploads/logo/cropped-icon-192x192.png" sizes="192x192">',
+            '<link rel="apple-touch-icon" href="https://phesoca.com/wp-content/uploads/logo/cropped-icon-180x180.png">',
+            '<meta name="msapplication-TileImage" content="https://phesoca.com/wp-content/uploads/logo/cropped-icon-270x270.png">',
             '<style>', style, '</style>',
             '</head>',
             '<body>', '<div class="site">', '<div class="content" id="content">',
@@ -536,12 +548,12 @@ def 輸出網頁文件(文件名):
             '<input id="legend-check" type="checkbox">',
             '<p class="legend-head">格子合法性圖例及說明<span>：</span><label for="legend-check"></label></p>',
             '<div class="legend">',
-            '<p><div class="icon icon0"></div><div class="legality">強合法</div><div class="desc">非以下的情況（圓圈僅在格子無字時顯示）</div></p>',
-            '<p><div class="icon icon1"></div><div class="legality">稀有合法</div><div class="desc">語音學上沒有明確的約束，但範圍內有字率低于<hanla></hanla>15%<hanla></hanla>而不都是僻字的情況</div></p>',
-            '<p><div class="icon icon2"></div><div class="legality">弱合法</div><div class="desc">語音學上沒有明確的約束，但範圍內有字率低于<hanla></hanla>15%<hanla></hanla>且都是僻字的情況</div></p>',
-            '<p><div class="icon icon3"></div><div class="legality">弱非法</div><div class="desc">範圍小（≤ 50<hanla></hanla>個音節）或例外多（4% ~ 15%）的音系規則所禁止的情況</div></p>',
-            '<p><div class="icon icon4"></div><div class="legality">強非法</div><div class="desc">範圍廣（> 50<hanla></hanla>個音節）且例外少（< 4%）的音系規則所禁止的情況</div></p>',
-            '<p><div class="icon"></div><div class="legality"></div><div class="desc">（兩個非法圓圈僅在格子有字時顯示）</div></p>',
+            '<div class="icon icon0"></div><div class="legality">強合法</div><div class="desc">非以下的情況（圓圈僅在格子無字時顯示）</div>',
+            '<div class="icon icon1"></div><div class="legality">稀有合法</div><div class="desc">語音學上沒有明確的約束，但範圍內有字率低于<hanla></hanla>15%<hanla></hanla>而不都是僻字的情況</div>',
+            '<div class="icon icon2"></div><div class="legality">弱合法</div><div class="desc">語音學上沒有明確的約束，但範圍內有字率低于<hanla></hanla>15%<hanla></hanla>且都是僻字的情況</div>',
+            '<div class="icon icon3"></div><div class="legality">弱非法</div><div class="desc">範圍小（≤ 50<hanla></hanla>個音節）或例外多（4% ~ 15%）的音系規則所禁止的情況</div>',
+            '<div class="icon icon4"></div><div class="legality">強非法</div><div class="desc">範圍廣（> 50<hanla></hanla>個音節）且例外少（< 4%）的音系規則所禁止的情況</div>',
+            '<div class="icon"></div><div class="legality"></div><div class="desc">（兩個非法圓圈僅在格子有字時顯示）</div>',
             '</div>',
             '<p>在小韻字頭上懸停鼠標或點擊可查看其音韻地位、unt<hanla></hanla>擬音、反切及韻典網鏈接。</p>',
         ]))
@@ -552,12 +564,21 @@ def 輸出網頁文件(文件名):
             文件.writelines([結果])
         文件.writelines('\n'.join([
             '<div class="table-buttons">',
-            '<input type="button" id="button-prev" value="< 上一圖" onclick="showPrevTable()" disabled>',
-            '<input type="button" id="button-next" value="下一圖 >" onclick="showNextTable()">',
+            '<input type="button" id="button-prev" value="< 上一圖" autocomplete="off" onclick="showPrevTable()" disabled>',
+            '<input type="button" id="button-next" value="下一圖 >" autocomplete="off" onclick="showNextTable()">',
             '</div>',
             '<h2 id="history" class="shown">版本歷史' + get回到索引() + '</h2>'] +
             get版本歷史() + [
-            '<div class="license"><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="知识共享许可协议" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png"></a>本作品采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名－非商业性使用<hanla></hanla>4.0<hanla></hanla>国际许可协议</a>进行许可。</div>'
+            '<div class="license">',
+            '<div class="pic"><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="知識共享許可協議" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png"></a></div>' + \
+            '<div class="desc">本作品使用的小韻原始數據（反切及音韻地位）來自<a href="https://ytenx.org/" title="韻典網" target="_blank">韻典網</a>和<hanla></hanla><a href="https://nk2028.shn.hk/" title="The Ngiox Khyen 2028 Project" target="_blank">nk2028</a>。' + \
+            '<br>本作品的設計採用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知識共享署名－非商業性使用<hanla></hanla>4.0<hanla></hanla>國際許可協議</a>進行許可。</div>',
+            '</div>',
+            '<div class="footer">'
+            '<div><a href="./data.txt" download="廣韻小韻數據（unt修訂）">下載<hanla></hanla>unt<hanla></hanla>修訂的廣韻小韻數據（txt<hanla></hanla>格式</a> / <a href="./data.xlsx" download="廣韻小韻數據（unt修訂）">xlsx<hanla></hanla>格式）</a></div>',
+            '<div><a href="./rev.xlsx" download="廣韻爭議小韻整理">下載<hanla></hanla>unt<hanla></hanla>的廣韻爭議小韻整理表（未完成）</a></div>',
+            '<div><a href="https://phesoca.com/">回到<hanla></hanla>phesoca.com<hanla></hanla>首頁</a></div>',
+            '</div>',
             '</div>', '</div>', '</body>',
             '</html>',
         ]))

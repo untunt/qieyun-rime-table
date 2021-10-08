@@ -30,20 +30,21 @@ a {
     color: #007acc;
     text-decoration: none;
     box-shadow: 0 1px 0 0 currentColor;
+    cursor: pointer;
 }
 a:hover,
+#content:not(.showing-all) #toc ol label:hover li,
 #toc ol label:hover a {
     color: #686878;
     box-shadow: none;
 }
-h1 {
+.content > :first-child {
     margin-top: 60px;
 }
-.license {
-    margin-top: 2em;
+.content > :last-child {
     margin-bottom: 60px;
 }
-h2 {
+h2, .license {
     margin-top: 3em;
 }
 .site {
@@ -74,7 +75,7 @@ p, div.legend, div.history {
     margin-left: auto;
     margin-right: auto;
 }
-.content > p {
+.content > p, div.legend, div.history {
     max-width: 720px;
     min-width: 31em;
 }
@@ -286,7 +287,6 @@ td:nth-of-type(6n+9) .text-in-icon-hollow .text {
 .icon2 {
     margin-bottom: -0.175em;
 }
-/* svg 轉 url 可使用 https://tool.oschina.net/encode?type=4 */
 .icon0 {
     content: url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20width=%221em%22%20viewBox=%22-1.1%20-1.1%202.2%202.2%22%3E%3Ccircle%20r=%221%22%20style=%22fill:%20none;stroke:%20black;stroke-width:%200.15;stroke-opacity:%200.25;%22/%3E%3C/svg%3E');
 }
@@ -401,18 +401,19 @@ h2 .back:after {
 .tooltip-box .rime-comment {
     margin-top: 0.1em;
 }
-.tooltip-box .rime-comment sub {
-    vertical-align: baseline;
-    font-size: 80%;
-    position: relative;
-    bottom: -0.2em;
-}
 .tooltip-box .rime-num {
     margin-top: 0.5em;
 }
 .tooltip-box .rime-comment,
 .tooltip-box .rime-num {
     font-size: 80%;
+    line-height: 1em;
+}
+.tooltip-box .rime-comment sub {
+    vertical-align: baseline;
+    font-size: 80%;
+    position: relative;
+    bottom: -0.2em;
 }
 .tooltip-box .rime-num hanla {
     font-size: 75%;
@@ -423,17 +424,15 @@ h2 .back:after {
     text-align: center;
     display: inline-block;
 }
-.legend p {
-    margin: 0.25em 1em;
-}
-.legend p:first-of-type {
-    margin-top: 0.75em;
+.legend {
+    padding-top: 0.75em;
 }
 .legend .icon {
     margin-left: 0.5em;
     margin-right: 0.5em;
     float: left;
     height: 1.33em;
+    margin-top: 0;
 }
 .legend .legality {
     width: 5em;
@@ -441,8 +440,11 @@ h2 .back:after {
     float: left;
     min-height: 1em;
 }
-.legend .desc {
+.desc {
     overflow: hidden;
+}
+.legend .desc:not(:last-of-type) {
+    margin-bottom: 0.15em;
 }
 #toc {
     background: #f8fafc;
@@ -454,6 +456,7 @@ h2 .back:after {
 }
 #toc, #toc p:not(.toc-title) {
     font-size: 14px;
+    line-height: 1.5em;
 }
 #toc .toc-title {
     font-weight: 700;
@@ -503,7 +506,6 @@ h2 .back:after {
 }
 #toc input {
     margin: 0;
-    vertical-align: middle;
     position: relative;
     right: 3em;
     width: 1em;
@@ -522,9 +524,6 @@ h2 .back:after {
 }
 #toc input#show-all {
     right: 1.3em;
-}
-#toc, #toc p:not(.toc-title) {
-    line-height: 1.5em;
 }
 @media screen and (max-width: 560px) {
     #toc {
@@ -584,17 +583,26 @@ input:not(#legend-check:checked) ~ .legend-head span {
     transition: max-height .4s;
 }
 #legend-check:checked ~ .legend {
-    max-height: 10.5em;
+    max-height: 8.75em;
 }
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 700px) {
     #legend-check:checked ~ .legend {
-        max-height: 15.8em;
+        max-height: 14em;
     }
 }
-.license > a:first-of-type {
-    box-shadow: none;
-    vertical-align: middle;
+.license {
+    display: flex;
+    align-items: center;
+}
+.license .pic {
     margin-right: 10px;
+    float: left;
+}
+.license .pic a {
+    box-shadow: none;
+}
+.license .pic a img {
+    vertical-align: bottom;
     display: inline-block;
 }
 .table-buttons input {
@@ -603,4 +611,10 @@ input:not(#legend-check:checked) ~ .legend-head span {
 }
 .table-buttons input#button-next {
     float: right;
+}
+.footer div {
+    margin-block-start: 1em;
+}
+.footer a {
+    box-shadow: none;
 }
