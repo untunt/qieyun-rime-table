@@ -3,7 +3,7 @@ function show(x, isShow = true) {
     let tool = x.classList.contains('tooltip-wrapper') ? x : x.nextElementSibling;
     let icon = x.parentElement.parentElement.previousElementSibling
     if (isShow) {
-        let windowInnerWidth = window.innerWidth
+        let windowInnerWidth = window.innerWidth;
         text.classList.add('hovered');
         tool.classList.add('hovered');
         if (icon) icon.classList.add('hovered');
@@ -21,6 +21,7 @@ function show(x, isShow = true) {
 function hide(x) {
     show(x, false);
 }
+
 function scrollToId(id) {
     window.scrollTo({
         top: document.getElementById(id).offsetTop + (this.innerWidth > 880 ? -41 : -20),
@@ -60,4 +61,24 @@ function showAllTables(x) {
         checkRadio();
         div.classList.remove('showing-all');
     }
+}
+
+function setLegendHeight() {
+    let legend = document.getElementById('legend');
+    legend.style.maxHeight = legend.classList.contains('spread') ? legend.scrollHeight + 'px' : '0px';
+}
+function legend() {
+    let head = document.getElementById('legend-head');
+    let legend = document.getElementById('legend');
+    if (legend.classList.contains('spread')) {
+        head.classList.remove('spread');
+        legend.classList.remove('spread');
+    } else {
+        head.classList.add('spread');
+        legend.classList.add('spread');
+    }
+    setLegendHeight();
+}
+window.onresize = function () {
+    setLegendHeight();
 }

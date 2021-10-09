@@ -424,8 +424,8 @@ h2 .back:after {
     text-align: center;
     display: inline-block;
 }
-.legend {
-    padding-top: 0.75em;
+.legend > div:first-of-type {
+    height: 0.75em;
 }
 .legend .icon {
     margin-left: 0.5em;
@@ -549,32 +549,31 @@ hr {
     margin: 0;
     padding-inline-start: 1.5em;
 }
-#legend-check {
-    display: none;
-}
 .legend-head {
     margin-bottom: 0;
 }
-input:not(#legend-check:checked) ~ .legend-head span {
+.legend-head .colon {
+    margin-right: 0.5em;
+}
+.legend-head:not(.spread) .colon {
     color: transparent;
 }
-.legend-head label {
+.legend-head .button {
     display: inline-block;
     cursor: pointer;
     color: #95959b;
 }
-.legend-head label:before  {
+.legend-head .button:before {
     content: '展开 ';
-    margin-left: 0.5em;
 }
-.legend-head label:after  {
+.legend-head .button:after {
     content: '>';
     display: inline-block;
 }
-#legend-check:checked ~ .legend-head label:before  {
+.legend-head.spread .button:before {
     content: '收起 ';
 }
-#legend-check:checked ~ .legend-head label:after  {
+.legend-head.spread .button:after {
     transform: rotate(-90deg);
 }
 .legend {
@@ -582,17 +581,10 @@ input:not(#legend-check:checked) ~ .legend-head span {
     overflow: hidden;
     transition: max-height .4s;
 }
-#legend-check:checked ~ .legend {
-    max-height: 8.75em;
-}
-@media screen and (max-width: 700px) {
-    #legend-check:checked ~ .legend {
-        max-height: 14em;
-    }
-}
 .license {
     display: flex;
     align-items: center;
+    margin-bottom: 1.5em;
 }
 .license .pic {
     margin-right: 10px;
@@ -613,7 +605,7 @@ input:not(#legend-check:checked) ~ .legend-head span {
     float: right;
 }
 .footer div {
-    margin-block-start: 1em;
+    margin-block-start: 0.5em;
 }
 .footer a {
     box-shadow: none;

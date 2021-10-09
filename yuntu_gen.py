@@ -609,14 +609,14 @@ def 輸出網頁文件(文件名):
         ]))
         文件.writelines(get索引())
         文件.writelines('\n'.join([
-            '<input id="legend-check" type="checkbox">',
-            '<p class="legend-head">格子合法性圖例及說明<span>：</span><label for="legend-check"></label></p>',
-            '<div class="legend">',
+            '<p class="legend-head" id="legend-head">格子合法性圖例及說明<span class="colon">：</span><span class="button" onclick="legend()"></span></p>',
+            '<div class="legend" id="legend">',
+            '<div></div>',
             '<div class="icon icon0"></div><div class="legality">強合法</div><div class="desc">非以下的情況（圓圈僅在格子無字時顯示）</div>',
             '<div class="icon icon1"></div><div class="legality">稀有合法</div><div class="desc">語音學上沒有明確的約束，但範圍內有字率低于<hanla></hanla>15%<hanla></hanla>而不都是僻字的情況</div>',
             '<div class="icon icon2"></div><div class="legality">弱合法</div><div class="desc">語音學上沒有明確的約束，但範圍內有字率低于<hanla></hanla>15%<hanla></hanla>且都是僻字的情況</div>',
             '<div class="icon icon3"></div><div class="legality">弱非法</div><div class="desc">範圍小（≤ 50<hanla></hanla>個音節）或例外多（4% ~ 15%）的音系規則所禁止的情況</div>',
-            '<div class="icon icon4"></div><div class="legality">強非法</div><div class="desc">範圍廣（> 50<hanla></hanla>個音節）且例外少（< 4%）的音系規則所禁止的情況</div>',
+            '<div class="icon icon4"></div><div class="legality">強非法</div><div class="desc">範圍廣（&gt; 50<hanla></hanla>個音節）且例外少（&lt; 4%）的音系規則所禁止的情況</div>',
             '<div class="icon"></div><div class="legality"></div><div class="desc">（兩個非法圓圈僅在格子有字時顯示）</div>',
             '</div>',
             '<p>在小韻字頭上懸停鼠標或點擊可查看其音韻地位、unt<hanla></hanla>擬音、反切及韻典網鏈接。</p>',
@@ -635,12 +635,13 @@ def 輸出網頁文件(文件名):
             get版本歷史() + [
             '<div class="license">',
             '<div class="pic"><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="知識共享許可協議" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png"></a></div>' +
-            '<div class="desc">本作品使用的小韻原始數據（反切及音韻地位）來自<a href="https://ytenx.org/" title="韻典網" target="_blank">韻典網</a>和<hanla></hanla><a href="https://nk2028.shn.hk/" title="The Ngiox Khyen 2028 Project" target="_blank">nk2028</a>。' +
+            '<div class="desc">本作品使用的小韻原始數據（反切及音韻地位）來自<a href="https://ytenx.org/" target="_blank">韻典網</a>和<hanla></hanla><a href="https://nk2028.shn.hk/" title="The Ngiox Khyen 2028 Project" target="_blank">nk2028</a>。' +
             '<br>本作品的設計採用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知識共享署名－非商業性使用<hanla></hanla>4.0<hanla></hanla>國際許可協議</a>進行許可。</div>',
             '</div>',
             '<div class="footer">'
             '<div><a href="./data.txt" download="廣韻小韻數據（unt修訂）">下載<hanla></hanla>unt<hanla></hanla>修訂的廣韻小韻數據（txt<hanla></hanla>格式</a> / <a href="./data.xlsx" download="廣韻小韻數據（unt修訂）">xlsx<hanla></hanla>格式）</a></div>',
             '<div><a href="./rev.xlsx" download="廣韻爭議小韻整理">下載<hanla></hanla>unt<hanla></hanla>的廣韻爭議小韻整理表（未完成）</a></div>',
+            '<div><a href="https://github.com/untunt/qieyun-rime-table">查看切韻新韻圖的<hanla></hanla>GitHub<hanla></hanla>項目</a></div>',
             '<div><a href="https://phesoca.com/">回到<hanla></hanla>phesoca.com<hanla></hanla>首頁</a></div>',
             '</div>',
             '</div>', '</div>', '</body>',
