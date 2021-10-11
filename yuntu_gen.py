@@ -176,15 +176,30 @@ class 小韻屬性類:
         return ''
 
     def __rime_num內容(self) -> str:
-        if self.is增補小韻:
-            return f'增補小韻<hanla></hanla>{self.小韻號 - 4000}{self.小韻號後綴}'
+        結果列表 = []
 
+        小韻號 = self.小韻號
+        小韻號後綴 = self.小韻號後綴
+        名字 = '小韻'
+        if self.is增補小韻:
+            小韻號後綴 = '-' + str(int(小韻號 / 10000)) if int(小韻號 / 10000) else ''
+            小韻號 = 小韻號 % 10000
+            名字 = '增補小韻' if 小韻號 > 4000 else '增補可能讀音'
+            if 小韻號 > 4000:
+                小韻號 -= 4000
         當刪 = ' <span class="rime-deleted">(當刪)</span>' if self.is當刪小韻 else ''
-        return '<span class="separator"></span>'.join([
-            f'小韻<hanla></hanla>{self.小韻號}{self.小韻號後綴}{當刪}',
-            直音字典[self.小韻號] if self.小韻號 in 直音字典 else f'{self.反切}切',
-            f'<a href="https://ytenx.org/kyonh/sieux/{self.小韻號}/" target="_blank">韻典網</a>'
-        ])
+        結果列表.append(f'{名字}<hanla></hanla>{小韻號}{小韻號後綴}{當刪}')
+
+        if self.小韻號 in 直音字典:
+            結果列表.append(直音字典[self.小韻號])
+        elif self.反切:
+            結果列表.append(f'{self.反切}切')
+
+        if not self.is增補小韻:
+            結果列表.append(
+                f'<a href="https://ytenx.org/kyonh/sieux/{self.小韻號}/" target="_blank">韻典網</a>')
+
+        return '<span class="separator"></span>'.join(結果列表)
 
     def __tooltip_box內容(self) -> str:
         rime_comment內容 = self.__rime_comment內容()
