@@ -963,7 +963,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 962	稱	處陵	YwA	tɕʰîŋ
 963	殑	其矜	fwA	ɡȉŋ
 964	㱡	山矜	VwA	ʂîŋ
-965	硱	綺兢	ewA	kʰîŋ
+965	硱	綺兢	ewA	kʰɹîŋ
 966	僜	丑升	KwA	tɹʰîŋ
 967	磳	仕兢	UwA	dʐȉŋ
 968	砯	披冰	BwA	pʰɹîŋ

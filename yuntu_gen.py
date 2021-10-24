@@ -150,8 +150,10 @@ class 小韻屬性類:
         if self.is當刪小韻:
             return ''
         描述 = self.地位.描述.replace('眞', '真').replace('欣', '殷').replace('A清', '清')
-        if self.小韻號 == 996 or self.小韻號 in [1043, 3708] and self.小韻號後綴 == 'b':
-            # 𠁫、烋、抑
+        if self.小韻號 in [965, 996] or \
+                self.小韻號 in [1043, 3708] and self.小韻號後綴 == 'b' or \
+                self.is增補小韻 and self.地位.韻 == '蒸' and self.地位.組 == '見':
+            # 硱、𠁫、烋、抑
             描述 = 描述.replace('三', '三<sup>(B)</sup>')
         elif self.小韻號 == 1830:
             # 𩦠
@@ -394,7 +396,9 @@ def 插入小韻(小韻: 小韻屬性類) -> None:
             列號 = get列號('4')
         if 小韻.地位.組 == '幫' and 小韻.地位.韻 == '咍':
             圖號 -= 1  # 歸開口
-    elif 小韻.字頭 in '𠁫烋抑':
+        if 小韻.地位.韻 == '蒸' and 小韻.地位.組 == '見':
+            列號 = get列號('B')
+    elif 小韻.字頭 in '硱𠁫烋抑':
         列號 = get列號('B')
     elif 小韻.字頭 in '茝佁䑂':
         列號 = get列號('C')
