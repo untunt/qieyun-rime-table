@@ -195,7 +195,7 @@ class 小韻屬性類:
         if self.小韻號 in 直音字典:
             結果列表.append(直音字典[self.小韻號])
         elif self.反切:
-            結果列表.append(f'{self.反切}切')
+            結果列表.append(self.反切 if self.反切[-1] == '反' else self.反切 + '切')
 
         if not self.is增補小韻:
             結果列表.append(
