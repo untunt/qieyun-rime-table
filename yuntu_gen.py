@@ -2,8 +2,6 @@ from QieyunEncoder import 常量, 音韻地位
 from yuntu_lib import *
 from yuntu_history import *
 
-顯示增補小韻 = False
-
 合法性符號列表 = '○◎△●▲■'
 合法性符號_有字則隱藏列表 = '○'
 合法性符號_無字則隱藏列表 = '●▲■'
@@ -259,7 +257,7 @@ class 小韻屬性類:
 
 
 class 格子類:
-    def __init__(self) -> None:
+    def __init__(self, 顯示增補小韻: bool) -> None:
         self.小韻列表: list[小韻屬性類] = []
         self.非增補小韻列表: list[小韻屬性類] = []
         self.顯示的小韻列表 = self.小韻列表 if 顯示增補小韻 else self.非增補小韻列表
@@ -325,8 +323,13 @@ class 格子類:
         return 添加td(格子內容)
 
 
-韻圖列表 = [[[[格子類() for 新等 in 新等列表] for 聲 in 常量.所有聲]
-         for 行 in 韻圖聲母列表[0]] for 韻圖屬性 in 韻圖屬性列表]
+韻圖列表 = None
+
+
+def 創建韻圖列表(顯示增補小韻: bool = False):
+    global 韻圖列表
+    韻圖列表 = [[[[格子類(顯示增補小韻) for 新等 in 新等列表] for 聲 in 常量.所有聲]
+             for 行 in 韻圖聲母列表[0]] for 韻圖屬性 in 韻圖屬性列表]
 
 
 def 驗證格子和小韻地位相等(圖號, 行號, 聲號, 列號, 小韻: 小韻屬性類):
@@ -672,12 +675,3 @@ def 輸出網頁文件(文件名):
             '</div>', '</div>', '</body>',
             '</html>',
         ]))
-
-
-讀取文件('diwei.txt')
-讀取文件('diwei_added.txt')
-設置合法性()
-統計合法性()
-輸出文本文件('yuntu.txt')
-輸出網頁文件('index.html')
-輸出小韻列表('data.txt')
