@@ -1,6 +1,6 @@
 from yuntu_gen import *
 
-創建韻圖列表(True)
+創建韻圖列表(顯示增補小韻=True)
 讀取文件('diwei.txt')
 讀取文件('diwei_added.txt')
 設置合法性()
