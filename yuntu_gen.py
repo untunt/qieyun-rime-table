@@ -650,7 +650,7 @@ def 輸出網頁文件(文件名):
             '<div class="icon icon4"></div><div class="legality">強非法</div><div class="desc">範圍廣（&gt; 50<hanla></hanla>個音節）且例外少（&lt; 4%）的音系規則所禁止的情況</div>',
             '<div class="icon"></div><div class="legality"></div><div class="desc">（兩個非法圓圈僅在格子有字時顯示）</div>',
             '</div>',
-            '<p>在小韻字頭上懸停鼠標或點擊可查看其音韻地位、unt<hanla></hanla>擬音、反切及韻典網鏈接。</p>',
+            '<p>在小韻字頭上懸停鼠標或點擊可查看其音韻地位、<a href="https://phesoca.com/aws/309/">unt<hanla></hanla>擬音</a>、反切及韻典網鏈接。</p>',
         ]))
         for 圖號, 韻圖 in enumerate(韻圖列表):
             結果 = '\n'.join([get韻圖標題(圖號), '<table>'] +

@@ -1,4 +1,11 @@
 版本歷史字典 = {
+    '2021.12.31 版': [
+        '調整 unt 擬音<ul>' +
+        '<li>簡化聲調符號</li>' +
+        '<li>二等元音改用咽化<hanla></hanla>ˤ<hanla></hanla>標記</li>' +
+        '<li>魚、虞、鍾韻改爲<hanla></hanla>ɨʌ、ʉɔ、ʉɔ</li>' +
+        '<li>肴韻改爲<hanla></hanla>aˤw</li></ul>',
+    ],
     '2021.10.24 版': [
         '調整<hanla></hanla>965<hanla></hanla>硱小韻',
     ],
