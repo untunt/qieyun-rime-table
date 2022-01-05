@@ -1014,7 +1014,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 1013	輈	張流	JyA	tɹu
 1014	𧚍	巨鳩	fyA	ɡj̈u
 1015	浮	縛謀	CyA	bβu
-1016	謀	莫浮	DyA	mβu
+1016	謀	莫浮	DyA	mu
 1017	侯	戶鉤	jzA	ʁɘu
 1018	謳	烏侯	hzA	ʔɘu
 1019	羺	奴鉤	HzA	nɘu
@@ -1031,7 +1031,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 1030	㔌	徂鉤	PzA	dzɘu
 1031	裒	薄侯	CzA	bɘu
 1032	䜅	千侯	OzA	tsʰɘu
-1033	呣	亡侯	DzA	mɘu
+1033	呣	亡侯	DyA	mu
 1034	幽	於虯	h0A	ʔiu
 1035	虯	渠幽	f0A	ɡiu
 1036	彪	甫烋	A0A	pɹiu
@@ -1954,7 +1954,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 1953	𩋄	初九	TyB	tʂʰú
 1954	秠	芳婦	ByB	pʰβú
 1955	厚	胡口	jzB	ʁɘú
-1956	母	莫厚	DzB	mɘú
+1956	母	莫厚	DzB	mú
 1957	部	蒲口	CzB	bɘú
 1958	斗	當口	EzB	tɘú
 1959	𪌘	天口	FzB	tʰɘú
@@ -3057,13 +3057,13 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 3056	狖	余救	lyC	jù
 3057	授	承呪	ZyC	dʑù
 3058	輮	人又	cyC	ɲù
-3059	莓	亡救	DyC	mβù
+3059	莓	亡救	DzC	mù
 3060	鼼	牛救	gyC	ŋj̈ù
 3061	𪖛	丘救	eyC	kʰj̈ù
 3062	䞭	七溜	OyC	tsʰɹù
 3063	候	胡遘	jzC	ʁɘù
 3064	寇	苦候	ezC	qʰɘù
-3065	茂	莫候	DzC	mɘù
+3065	茂	莫候	DzC	mù
 3066	仆	匹候	BzC	pʰɘù
 3067	豆	徒候	GzC	dɘù
 3068	鬥	都豆	EzC	tɘù

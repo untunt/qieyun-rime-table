@@ -152,13 +152,13 @@ th:nth-of-type(6n+5),
 td:nth-of-type(6n+5),
 tr:nth-of-type(n+5):nth-last-of-type(n+16) td:nth-of-type(6n+6),
 .from-divB {
-    background-color: #e5ffea;
+    background-color: #dbffe2;
 }
 th:nth-of-type(6n+6),
 td:nth-of-type(6n+6),
 tr:nth-of-type(n+10):nth-last-of-type(n+9) td:nth-of-type(6n+5),
 .from-divA {
-    background-color: #e3fbff;
+    background-color: #e0faff;
 }
 th:nth-of-type(6n+7),
 td:nth-of-type(6n+7),
@@ -265,11 +265,11 @@ td:nth-of-type(6n+4) .text-in-icon-hollow .text {
 }
 td:nth-of-type(6n+5) .text-in-icon-hollow .text,
 tr:nth-of-type(n+5):nth-last-of-type(n+16) td:nth-of-type(6n+6) .text-in-icon-hollow .text {
-    color: #e5ffea;
+    color: #dbffe2;
 }
 td:nth-of-type(6n+6) .text-in-icon-hollow .text,
 tr:nth-of-type(n+10):nth-last-of-type(n+9) td:nth-of-type(6n+5) .text-in-icon-hollow .text {
-    color: #e3fbff;
+    color: #e0faff;
 }
 td:nth-of-type(6n+7) .text-in-icon-hollow .text {
     color: #cfe2f1;
