@@ -1,6 +1,7 @@
 版本歷史字典 = {
     '2022.1.20': [
         '調整 unt 擬音：云母改爲<hanla></hanla>w',
+        '對于從其他同等韻轉來的小韻，增加繪製小韻背景',
     ],
     '2022.1.5': [
         '微調<hanla></hanla>3<span class="div-sub">B</span>、3<span class="div-sub">A</span><hanla></hanla>兩列背景色，使二者更易區分',
