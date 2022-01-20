@@ -10,7 +10,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 9	戎	如融	cBA	ɲuɴ
 10	弓	居戎	dBA	kj̈uɴ
 11	融	以戎	lBA	juɴ
-12	雄	羽弓	kBA	ɹuɴ
+12	雄	羽弓	kBA	wuɴ
 13	瞢	莫中	DBA	mβuɴ
 14	穹	去宮	eBA	kʰj̈uɴ
 15	窮	渠弓	fBA	ɡj̈uɴ
@@ -87,7 +87,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 86	淙	士江	UEA	dʐœˤɴ
 87	支	章移	XFA	tɕiɛ
 88	移	弋支	lFA	jiɛ
-89	爲	薳支	kFI	ɹʷiɛ
+89	爲	薳支	kFI	wɹiɛ
 90	嬀	居爲	dFM	kʷɹiɛ
 91	𪎮	許爲	iFM	hʷɹiɛ
 92	逶	於爲	hFM	ʔʷɹiɛ
@@ -172,7 +172,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 171	悲	府眉	AGE	pɹi
 172	錐	職追	XGI	tɕʷi
 173	誰	視隹	ZGI	dʑʷi
-174	帷	洧悲	kGI	ɹʷi
+174	帷	洧悲	kGI	wɹi
 175	邳	符悲	CGE	bɹi
 176	丕	敷悲	BGE	pʰɹi
 177	倠	許維	iGI	hʷi
@@ -211,7 +211,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 210	䀵	式其	aHA	ɕɨ
 211	微	無非	DIA	mβʉi
 212	揮	許歸	iII	hʷʉi
-213	幃	雨非	kII	ɹʷʉi
+213	幃	雨非	kII	wʉi
 214	霏	芳非	BIA	pʰβʉi
 215	猆	甫微	AIA	pβʉi
 216	肥	符非	CIA	bβʉi
@@ -251,7 +251,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 250	虞	遇俱	gKA	ŋʷʉɔ
 251	芻	測隅	TKA	tʂʷʰʉɔ
 252	無	武夫	DKA	mβʉɔ
-253	于	羽俱	kKA	ɹʷʉɔ
+253	于	羽俱	kKA	wʉɔ
 254	訏	況于	iKA	hʷʉɔ
 255	衢	其俱	fKA	ɡʷʉɔ
 256	儒	人朱	cKA	ɲʷʉɔ
@@ -424,7 +424,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 423	銀	語巾	gVE	ŋɹin
 424	巾	居銀	dVE	kɹin
 425	麏	居筠	dVM	kʷɹin
-426	筠	爲贇	kVI	ɹʷin
+426	筠	爲贇	kVI	wɹin
 427	囷	去倫	eVM	kʷʰɹin
 428	珉	武巾	DVE	mɹin
 429	貧	符巾	CVE	bɹin
@@ -454,7 +454,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 453	莘	所臻	VWA	ʂɹ̩n
 454	𦿒	士臻	UWA	dʐɹ̩n
 455	文	無分	DXA	mβʉn
-456	雲	王分	kXI	ɹʷʉn
+456	雲	王分	kXI	wʉn
 457	熅	於云	hXI	ʔʷʉn
 458	汾	符分	CXA	bβʉn
 459	分	府文	AXA	pβʉn
@@ -468,7 +468,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 467	斤	舉欣	dYA	kɨn
 468	䖐	語斤	gYA	ŋɨn
 469	元	愚袁	gZI	ŋʷɥ̈ən
-470	袁	雨元	kZI	ɹʷən
+470	袁	雨元	kZI	wən
 471	煩	附袁	CZA	bβən
 472	飜	孚袁	BZA	pʰβən
 473	暄	況袁	iZI	hʷɥ̈ən
@@ -630,7 +630,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 629	詮	此緣	OfI	tsʷʰɹen
 630	專	職緣	XfI	tɕʷen
 631	遄	市緣	ZfI	dʑʷen
-632	員	王權	kfI	ɹʷen
+632	員	王權	kfI	wɹen
 633	恮	莊緣	SfI	tʂʷen
 634	栓	山員	VfI	ʂʷen
 635	猭	丑緣	KfI	tɹʷʰen
@@ -829,7 +829,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 828	牆	在良	PpA	dzɨɐɴ
 829	鏘	七羊	OpA	tsʰɨɐɴ
 830	匡	去王	epI	kʷʰʉɐɴ
-831	王	雨方	kpI	ɹʷʉɐɴ
+831	王	雨方	kpI	wʉɐɴ
 832	央	於良	hpA	ʔɨɐɴ
 833	強	巨良	fpA	ɡɨɐɴ
 834	𦳝	褚羊	KpA	tɹʰɨɐɴ
@@ -878,7 +878,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 877	明	武兵	DsA	mɹaŋ
 878	棖	直庚	LrA	dɹaˤŋ
 879	趟	竹盲	JrA	tɹaˤŋ
-880	榮	永兵	ksI	ɹʷaŋ
+880	榮	永兵	ksI	wɹaŋ
 881	兵	甫明	AsA	pɹaŋ
 882	兄	許榮	isI	hʷɹaŋ
 883	卿	去京	esA	kʰɹaŋ
@@ -984,7 +984,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 983	揯	古恆	dxA	qəŋ
 984	鼟	他登	FxA	tʰəŋ
 985	漰	普朋	BxA	pʰəŋ
-986	尤	羽求	kyA	ɹu
+986	尤	羽求	kyA	wu
 987	憂	於求	hyA	ʔj̈u
 988	劉	力求	IyA	lɹu
 989	秋	七由	OyA	tsʰɹu
@@ -1214,7 +1214,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 1213	掎	居綺	dFF	kɹíɛ
 1214	綺	墟彼	eFF	kʰɹíɛ
 1215	螘	魚倚	gFF	ŋɹíɛ
-1216	蔿	韋委	kFJ	ɹʷíɛ
+1216	蔿	韋委	kFJ	wɹíɛ
 1217	觜	即委	NFJ	tsʷɹíɛ
 1218	蘂	如累	cFJ	ɲʷíɛ
 1219	此	雌氏	OFB	tsʰíɛ
@@ -1258,7 +1258,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 1257	姊	將几	NGB	tsí
 1258	匕	卑履	AGB	pí
 1259	軌	居洧	dGN	kʷɹí
-1260	洧	榮美	kGJ	ɹʷí
+1260	洧	榮美	kGJ	wɹí
 1261	矢	式視	aGB	ɕí
 1262	雉	直几	LGB	dɹí
 1263	死	息姊	QGB	sí
@@ -1315,7 +1315,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 1314	蟣	居豨	dIB	kɨ́i
 1315	斐	敷尾	BIB	pʰβʉ́i
 1316	匪	府尾	AIB	pβʉ́i
-1317	韙	于鬼	kIJ	ɹʷʉ́i
+1317	韙	于鬼	kIJ	wʉ́i
 1318	鬼	居偉	dIJ	kʷʉ́i
 1319	虺	許偉	iIJ	hʷʉ́i
 1320	顗	魚豈	gIB	ŋɨ́i
@@ -1350,7 +1350,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 1349	𤿚	七與	OJB	tsʰɨ́ʌ
 1350	苴	子與	NJB	tsɨ́ʌ
 1351	麌	虞矩	gKB	ŋʷʉ́ɔ
-1352	羽	王矩	kKB	ɹʷʉ́ɔ
+1352	羽	王矩	kKB	wʉ́ɔ
 1353	聚	慈庾	PKB	dzʷʉ́ɔ
 1354	甫	方矩	AKB	pβʉ́ɔ
 1355	武	文甫	DKB	mβʉ́ɔ
@@ -1442,7 +1442,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 1441	皠	七罪	OSJ	tsʷʰój
 1442	琲	蒲罪	CSB	bój
 1443	嶊	子罪	NSJ	tsʷój
-1444	倄	于罪	kUJ	ɹʷə́j (ɹú)
+1444	倄	于罪	kUJ	wə́j
 1445	海	呼改	iTB	χə́j
 1446	愷	苦亥	eTB	qʰə́j
 1447	宰	作亥	NTB	tsə́j
@@ -1481,7 +1481,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 1480	引	余忍	lVB	jín
 1481	愍	眉殞	DVF	mɹín
 1482	泯	武盡	DVB	mín
-1483	殞	于敏	kVJ	ɹʷín
+1483	殞	于敏	kVJ	wɹín
 1484	準	之尹	XVJ	tɕʷín
 1485	尹	余準	lVJ	ɥín
 1486	筍	思尹	QVJ	sʷɹín
@@ -1503,7 +1503,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 1502	忿	敷粉	BXB	pʰβʉ́n
 1503	惲	於粉	hXJ	ʔʷʉ́n
 1504	齳	魚吻	gXJ	ŋʷʉ́n
-1505	抎	云粉	kXJ	ɹʷʉ́n
+1505	抎	云粉	kXJ	wʉ́n
 1506	𧼐	丘粉	eXJ	kʷʰʉ́n
 1507	隱	於謹	hYB	ʔɨ́n
 1508	謹	居隱	dYB	kɨ́n
@@ -1514,7 +1514,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 1513	听	牛謹	gYB	ŋɨ́n
 1514	䘆	休謹	iYB	hɨ́n
 1515	阮	虞遠	gZJ	ŋʷɥ̈ə́n
-1516	遠	雲阮	kZJ	ɹʷə́n
+1516	遠	雲阮	kZJ	wə́n
 1517	偃	於幰	hZB	ʔj̈ə́n
 1518	湕	居偃	dZB	kj̈ə́n
 1519	寋	其偃	fZB	ɡj̈ə́n
@@ -1821,7 +1821,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 1820	网	文兩	DpB	mβʉ́ɐɴ
 1821	昉	分网	ApB	pβʉ́ɐɴ
 1822	枉	紆往	hpJ	ʔʷʉ́ɐɴ
-1823	往	于兩	kpJ	ɹʷʉ́ɐɴ
+1823	往	于兩	kpJ	wʉ́ɐɴ
 1824	怳	許昉	ipJ	hʷʉ́ɐɴ
 1825	搶	七兩	OpB	tsʰɨ́ɐɴ
 1826	長	知丈	JpB	tɹɨ́ɐɴ
@@ -1858,7 +1858,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 1857	警	居影	dsB	kɹáŋ
 1858	影	於丙	hsB	ʔɹáŋ
 1859	省	所景	VsB	ʂáŋ
-1860	永	于憬	ksJ	ɹʷáŋ
+1860	永	于憬	ksJ	wɹáŋ
 1861	𦬺	許永	isJ	hʷɹáŋ
 1862	皿	武永	DsB	mɹáŋ
 1863	憬	俱永	dsJ	kʷɹáŋ
@@ -1925,7 +1925,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 1924	倗	普等	BxB	pʰə́ŋ
 1925	肯	苦等	exB	qʰə́ŋ
 1926	能	奴等	HxB	nə́ŋ
-1927	有	云久	kyB	ɹú
+1927	有	云久	kyB	wú
 1928	柳	力久	IyB	lɹú
 1929	狃	女久	MyB	nɹú
 1930	丑	敕久	KyB	tɹʰú
@@ -2155,7 +2155,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 2154	豉	是義	ZFC	dʑìɛ
 2155	積	子智	NFC	tsìɛ
 2156	賜	斯義	QFC	sìɛ
-2157	爲	于僞	kFK	ɹʷìɛ
+2157	爲	于僞	kFK	wɹìɛ
 2158	䞈	詭僞	dFO	kʷɹìɛ
 2159	帔	披義	BFG	pʰɹìɛ
 2160	賁	彼義	AFG	pɹìɛ
@@ -2196,7 +2196,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 2195	孈	呼恚	iFK	hʷìɛ
 2196	㞆	卿義	eFG	kʰɹìɛ
 2197	至	脂利	XGC	tɕì
-2198	位	于愧	kGK	ɹʷì
+2198	位	于愧	kGK	wɹì
 2199	郿	明祕	DGG	mɹì
 2200	遂	徐醉	RGK	zʷɹì
 2201	醉	將遂	NGK	tsʷɹì
@@ -2275,7 +2275,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 2274	亟	去吏	eHC	kʰɨ̀
 2275	未	無沸	DIC	mβʉ̀i
 2276	貴	居胃	dIK	kʷʉ̀i
-2277	胃	于貴	kIK	ɹʷʉ̀i
+2277	胃	于貴	kIK	wʉ̀i
 2278	魏	魚貴	gIK	ŋʷʉ̀i
 2279	沸	方味	AIC	pβʉ̀i
 2280	費	芳未	BIC	pʰβʉ̀i
@@ -2329,7 +2329,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 2328	務	亡遇	DKC	mβʉ̀ɔ
 2329	緅	子句	NKC	tsʷʉ̀ɔ
 2330	懼	其遇	fKC	ɡʷʉ̀ɔ
-2331	芋	王遇	kKC	ɹʷʉ̀ɔ
+2331	芋	王遇	kKC	wʉ̀ɔ
 2332	埾	才句	PKC	dzʷʉ̀ɔ
 2333	捒	色句	VKC	ʂʷʉ̀ɔ
 2334	付	方遇	AKC	pβʉ̀ɔ
@@ -2384,7 +2384,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 2383	㰥	呼計	iMC	χèj
 2384	祭	子例	NNC	tsjèɹ
 2385	歲	相銳	QNK	sʷɹèɹ
-2386	衛	于歲	kNK	ɹʷèɹ
+2386	衛	于歲	kNK	wɹèɹ
 2387	芮	而銳	cNK	ɲʷèɹ
 2388	贅	之芮	XNK	tɕʷèɹ
 2389	𠻜	山芮	VNK	ʂʷèɹ
@@ -2580,7 +2580,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 2579	閏	如順	cVK	ɲʷìn
 2580	順	食閏	bVK	ʑʷìn
 2581	問	亡運	DXC	mβʉ̀n
-2582	運	王問	kXK	ɹʷʉ̀n
+2582	運	王問	kXK	wʉ̀n
 2583	訓	許運	iXK	hʷʉ̀n
 2584	湓	匹問	BXC	pʰβʉ̀n
 2585	糞	方問	AXC	pβʉ̀n
@@ -2606,7 +2606,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 2605	楥	虛願	iZK	hʷɥ̈ə̀n
 2606	健	渠建	fZC	ɡj̈ə̀n
 2607	𣀔	叉万	TZK	tʂʷʰèn
-2608	遠	于願	kZK	ɹʷə̀n
+2608	遠	于願	kZK	wə̀n
 2609	𤬝	語堰	gZC	ŋj̈ə̀n
 2610	圈	臼万	fZK	ɡʷɥ̈ə̀n
 2611	卛	居願	dZK	kʷɥ̈ə̀n
@@ -2719,7 +2719,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 2718	彥	魚變	gfG	ŋɹèn
 2719	譴	去戰	efC	kʰjèn
 2720	絹	吉掾	dfK	kʷɥèn
-2721	瑗	王眷	kfK	ɹʷèn
+2721	瑗	王眷	kfK	wɹèn
 2722	面	彌箭	DfC	mjèn
 2723	釧	尺絹	YfK	tɕʷʰèn
 2724	掾	以絹	lfK	ɥèn
@@ -2915,7 +2915,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 2914	妄	巫放	DpC	mβʉ̀ɐɴ
 2915	況	許訪	ipK	hʷʉ̀ɐɴ
 2916	誑	居況	dpK	kʷʉ̀ɐɴ
-2917	迋	于放	kpK	ɹʷʉ̀ɐɴ
+2917	迋	于放	kpK	wʉ̀ɐɴ
 2918	放	甫妄	ApC	pβʉ̀ɐɴ
 2919	相	息亮	QpC	sɨ̀ɐɴ
 2920	殭	居亮	dpC	kɨ̀ɐɴ
@@ -2954,7 +2954,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 2953	孟	莫更	DrC	màˤŋ
 2954	蝗	戶孟	jrK	ʁʷàˤŋ
 2955	柄	陂病	AsC	pɹàŋ
-2956	詠	爲命	ksK	ɹʷàŋ
+2956	詠	爲命	ksK	wɹàŋ
 2957	行	下更	jrC	ʁàˤŋ
 2958	瀴	於孟	hrC	ʔàˤŋ
 2959	㵾	楚敬	TsC	tʂʰàŋ
@@ -3031,7 +3031,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 3030	增	子鄧	NxC	tsə̀ŋ
 3031	𡬙	思贈	QxC	sə̀ŋ
 3032	𤃶	台鄧	FxC	tʰə̀ŋ
-3033	宥	于救	kyC	ɹù
+3033	宥	于救	kyC	wù
 3034	救	居祐	dyC	kj̈ù
 3035	胄	直祐	LyC	dɹù
 3036	晝	陟救	JyC	tɹù
@@ -3223,7 +3223,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 3222	郁	於六	hBD	ʔj̈uq
 3223	肅	息逐	QBD	sɹuq
 3224	目	莫六	DBD	mβuq
-3225	囿	于六	kBD	ɹuq
+3225	囿	于六	kBD	wuq
 3226	蓄	丑六	KBD	tɹʰuq
 3227	砡	魚菊	gBD	ŋj̈uq
 3228	𣤶	才六	PBD	dzɹuq
@@ -3307,7 +3307,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 3306	必	卑吉	AVD	pit
 3307	姞	巨乙	fVH	ɡɹit
 3308	邲	毗必	CVD	bit
-3309	䫻	于筆	kVL	ɹʷit
+3309	䫻	于筆	kVL	wɹit
 3310	率	所律	VVL	ʂʷit
 3311	叱	昌栗	YVD	tɕʰit
 3312	𪗨	仕叱	UVD	dʐɹ̩t
@@ -3346,7 +3346,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 3345	倔	衢物	fXL	ɡʷʉt
 3346	佛	符弗	CXD	bβʉt
 3347	䬍	許勿	iXL	hʷʉt
-3348	䬑	王勿	kXL	ɹʷʉt
+3348	䬑	王勿	kXL	wʉt
 3349	拂	敷勿	BXD	pʰβʉt
 3350	崛	魚勿	gXL	ŋʷʉt
 3351	迄	許訖	iYD	hɨt
@@ -3356,7 +3356,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 3355	乞	去訖	eYD	kʰɨt
 3356	月	魚厥	gZL	ŋʷɥ̈ət
 3357	伐	房越	CZD	bβət
-3358	越	王伐	kZL	ɹʷət
+3358	越	王伐	kZL	wət
 3359	厥	居月	dZL	kʷɥ̈ət
 3360	𡡕	於月	hZL	ʔʷɥ̈ət
 3361	𧤼	其月	fZL	ɡʷɥ̈ət
@@ -3559,7 +3559,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 3558	嬳	憂縛	hpL	ʔʷʉɐq
 3559	縛	符钁	CpD	bβʉɐq
 3560	䂄	許縛	ipL	hʷʉɐq
-3561	籰	王縛	kpL	ɹʷʉɐq
+3561	籰	王縛	kpL	wʉɐq
 3562	玃	居縛	dpL	kʷʉɐq
 3563	芍	張略	JpD	tɹɨɐq
 3564	著	直略	LpD	dɹɨɐq
@@ -3713,7 +3713,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 3712	弋	與職	lwD	jik
 3713	即	子力	NwD	tsik
 3714	逼	彼側	AwD	pɹik
-3715	域	雨逼	kwL	ɹʷik
+3715	域	雨逼	kwL	wɹik
 3716	洫	況逼	iwL	hʷɹik
 3717	堛	芳逼	BwD	pʰɹik
 3718	稄	阻力	SwD	tʂik
@@ -3766,7 +3766,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 3765	戢	阻立	S1D	tʂip
 3766	邑	於汲	h1H	ʔɹip
 3767	湁	丑入	K1D	tɹʰip
-3768	煜	爲立	k1D	ɹip
+3768	煜	爲立	k1D	wɹip
 3769	熠	羊入	l1D	jip
 3770	孨	尼立	M1D	nɹip
 3771	霵	仕戢	U1D	dʐip
@@ -3823,7 +3823,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 3822	鍤	丑輒	K4D	tɹʰep
 3823	衱	其輒	f4H	ɡɹep
 3824	輒	陟葉	J4D	tɹep
-3825	曄	筠輒	k4D	ɹep
+3825	曄	筠輒	k4D	wɹep
 3826	𤷾	去涉	e4H	kʰɹep
 3827	萐	山輒	V4D	ʂep
 3828	𦀖	居輒	d4H	kɹep

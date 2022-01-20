@@ -1,4 +1,7 @@
 版本歷史字典 = {
+    '2022.1.20': [
+        '調整 unt 擬音：云母改爲<hanla></hanla>w',
+    ],
     '2022.1.5': [
         '微調<hanla></hanla>3<span class="div-sub">B</span>、3<span class="div-sub">A</span><hanla></hanla>兩列背景色，使二者更易區分',
         '調整<hanla></hanla>1033<hanla></hanla>呣、1016<hanla></hanla>莓兩小韻',
@@ -8,7 +11,7 @@
         '調整 unt 擬音<ul>' +
         '<li>簡化聲調符號</li>' +
         '<li>二等元音改用咽化<hanla></hanla>ˤ<hanla></hanla>標記</li>' +
-        '<li>魚、虞、鍾韻改爲<hanla></hanla>ɨʌ、ʉɔ、ʉɔ</li>' +
+        '<li>魚、虞、鍾韻改爲<hanla></hanla>ɨʌ、ʉɔ、ʉɔŋ</li>' +
         '<li>肴韻改爲<hanla></hanla>aˤw</li></ul>',
     ],
     '2021.10.24': [
