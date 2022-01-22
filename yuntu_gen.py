@@ -486,6 +486,41 @@ def 統計合法性() -> None:
     print(有字格子字典)
 
 
+def 統計音節數(分聲調=True, 入聲韻獨立=True) -> None:
+    總格子數字典: dict[str, int] = {}
+    有字格子數字典: dict[str, int] = {}
+
+    for 合法性符號 in 合法性符號列表:
+        總格子數字典[合法性符號] = 0
+        有字格子數字典[合法性符號] = 0
+
+    for 韻圖 in 韻圖列表:
+        for 行 in 韻圖:
+            for index in range(6):
+                def 分聲調統計(聲調範圍):
+                    合法性符號 = 合法性符號列表[-1]
+                    有字 = False
+                    for 聲調 in 聲調範圍:
+                        格子 = 行[聲調][index]
+                        if 合法性符號列表.index(格子.合法性符號) < 合法性符號列表.index(合法性符號):
+                            合法性符號 = 格子.合法性符號
+                        if 格子.小韻列表 and not 格子.小韻列表[0].is增補小韻:
+                            有字 = True
+                    總格子數字典[合法性符號] += 1
+                    有字格子數字典[合法性符號] += 有字
+                if 分聲調:
+                    for 聲調 in range(4):
+                        分聲調統計([聲調])
+                elif 入聲韻獨立:
+                    分聲調統計(range(3))
+                    分聲調統計([3])
+                else:
+                    分聲調統計(range(4))
+
+    print(總格子數字典)
+    print(有字格子數字典)
+
+
 def 輸出文本文件(文件名):
     with open(文件名, 'w', encoding='utf-8') as 文件:
         for 圖號, 韻圖 in enumerate(韻圖列表):
