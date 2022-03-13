@@ -607,7 +607,8 @@ def get索引():
         if i % 10 == 0:
             if i == 20:
                 結果.append('<hr>')
-            結果.append(f'<ol class="toc-list" start="{str(i+1)}">')
+            結果.append(f'<ol class="toc-list not-loaded" start="{i+1}" id="toc-list{int(i/10)}">')
+            結果.append(f'<span class="not-loaded-wrapper"><span class="not-loaded-text">正在加載，請稍候</span></span>')
         結果.append(get韻圖標題(i, True))
         if i % 10 == 9:
             結果.append('</ol>')
@@ -657,6 +658,18 @@ def get表體(韻圖: list[list[list[格子類]]]):
     return ['<tbody>'] + [get表體行(行號, 行) for 行號, 行 in enumerate(韻圖)] + [get表尾行(), '</tbody>']
 
 
+def get按鈕(圖號):
+    prev附加 = ' disabled' if 圖號 == 0 else ''
+    next附加 = ' disabled' if 圖號 == len(韻圖列表) - 1 else ''
+    return \
+        '<div class="table-buttons">' + \
+        f'<input type="button" id="button-prev" value="< 上一圖" autocomplete="off" onclick="showPrevTable()"{prev附加}>' + \
+        f'<input type="button" id="button-next" value="下一圖 >" autocomplete="off" onclick="showNextTable()"{next附加}>' + \
+        '<div class="not-loaded-text">正在加載，請稍候……</div>' + \
+        '</div>' + \
+        f'<script>tableLoaded({圖號+1});</script>'
+
+
 def get版本歷史():
     內容 = ['\n'.join([f'<p><strong>{版本}</strong></p>', '<ul>'] +
                     [f'<li>{條目}</li>' for 條目 in 版本歷史字典[版本]] +
@@ -693,7 +706,7 @@ def 輸出網頁文件(文件名):
             '<meta name="msapplication-TileImage" content="https://phesoca.com/wp-content/uploads/logo/cropped-icon-270x270.png">',
             '<style>', style, '</style>',
             '</head>',
-            '<body>', '<div class="site">', '<div class="content" id="content">',
+            '<body onload="tableLoaded(40)">', '<div class="site">', '<div class="content not-loaded" id="content">',
             '<h1>切韻新韻圖</h1>',
             '<p class="author-info">unt<hanla></hanla>設計、校訂、製作</p>',
             '<p>《切韻》成書與首款《韻鏡》式韻圖誕生相隔二百年，其間中古漢語語音發生了一定變化，因此切韻音系和《韻鏡》式韻圖音系是兩個不同的音系。本韻圖是專爲切韻音系新設計的，故名切韻新韻圖。</p>',
@@ -716,14 +729,11 @@ def 輸出網頁文件(文件名):
         ]))
         for 圖號, 韻圖 in enumerate(韻圖列表):
             結果 = '\n'.join([get韻圖標題(圖號), '<table>'] +
-                           get表頭(韻圖屬性列表[圖號]) + get表體(韻圖) + ['</table>'])
+                           get表頭(韻圖屬性列表[圖號]) + get表體(韻圖) +
+                           ['</table>', get按鈕(圖號)])
             結果 += '\n'
             文件.writelines([結果])
         文件.writelines('\n'.join([
-            '<div class="table-buttons">',
-            '<input type="button" id="button-prev" value="< 上一圖" autocomplete="off" onclick="showPrevTable()" disabled>',
-            '<input type="button" id="button-next" value="下一圖 >" autocomplete="off" onclick="showNextTable()">',
-            '</div>',
             '<h2 id="history" class="shown">版本歷史' + get回到索引() + '</h2>'] +
             get版本歷史() + [
             '<div class="license">',

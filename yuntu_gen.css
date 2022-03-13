@@ -127,6 +127,7 @@ table {
 }
 #content:not(.showing-all) h2:not(.shown),
 #content:not(.showing-all) h2:not(.shown) + table,
+#content:not(.showing-all) h2:not(.shown) + table + .table-buttons,
 #content.showing-all .table-buttons {
     display: none;
 }
@@ -480,6 +481,19 @@ h2 .back:after {
 #toc ol:first-of-type, #toc ol:nth-of-type(3) {
     border-right: 1px solid #aaaaae;
 }
+#toc ol .not-loaded-wrapper {
+    position: absolute;
+}
+#toc ol .not-loaded-text {
+    position: relative;
+    left: 0.75em;
+    top: 6.75em;
+    white-space: nowrap;
+}
+#toc ol:not(.not-loaded) .not-loaded-wrapper,
+#toc ol.not-loaded > :not(.not-loaded-wrapper) {
+    visibility: hidden;
+}
 #toc ol a {
     box-shadow: none;
     margin-bottom: 0.25em;
@@ -608,6 +622,12 @@ hr {
 }
 .table-buttons input#button-next {
     float: right;
+}
+.table-buttons .not-loaded-text {
+    margin-top: 1em;
+}
+#content:not(.not-loaded) .table-buttons .not-loaded-text {
+    display: none;
 }
 .footer div {
     margin-block-start: 0.5em;

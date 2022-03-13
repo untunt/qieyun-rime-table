@@ -34,8 +34,6 @@ function setShownTableNum(num) {
     if (num == lastShownNum) return;
     document.getElementById('table' + lastShownNum).classList.remove('shown');
     document.getElementById('table' + num).classList.add('shown');
-    document.getElementById('button-prev').disabled = num == 1 ? true : false;
-    document.getElementById('button-next').disabled = num == 34 ? true : false;
     lastShownNum = num;
 }
 function checkRadio() {
@@ -78,6 +76,14 @@ function legend() {
         legend.classList.add('spread');
     }
     setLegendHeight();
+}
+function tableLoaded(i) {
+    if (i == 34) {
+        document.getElementById('content').classList.remove('not-loaded');
+        return;
+    }
+    if (i % 10) return;
+    document.getElementById('toc-list' + (i / 10 - 1)).classList.remove('not-loaded');
 }
 window.onresize = function () {
     setLegendHeight();
