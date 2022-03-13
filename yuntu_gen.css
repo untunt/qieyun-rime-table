@@ -3,7 +3,7 @@ hanla:after {
     display: inline;
 }
 body {
-    font-family: "Gill Sans", Tahoma, -apple-system, "Helvetica Neue", Helvetica, "Nimbus Sans L", Arial, "Liberation Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
+    font-family: Tahoma, -apple-system, "Helvetica Neue", Helvetica, "Nimbus Sans L", Arial, "Liberation Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
     background-color: #60c0e8;
     margin: 0;
     color: #1a1a1e;
@@ -485,16 +485,18 @@ h2 .back:after {
     margin-bottom: 0.25em;
     white-space: nowrap;
 }
-#toc ol a .ipa {
-    min-width: 5.5em;
+.ipa-wildcards {
+    font-family: Tahoma, -apple-system, "Helvetica Neue", Helvetica, Arial, "Liberation Sans", sans-serif;
+}
+#toc ol .ipa-wildcards {
+    min-width: 3.5em;
+    padding-right: 0.25em;
     white-space: nowrap;
     display: inline-block;
 }
-#toc ol:nth-of-type(3) .ipa {
-    min-width: 3.75em;
-}
-#toc ol:nth-of-type(4) .ipa {
-    min-width: 4.75em;
+#toc ol:nth-of-type(2) .ipa-wildcards,
+#toc ol:nth-of-type(4) .ipa-wildcards {
+    min-width: 4.5em;
 }
 #toc ol a .body {
     width: 8.75em;

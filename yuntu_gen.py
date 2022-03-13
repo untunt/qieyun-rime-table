@@ -580,7 +580,7 @@ def get回到索引():
 
 def get韻圖標題(圖號, is索引=False):
     號 = str(圖號 + 1)
-    標題 = '<span class="ipa">⫽' + 韻圖屬性列表[圖號].國際音標 + '⫽</span>'
+    標題 = '<span class="ipa-wildcards">' + 韻圖屬性列表[圖號].國際音標 + '</span>'
     if is索引:
         包含的韻 = ''.join([韻 for 韻 in 常量.所有韻 if 韻 in 韻圖屬性列表[圖號].韻列表]
                        ).replace('眞', '真').replace('欣', '臻殷').replace('嚴', '嚴凡')
