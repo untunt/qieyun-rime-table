@@ -1014,7 +1014,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 1013	輈	張流	JyA	tɹu
 1014	𧚍	巨鳩	fyA	ɡj̈u
 1015	浮	縛謀	CyA	bβu
-1016	謀	莫浮	DyA	mu
+1016	謀	莫浮	DzA	mu
 1017	侯	戶鉤	jzA	ʁɘu
 1018	謳	烏侯	hzA	ʔɘu
 1019	羺	奴鉤	HzA	nɘu
@@ -1031,7 +1031,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	unt拟音
 1030	㔌	徂鉤	PzA	dzɘu
 1031	裒	薄侯	CzA	bɘu
 1032	䜅	千侯	OzA	tsʰɘu
-1033	呣	亡侯	DyA	mu
+1033	呣	亡侯	DzA	mu
 1034	幽	於虯	h0A	ʔiu
 1035	虯	渠幽	f0A	ɡiu
 1036	彪	甫烋	A0A	pɹiu
