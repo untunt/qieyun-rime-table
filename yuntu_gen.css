@@ -494,8 +494,7 @@ h2 .back:after {
     top: 6.75em;
     white-space: nowrap;
 }
-#toc ol:not(.not-loaded) .not-loaded-wrapper,
-#toc ol.not-loaded > :not(.not-loaded-wrapper) {
+#toc ol .not-loaded-wrapper {
     visibility: hidden;
 }
 #toc ol a {
