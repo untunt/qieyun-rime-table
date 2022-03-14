@@ -1,4 +1,7 @@
 版本歷史字典 = {
+    '2022.3.15': [
+        '增加切韻拼音',
+    ],
     '2022.3.13': [
         '精組<hanla></hanla>C<hanla></hanla>類韻改列入<hanla></hanla>3<span class="div-sub">A</span><hanla></hanla>列（根據反切的分類傾向）',
         '韻類的國際音標改用大寫元音標註',

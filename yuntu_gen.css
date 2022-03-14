@@ -428,6 +428,10 @@ h2 .back:after {
     text-align: center;
     display: inline-block;
 }
+.tshet {
+    font-style: italic;
+    padding-right: 0.125em;
+}
 .legend > div:first-of-type {
     height: 0.75em;
 }

@@ -126,12 +126,12 @@ from yuntu_history import *
 
 
 class 小韻屬性類:
-    def __init__(self, 小韻號: int, 小韻號後綴: str, 字頭: str, 地位: 音韻地位, unt擬音: str, 反切: str) -> None:
+    def __init__(self, 小韻號: int, 小韻號後綴: str, 字頭: str, 地位: 音韻地位, 拼音和擬音: dict, 反切: str) -> None:
         self.小韻號 = 小韻號
         self.小韻號後綴 = 小韻號後綴
         self.字頭 = 字頭
         self.地位 = 地位
-        self.unt擬音 = unt擬音
+        self.拼音和擬音 = 拼音和擬音
         self.反切 = 反切
         self.來源韻 = None
         self.來源等 = None
@@ -166,14 +166,19 @@ class 小韻屬性類:
         return 描述
 
     def __rime_prop內容(self) -> str:
+        切韻拼音 = self.拼音和擬音['切韻拼音']
+        if '→' in 切韻拼音:
+            切韻拼音 = 切韻拼音.replace('→', '<sup>→') + '</sup>'
+        結果 = '<span class="tshet">' + 切韻拼音 + \
+            '</span> ' + self.拼音和擬音['unt擬音']
         if self.is當刪小韻:
-            return self.unt擬音
-        return self.描述 + ' ' + self.unt擬音
+            return 結果
+        return self.描述 + ' ' + 結果
 
     def __rime_comment內容(self) -> str:
         if self.is當刪小韻:
             return 當刪小韻字典[self.小韻號][1]
-        if '(' in self.unt擬音 and self.小韻號 < 4000:
+        if '(' in self.拼音和擬音['unt擬音'] and self.小韻號 < 4000:
             return '如正常演變應讀' + 茝等字典[self.小韻號]
         return ''
 
@@ -249,7 +254,9 @@ class 小韻屬性類:
             else:
                 等和重紐, 韻母 = 剩餘[:-3], 剩餘[-3:]
         return (小韻號, '\t'.join([
-            小韻號, self.字頭, self.反切, '' if self.is當刪小韻 else self.地位.編碼, self.unt擬音,  # 這是輸入文件的幾列
+            小韻號, self.字頭, self.反切, '' if self.is當刪小韻 else self.地位.編碼,
+            # self.拼音和擬音['切韻拼音'],
+            self.拼音和擬音['unt擬音'],  # 以上是輸入文件的幾列（但切韻拼音不輸出）
             描述,
             聲母, 開合, 等和重紐, 韻母, 聲調,
             合法性符號,
@@ -395,16 +402,24 @@ def 驗證格子和小韻地位相等(圖號, 行號, 聲號, 列號, 小韻: �
 
 
 def 讀取一行(一行: str) -> list[小韻屬性類]:
-    小韻號, 字頭, 反切, 編碼, unt擬音 = 一行.strip().split('\t')
+    小韻號, 字頭, 反切, 編碼, 切韻拼音, unt擬音 = 一行.strip().split('\t')
     小韻號 = int(小韻號)
+    拼音和擬音 = {
+        '切韻拼音': 切韻拼音,
+        'unt擬音': unt擬音,
+    }
     if 編碼 == '(deleted)':
-        return [小韻屬性類(小韻號, '', 字頭, None, unt擬音, 反切)]
+        return [小韻屬性類(小韻號, '', 字頭, None, 拼音和擬音, 反切)]
     if '/' not in 字頭:
-        return [小韻屬性類(小韻號, '', 字頭, 音韻地位.from編碼(編碼), unt擬音, 反切)]
+        return [小韻屬性類(小韻號, '', 字頭, 音韻地位.from編碼(編碼), 拼音和擬音, 反切)]
     字頭 = 字頭.split('/')
     編碼 = 編碼.split('/')
+    拼音和擬音 = [{
+        '切韻拼音': 切韻拼音.split('/')[i],
+        'unt擬音': unt擬音.split('/')[i],
+    } for i in range(len(字頭))]
     unt擬音 = unt擬音.split('/')
-    return [小韻屬性類(小韻號, 'ab'[i], 字頭[i], 音韻地位.from編碼(編碼[i]), unt擬音[i], 反切) for i in range(len(字頭))]
+    return [小韻屬性類(小韻號, 'ab'[i], 字頭[i], 音韻地位.from編碼(編碼[i]), 拼音和擬音[i], 反切) for i in range(len(字頭))]
 
 
 def 插入小韻(小韻: 小韻屬性類) -> None:
@@ -607,8 +622,10 @@ def get索引():
         if i % 10 == 0:
             if i == 20:
                 結果.append('<hr>')
-            結果.append(f'<ol class="toc-list not-loaded" start="{i+1}" id="toc-list{int(i/10)}">')
-            結果.append(f'<span class="not-loaded-wrapper"><span class="not-loaded-text">正在加載，請稍候</span></span>')
+            結果.append(
+                f'<ol class="toc-list not-loaded" start="{i+1}" id="toc-list{int(i/10)}">')
+            結果.append(
+                f'<span class="not-loaded-wrapper"><span class="not-loaded-text">正在加載，請稍候</span></span>')
         結果.append(get韻圖標題(i, True))
         if i % 10 == 9:
             結果.append('</ol>')
@@ -725,7 +742,7 @@ def 輸出網頁文件(文件名):
             '<div class="icon icon4"></div><div class="legality">強非法</div><div class="desc">範圍廣（&gt; 50<hanla></hanla>個音節）且例外少（&lt; 4%）的音系規則所禁止的情況</div>',
             '<div class="icon"></div><div class="legality"></div><div class="desc">（兩個非法圓圈僅在格子有字時顯示）</div>',
             '</div>',
-            '<p>在小韻字頭上懸停鼠標或點擊可查看其音韻地位、<a href="https://phesoca.com/aws/309/">unt<hanla></hanla>擬音</a>、反切及韻典網鏈接。</p>',
+            '<p>在小韻字頭上懸停鼠標或點擊可查看其音韻地位、<a href="https://phesoca.com/tshet/">切韻拼音</a>（斜體顯示）、<a href="https://phesoca.com/aws/309/">unt<hanla></hanla>擬音</a>（正體顯示）、反切及韻典網鏈接。</p>',
         ]))
         for 圖號, 韻圖 in enumerate(韻圖列表):
             結果 = '\n'.join([get韻圖標題(圖號), '<table>'] +
