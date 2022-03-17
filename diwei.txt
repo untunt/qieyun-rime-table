@@ -353,7 +353,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	切韵拼音	unt拟音
 352	齋	側皆	SQA	tsreej	tʂeˤj
 353	崴	乙乖	hQI	qweej	ʔʷeˤj
 354	𪘨	卓皆	JQA	treej	tɹeˤj
-355	唻	賴諧	ITA	leej→leoj	ləj
+355	唻	賴諧	ITA	leoj	ləj
 356	揩	口皆	eQA	kheej	qʰeˤj
 357	搱	諾皆	MQA	nreej	nɹeˤj
 358	崽	山皆	VQA	sreej	ʂeˤj
@@ -407,7 +407,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	切韵拼音	unt拟音
 406	仁	如鄰	cVA	njin	ɲin
 407	神	食鄰	bVA	zjin	ʑin
 408	親	七人	OVA	tshin	tsʰin
-409	礥	下珍	jgA	ghin→ghen	ʁen
+409	礥	下珍	jgA	ghin	ʁen
 410	申	失人	aVA	sjin	ɕin
 411	賓	必鄰	AVA	pin	pin
 412	㷠	力珍	IVA	lin	lɹin
@@ -564,11 +564,11 @@ poem小韵号	nk2028字头	反切	unt修改后编码	切韵拼音	unt拟音
 563	斒	方閑	AeA	peen	peˤn
 564	斕	力閑	IeA	leen	leˤn
 565	嘫	女閑	MeA	nreen	nɹeˤn
-566	㺗	充山	YfA	tjheen→tjhien	tɕʰen
+566	㺗	充山	TeA	tsrheen	tʂʰeˤn
 567	𡣬	委鰥	heI	qween	ʔʷeˤn
 568	窀	墜頑	LeI	drween	dɹʷeˤn
-569	𡰠	力頑	IfI	lween→lwien	lʷɹen
-570	𡰝	跪頑	ffM	gween→guen	ɡʷɹen
+569	𡰠	力頑	IFI	lwie	lʷɹiɛ
+570	𡰝	跪頑	ffM	guen	ɡʷɹen
 571	譠	陟山	JeA	treen	tɹeˤn
 572	𤣆	直閑	LeA	dreen	dɹeˤn
 573	湲	獲頑	jeI	ghween	ʁʷeˤn
@@ -644,7 +644,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	切韵拼音	unt拟音
 643	漹	有乾	kfA	yen	ɹen
 644	𡣬	於權	hfM	quen	ʔʷɹen
 645	燀	尺延	YfA	tjhien	tɕʰen
-646	𡰝	丁兮	(deleted)	tej (ghwej)	tej (ʁʷej)
+646	𡰝	丁兮	(deleted)	(guen)	tej (ʁʷej)
 647	勬	居員	dfM	kuen	kʷɹen
 648	蕭	蘇彫	QhA	sew	sew
 649	祧	吐彫	FhA	thew	tʰew
@@ -890,7 +890,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	切韵拼音	unt拟音
 889	耕	古莖	dtA	keeng	qeˤŋ
 890	鏗	口莖	etA	kheeng	qʰeˤŋ
 891	甍	莫耕	DtA	meeng	meˤŋ
-892	浜	布耕	ArA	peeng→paeng	paˤŋ
+892	浜	布耕	ArA	peeng	paˤŋ
 893	宏	戶萌	jtI	ghweeng	ʁʷeˤŋ
 894	莖	戶耕	jtA	gheeng	ʁeˤŋ
 895	朾	中莖	JtA	treeng	tɹeˤŋ
@@ -1014,7 +1014,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	切韵拼音	unt拟音
 1013	輈	張流	JyA	tru	tɹu
 1014	𧚍	巨鳩	fyA	gu	ɡj̈u
 1015	浮	縛謀	CyA	bu	bβu
-1016	謀	莫浮	DzA	mu→mou	mu
+1016	謀	莫浮	DzA	mu	mu
 1017	侯	戶鉤	jzA	ghou	ʁɘu
 1018	謳	烏侯	hzA	qou	ʔɘu
 1019	羺	奴鉤	HzA	nou	nɘu
@@ -2019,7 +2019,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	切韵拼音	unt拟音
 2018	黕	都感	E2B	tomq	tʌ́m
 2019	䫲	呼唵	i2B	homq	χʌ́m
 2020	敢	古覽	d3B	kamq	qám
-2021	㶒	賞敢	(deleted)	sjamq→sjiemq (sjimq)	ɕém (ɕím)
+2021	㶒	賞敢	(deleted)	(sjimq)	ɕém (ɕím)
 2022	覽	盧敢	I3B	lamq	lám
 2023	𦵹	吐敢	F3B	thamq	tʰám
 2024	膽	都敢	E3B	tamq	tám
@@ -2048,7 +2048,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	切韵拼音	unt拟音
 2047	漸	慈染	P4B	dziemq	dzjém
 2048	憸	七漸	O4B	tshiemq	tsʰjém
 2049	𩟗	子冉	N4B	tsiemq	tsjém
-2050	脥	謙琰	e4F	khyemq	kʰɹém
+2050	脥	謙琰	e4B	khiemq	kʰjém
 2051	剡	時染	Z4B	djiemq	dʑém
 2052	忝	他玷	F5B	themq	tʰém
 2053	淰	乃玷	H5B	nemq	ném
@@ -3057,7 +3057,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	切韵拼音	unt拟音
 3056	狖	余救	lyC	juh	jù
 3057	授	承呪	ZyC	djuh	dʑù
 3058	輮	人又	cyC	njuh	ɲù
-3059	莓	亡救	DzC	muh→mouh	mù
+3059	莓	亡救	DzC	muh	mù
 3060	鼼	牛救	gyC	nguh	ŋj̈ù
 3061	𪖛	丘救	eyC	khuh	kʰj̈ù
 3062	䞭	七溜	OyC	tshuh	tsʰɹù
@@ -3371,7 +3371,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	切韵拼音	unt拟音
 3370	㤄	拂伐	BZD	phuot	pʰβət
 3371	钀	語訐	gZD	ngyot	ŋj̈ət
 3372	沒	莫勃	DaD	mot	mot
-3373	𣅝	土骨	(deleted)	thot (mot)	tʷʰot (mot)
+3373	𣅝	土骨	(deleted)	(thot/mot)	tʷʰot (mot)
 3374	骨	古忽	daL	kot	qʷot
 3375	勃	蒲沒	CaD	bot	bot
 3376	咄	當沒	EaL	tot	tʷot
@@ -3645,7 +3645,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	切韵拼音	unt拟音
 3644	礐	力摘	ItD	leek	leˤk
 3645	㩇	于馘	jtL	ghweek	ʁʷeˤk
 3646	𢷾	砂獲	VtL	srweek	ʂʷeˤk
-3647	𧾛	求獲	(deleted)	guak	(ɡʷʉɐq)
+3647	𧾛	求獲	fsL	guaek	ɡʷɹak
 3648	疒	尼戹	MtD	nreek	nɹeˤk
 3649	昔	思積	QuD	siaek	siæk
 3650	積	資昔	NuD	tsiaek	tsiæk
@@ -3669,7 +3669,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	切韵拼音	unt拟音
 3668	𪐏	竹益	JuD	triaek	tɹiæk
 3669	彳	丑亦	KuD	trhiaek	tɹʰiæk
 3670	𦳮	之役	XuL	tjwiaek	tɕʷiæk
-3671	𥄎	火役	iuL	hwiaek	hʷiæk
+3671	𥄎	火役	iuL	tshwiaek	hʷiæk
 3672	錫	先擊	QvD	sek	sek
 3673	激	古歷	dvD	kek	qek
 3674	霹	普擊	BvD	phek	pʰek
@@ -3806,7 +3806,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	切韵拼音	unt拟音
 3805	鰪	安盍	h3D	qap	ʔap
 3806	囃	倉雜	O3D	tshap	tsʰap
 3807	砝	居盍	d3D	kap	qap
-3808	譫	章盍	X4D	tjap→tjiep	tɕep
+3808	譫	章盍	X4D	tjiep	tɕep
 3809	葉	與涉	l4D	jiep	jep
 3810	接	即葉	N4D	tsiep	tsjep
 3811	攝	書涉	a4D	sjiep	ɕep
