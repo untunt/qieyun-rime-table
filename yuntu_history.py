@@ -1,4 +1,7 @@
 版本歷史字典 = {
+    '2022.5.13': [
+        '調整<hanla></hanla>1420<hanla></hanla>㧳、1422<hanla></hanla>扮兩小韻',
+    ],
     '2022.3.17': [
         '調整<hanla></hanla>566<hanla></hanla>㺗、569<hanla></hanla>𡰠、2050<hanla></hanla>脥、3647<hanla></hanla>𧾛四小韻',
         '更新正式版切韻拼音',

@@ -1418,9 +1418,9 @@ poem小韵号	nk2028字头	反切	unt修改后编码	切韵拼音	unt拟音
 1417	解	佳買	dPB	keeq	qéˤ
 1418	灑	所蟹	VPB	sreeq	ʂéˤ
 1419	𠁥	乖買	dPJ	kweeq	qʷéˤ
-1420	㧳	火夥	iPJ	hweeq	χʷéˤ
+1420	㧳	丈黠	deD	keet	qeˤt
 1421	夥	懷𠁥	jPJ	ghweeq	ʁʷéˤ
-1422	扮	花夥	iPJ	hweeq	χʷéˤ
+1422	扮	花黠	deD	keet	qeˤt
 1423	箉/柺	乖蟹	GPB/dPJ	deeq/kweeq	dáj/qʷéˤ
 1424	駭	侯楷	jQB	gheejq	ʁéˤj
 1425	楷	苦駭	eQB	kheejq	qʰéˤj
