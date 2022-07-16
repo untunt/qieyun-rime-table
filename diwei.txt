@@ -407,7 +407,7 @@ poem小韵号	nk2028字头	反切	unt修改后编码	切韵拼音	unt拟音
 406	仁	如鄰	cVA	njin	ɲin
 407	神	食鄰	bVA	zjin	ʑin
 408	親	七人	OVA	tshin	tsʰin
-409	礥	下珍	jgA	ghin	ʁen
+409	礥	下珍	jVA	ghin	ʁin
 410	申	失人	aVA	sjin	ɕin
 411	賓	必鄰	AVA	pin	pin
 412	㷠	力珍	IVA	lin	lɹin

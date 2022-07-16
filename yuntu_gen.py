@@ -158,8 +158,8 @@ class 小韻屬性類:
                 self.is增補小韻 and self.地位.韻 == '幽' and self.地位.組 == '幫':
             # 𩦠
             描述 = 描述.replace('三', '三<sup>(A)</sup>')
-        elif self.小韻號 in [802, 1871, 1872, 2237] or (self.小韻號 == 1423 and self.小韻號後綴 == 'a'):
-            # 爹、打、冷、地；箉
+        elif self.小韻號 in [409, 802, 1871, 1872, 2237] or (self.小韻號 == 1423 and self.小韻號後綴 == 'a'):
+            # 礥、爹、打、冷、地；箉
             描述 = 描述.replace('二', '三').replace('三', '四<sup>(?)</sup>')
         if self.來源韻:
             描述 = f'{描述[:-2]}{self.來源韻}<sup>→{描述[-2]}</sup>{描述[-1]}'
