@@ -480,7 +480,7 @@ h2 .back:after {
     padding-inline-end: 1.5em;
     display: inline-block;
     vertical-align: top;
-    width: 11.25em;
+    width: 11.75em;
 }
 #toc ol:first-of-type, #toc ol:nth-of-type(3) {
     border-right: 1px solid #aaaaae;
@@ -506,17 +506,18 @@ h2 .back:after {
     font-family: Tahoma, -apple-system, "Helvetica Neue", Helvetica, Arial, "Liberation Sans", sans-serif;
 }
 #toc ol .ipa-wildcards {
-    min-width: 3.5em;
+    min-width: 4em;
     padding-right: 0.25em;
     white-space: nowrap;
     display: inline-block;
+    word-spacing: -0.1em;
 }
 #toc ol:nth-of-type(2) .ipa-wildcards,
 #toc ol:nth-of-type(4) .ipa-wildcards {
-    min-width: 4.5em;
+    min-width: 5em;
 }
 #toc ol a .body {
-    width: 8.75em;
+    width: 9.25em;
     white-space: nowrap;
     display: inline-block;
 }
