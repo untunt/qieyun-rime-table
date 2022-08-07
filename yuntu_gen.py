@@ -137,6 +137,8 @@ class 小韻屬性類:
         self.來源等 = None
         self.is增補小韻 = False
         self.is當刪小韻 = False
+        if self.小韻號 == 892:  # 浜
+            self.拼音和擬音['unt擬音'] = self.拼音和擬音['unt擬音'].replace('e', 'a')
 
     def __repr__(self) -> str:
         結果 = str(self.小韻號) + self.小韻號後綴 + ' ' + self.字頭
@@ -166,10 +168,7 @@ class 小韻屬性類:
         return 描述
 
     def __rime_prop內容(self) -> str:
-        切韻拼音 = self.拼音和擬音['切韻拼音']
-        if '→' in 切韻拼音:
-            切韻拼音 = 切韻拼音.replace('→', '<sup>→') + '</sup>'
-        結果 = '<span class="tshet">' + 切韻拼音 + \
+        結果 = '<span class="tshet">' + self.拼音和擬音['切韻拼音'] + \
             '</span> ' + self.拼音和擬音['unt擬音']
         if self.is當刪小韻:
             return 結果
@@ -400,25 +399,18 @@ def 驗證格子和小韻地位相等(圖號, 行號, 聲號, 列號, 小韻: �
         print(小韻, '=>', '異常', get音韻地位元組_含無效格子(圖號, 行號, 聲號, 列號))
 
 
-def 讀取一行(一行: str) -> list[小韻屬性類]:
+def 讀取一行(一行: str) -> 小韻屬性類:
     小韻號, 字頭, 反切, 編碼, 切韻拼音, unt擬音 = 一行.strip().split('\t')
+    小韻號後綴 = ''
+    if 小韻號[-1] in ['a', 'b']:
+        小韻號, 小韻號後綴 = 小韻號[0:-1], 小韻號[-1]
     小韻號 = int(小韻號)
     拼音和擬音 = {
         '切韻拼音': 切韻拼音,
         'unt擬音': unt擬音,
     }
-    if 編碼 == '(deleted)':
-        return [小韻屬性類(小韻號, '', 字頭, None, 拼音和擬音, 反切)]
-    if '/' not in 字頭:
-        return [小韻屬性類(小韻號, '', 字頭, 音韻地位.from編碼(編碼), 拼音和擬音, 反切)]
-    字頭 = 字頭.split('/')
-    編碼 = 編碼.split('/')
-    拼音和擬音 = [{
-        '切韻拼音': 切韻拼音.split('/')[i],
-        'unt擬音': unt擬音.split('/')[i],
-    } for i in range(len(字頭))]
-    unt擬音 = unt擬音.split('/')
-    return [小韻屬性類(小韻號, 'ab'[i], 字頭[i], 音韻地位.from編碼(編碼[i]), 拼音和擬音[i], 反切) for i in range(len(字頭))]
+    地位 = None if 編碼 == '(deleted)' else 音韻地位.from編碼(編碼)
+    return 小韻屬性類(小韻號, 小韻號後綴, 字頭, 地位, 拼音和擬音, 反切)
 
 
 def 插入小韻(小韻: 小韻屬性類) -> None:
@@ -459,8 +451,7 @@ def 讀取文件(文件名: str) -> None:
     with open(文件名, 'r', encoding='utf-8') as 文件:
         next(文件)
         for 一行 in 文件:
-            for 小韻 in 讀取一行(一行):
-                插入小韻(小韻)
+            插入小韻(讀取一行(一行))
 
 
 def 設置合法性() -> None:
@@ -744,7 +735,7 @@ def 輸出網頁文件(文件名):
             '<div class="icon icon4"></div><div class="legality">強非法</div><div class="desc">範圍廣（&gt; 50<hanla></hanla>個音節）且例外少（&lt; 4%）的音系規則所禁止的情況</div>',
             '<div class="icon"></div><div class="legality"></div><div class="desc">（兩個非法圓圈僅在格子有字時顯示）</div>',
             '</div>',
-            '<p>在小韻字頭上懸停鼠標或點擊可查看其音韻地位、<a href="https://phesoca.com/tshet/">切韻拼音</a>（斜體顯示）、<a href="https://phesoca.com/aws/309/">unt<hanla></hanla>擬音</a>（正體顯示）、反切及韻典網鏈接。</p>',
+            '<p>在小韻字頭上懸停鼠標或點擊可查看其音韻地位、<a href="https://phesoca.com/tshet/">切韻拼音</a>（斜體顯示）、<a href="https://phesoca.com/aws/309/">unt<hanla></hanla>切韻擬音<hanla></hanla>J</a>（正體顯示）、反切及韻典網鏈接。</p>',
         ]))
         for 圖號, 韻圖 in enumerate(韻圖列表):
             結果 = '\n'.join([get韻圖標題(圖號), '<table>'] +

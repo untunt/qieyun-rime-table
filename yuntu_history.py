@@ -2,6 +2,8 @@
     '2022.8.7': [
         '知組和來母改用<hanla></hanla>3<span class="div-sub">A</span><hanla></hanla>列背景色',
         '日母移至章組下方',
+        '調整<hanla></hanla>3670<hanla></hanla>𦳮小韻',
+        '更新新版<hanla></hanla>unt<hanla></hanla>切韻擬音 J'
     ],
     '2022.7.16': [
         '韻類的國際音標改用韻部擬音標註',
