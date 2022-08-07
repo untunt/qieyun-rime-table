@@ -587,7 +587,7 @@ def get韻圖標題(圖號, is索引=False):
     號 = str(圖號 + 1)
     國際音標 = 韻圖屬性列表[圖號].國際音標
     if not is索引:
-        國際音標 = '-' + 國際音標.replace(', ', ', -')
+        國際音標 = '-' + 國際音標.replace(', ', ', -').replace('; ', ', -')
     標題 = '<span class="ipa-wildcards">' + 國際音標 + '</span>'
     if is索引:
         包含的韻 = ''.join([韻 for 韻 in 常量.所有韻 if 韻 in 韻圖屬性列表[圖號].韻列表]

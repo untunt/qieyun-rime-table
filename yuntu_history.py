@@ -1,9 +1,11 @@
 版本歷史字典 = {
     '2022.8.7': [
-        '知組和來母改用<hanla></hanla>3<span class="div-sub">A</span><hanla></hanla>列背景色',
-        '日母移至章組下方',
+        '更新設計<ul>' +
+        '<li>知組和來母改用<hanla></hanla>3<span class="div-sub">A</span><hanla></hanla>列背景色</li>' +
+        '<li>日母移至章組下方</li>' +
+        '<li>幫組陽韻移至開口圖</li></ul>',
         '調整<hanla></hanla>3670<hanla></hanla>𦳮小韻',
-        '更新新版<hanla></hanla>unt<hanla></hanla>切韻擬音 J'
+        '更新新版<hanla></hanla>unt<hanla></hanla>切韻擬音<hanla></hanla>J'
     ],
     '2022.7.16': [
         '韻類的國際音標改用韻部擬音標註',
@@ -30,16 +32,16 @@
         '增加莊組支韻合口的小韻背景',
     ],
     '2022.1.20': [
-        '調整 unt 擬音：云母改爲<hanla></hanla>w',
+        '調整<hanla></hanla>unt<hanla></hanla>切韻擬音<hanla></hanla>J：云母改爲<hanla></hanla>w',
         '對于從其他同等韻轉來的小韻，增加繪製小韻背景',
     ],
     '2022.1.5': [
         '微調<hanla></hanla>3<span class="div-sub">B</span>、3<span class="div-sub">A</span><hanla></hanla>兩列背景色，使二者更易區分',
         '調整<hanla></hanla>1033<hanla></hanla>呣、1016<hanla></hanla>莓兩小韻',
-        '調整 unt 擬音：明母尤侯韻均改爲<hanla></hanla>mu',
+        '調整<hanla></hanla>unt<hanla></hanla>切韻擬音<hanla></hanla>J：明母尤侯韻均改爲<hanla></hanla>mu',
     ],
     '2021.12.31': [
-        '調整 unt 擬音<ul>' +
+        '調整<hanla></hanla>unt<hanla></hanla>切韻擬音<hanla></hanla>J<ul>' +
         '<li>簡化聲調符號</li>' +
         '<li>二等元音改用咽化<hanla></hanla>ˤ<hanla></hanla>標記</li>' +
         '<li>魚、虞、鍾韻改爲<hanla></hanla>ɨʌ、ʉɔ、ʉɔŋ</li>' +
