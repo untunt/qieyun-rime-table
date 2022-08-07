@@ -151,6 +151,14 @@ class 小韻屬性類:
         if self.is當刪小韻:
             return ''
         描述 = self.地位.描述.replace('眞', '真').replace('欣', '殷').replace('A清', '清')
+        if self.地位.屬於('侯韻'):
+            描述 = 描述.replace('開', '')
+        elif self.地位.組 != '幫':
+            if self.地位.屬於('虞韻'):
+                描述 = 描述[0] + '合' + 描述[1:]
+            if self.地位.屬於('幽韻'):
+                描述 = 描述[0] + '開' + 描述[1:]
+
         if self.小韻號 in [965, 996] or \
                 self.小韻號 in [1043, 3708] and self.小韻號後綴 == 'b' or \
                 self.is增補小韻 and self.地位.韻 == '蒸' and self.地位.組 == '見':

@@ -5,7 +5,8 @@
         '<li>日母移至章組下方</li>' +
         '<li>幫組陽韻移至開口圖</li></ul>',
         '調整<hanla></hanla>3670<hanla></hanla>𦳮小韻',
-        '更新新版<hanla></hanla>unt<hanla></hanla>切韻擬音<hanla></hanla>J'
+        '更新新版<hanla></hanla>unt<hanla></hanla>切韻擬音<hanla></hanla>J',
+        '更新音韻地位描述',
     ],
     '2022.7.16': [
         '韻類的國際音標改用韻部擬音標註',
