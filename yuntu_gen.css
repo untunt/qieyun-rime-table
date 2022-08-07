@@ -151,13 +151,12 @@ td:nth-of-type(6n+4),
 }
 th:nth-of-type(6n+5),
 td:nth-of-type(6n+5),
-tr:nth-of-type(n+5):nth-last-of-type(n+16) td:nth-of-type(6n+6),
 .from-divB {
     background-color: #dbffe2;
 }
 th:nth-of-type(6n+6),
 td:nth-of-type(6n+6),
-tr:nth-of-type(n+10):nth-last-of-type(n+9) td:nth-of-type(6n+5),
+tr:nth-of-type(n+5):nth-last-of-type(n+9) td:nth-of-type(6n+5),
 .from-divA {
     background-color: #e0faff;
 }

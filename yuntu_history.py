@@ -1,4 +1,8 @@
 版本歷史字典 = {
+    '2022.8.7': [
+        '知組和來母改用<hanla></hanla>3<span class="div-sub">A</span><hanla></hanla>列背景色',
+        '日母移至章組下方',
+    ],
     '2022.7.16': [
         '韻類的國際音標改用韻部擬音標註',
         '調整<hanla></hanla>409<hanla></hanla>礥小韻',
@@ -14,11 +18,11 @@
         '增加切韻拼音',
     ],
     '2022.3.13': [
-        '精組<hanla></hanla>C<hanla></hanla>類韻改列入<hanla></hanla>3<span class="div-sub">A</span><hanla></hanla>列（根據反切的分類傾向）',
+        '精組<hanla></hanla>C<hanla></hanla>類韻移至<hanla></hanla>3<span class="div-sub">A</span><hanla></hanla>列（根據反切的分類傾向）',
         '韻類的國際音標改用大寫元音標註',
     ],
     '2022.2.14': [
-        '莊组祭韻仙韻合口不列入低元音',
+        '莊组祭韻仙韻合口不轉移至低元音',
     ],
     '2022.2.9': [
         '增加莊組支韻合口的小韻背景',
