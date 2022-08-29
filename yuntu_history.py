@@ -1,4 +1,7 @@
 版本歷史字典 = {
+    '2022.8.29': [
+        '再次更新音韻地位描述和<hanla></hanla>unt<hanla></hanla>切韻擬音<hanla></hanla>J',
+    ],
     '2022.8.7': [
         '更新設計<ul>' +
         '<li>知組和來母改用<hanla></hanla>3<span class="div-sub">A</span><hanla></hanla>列背景色</li>' +

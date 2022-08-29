@@ -138,7 +138,7 @@ class 小韻屬性類:
         self.is增補小韻 = False
         self.is當刪小韻 = False
         if self.小韻號 == 892:  # 浜
-            self.拼音和擬音['unt擬音'] = self.拼音和擬音['unt擬音'].replace('e', 'a')
+            self.拼音和擬音['unt切韻擬音J'] = self.拼音和擬音['unt切韻擬音J'].replace('e', 'a')
 
     def __repr__(self) -> str:
         結果 = str(self.小韻號) + self.小韻號後綴 + ' ' + self.字頭
@@ -159,6 +159,12 @@ class 小韻屬性類:
             if self.地位.屬於('幽韻'):
                 描述 = 描述[0] + '開' + 描述[1:]
 
+        if self.地位.屬於('云母 支脂祭眞臻仙宵麻庚清蒸幽侵鹽韻'):
+            描述 = 描述.replace('三', '三B')
+        elif self.地位.屬於('幫滂並明見溪羣疑影曉匣母 三等'):
+            描述 = 描述.replace('庚', 'B庚')
+            描述 = 描述.replace('清', 'A清')
+
         if self.小韻號 in [965, 996] or \
                 self.小韻號 in [1043, 3708] and self.小韻號後綴 == 'b' or \
                 self.is增補小韻 and self.地位.韻 == '蒸' and self.地位.組 == '見':
@@ -177,7 +183,7 @@ class 小韻屬性類:
 
     def __rime_prop內容(self) -> str:
         結果 = '<span class="tshet">' + self.拼音和擬音['切韻拼音'] + \
-            '</span> ' + self.拼音和擬音['unt擬音']
+            '</span> ' + self.拼音和擬音['unt切韻擬音J']
         if self.is當刪小韻:
             return 結果
         return self.描述 + ' ' + 結果
@@ -185,7 +191,7 @@ class 小韻屬性類:
     def __rime_comment內容(self) -> str:
         if self.is當刪小韻:
             return 當刪小韻字典[self.小韻號][1]
-        if '(' in self.拼音和擬音['unt擬音'] and self.小韻號 < 4000:
+        if '(' in self.拼音和擬音['unt切韻擬音J'] and self.小韻號 < 4000:
             return '如正常演變應讀' + 茝等字典[self.小韻號]
         return ''
 
@@ -263,7 +269,7 @@ class 小韻屬性類:
         return (小韻號, '\t'.join([
             小韻號, self.字頭, self.反切, '' if self.is當刪小韻 else self.地位.編碼,
             self.拼音和擬音['切韻拼音'],
-            self.拼音和擬音['unt擬音'],
+            self.拼音和擬音['unt切韻擬音J'],
             描述,
             聲母, 開合, 等和重紐, 韻母, 聲調,
             合法性符號,
@@ -408,14 +414,18 @@ def 驗證格子和小韻地位相等(圖號, 行號, 聲號, 列號, 小韻: �
 
 
 def 讀取一行(一行: str) -> 小韻屬性類:
-    小韻號, 字頭, 反切, 編碼, 切韻拼音, unt擬音 = 一行.strip().split('\t')
+    小韻號, 字頭, 反切, 編碼, \
+        切韻拼音, unt切韻擬音L, unt切韻擬音J, 潘悟雲擬音 \
+        = 一行.strip('\n').split('\t')
     小韻號後綴 = ''
     if 小韻號[-1] in ['a', 'b']:
         小韻號, 小韻號後綴 = 小韻號[0:-1], 小韻號[-1]
     小韻號 = int(小韻號)
     拼音和擬音 = {
         '切韻拼音': 切韻拼音,
-        'unt擬音': unt擬音,
+        'unt切韻擬音L': unt切韻擬音L,
+        'unt切韻擬音J': unt切韻擬音J,
+        '潘悟雲擬音': 潘悟雲擬音,
     }
     地位 = None if 編碼 == '(deleted)' else 音韻地位.from編碼(編碼)
     return 小韻屬性類(小韻號, 小韻號後綴, 字頭, 地位, 拼音和擬音, 反切)
@@ -565,7 +575,7 @@ def 輸出小韻列表(文件名):
                         小韻字典[小韻號] = 內容
     小韻列表 = []
     小韻列表.append(
-        '小韻號 字頭 反切 編碼 切韻拼音 unt擬音 描述 聲母 開合 等和重紐 韻母 聲調 合法性 備註\n'.replace(' ', '\t'))
+        '小韻號 首字 反切 編碼 切韻拼音 unt切韻擬音J 描述 聲母 開合 等和重紐 韻母 聲調 合法性 備註\n'.replace(' ', '\t'))
     for 小韻號 in sorted(小韻字典):
         小韻列表.append(小韻字典[小韻號] + '\n')
     with open(文件名, 'w', encoding='utf-8') as 文件:
@@ -594,8 +604,6 @@ def get回到索引():
 def get韻圖標題(圖號, is索引=False):
     號 = str(圖號 + 1)
     國際音標 = 韻圖屬性列表[圖號].國際音標
-    if not is索引:
-        國際音標 = '-' + 國際音標.replace(', ', ', -').replace('; ', ', -')
     標題 = '<span class="ipa-wildcards">' + 國際音標 + '</span>'
     if is索引:
         包含的韻 = ''.join([韻 for 韻 in 常量.所有韻 if 韻 in 韻圖屬性列表[圖號].韻列表]
@@ -616,7 +624,7 @@ def get韻圖標題(圖號, is索引=False):
 def get索引():
     結果 = [
         '<div id="toc">',
-        '<div class="toc-title-container"><p class="toc-title">索引</p></div>',
+        '<div class="toc-title-container"><p class="toc-title">韻基索引</p></div>',
         '<nav>',
     ]
     for i in range(len(韻圖列表)):
@@ -700,7 +708,7 @@ def 輸出網頁文件(文件名):
         script = 文件.read()
     with open('yuntu_gen.css', 'r', encoding='utf-8') as 文件:
         style = 文件.read()
-    首段 = '《切韻》成書與首款《韻鏡》式韻圖誕生相隔二百年，其間中古漢語語音發生了一定變化，因此切韻音系和《韻鏡》式韻圖音系是兩個不同的音系。本韻圖是專爲切韻音系新設計的，故名切韻新韻圖。'
+    首段 = '《切韻》成書與首款《韻鏡》式韻圖誕生相隔二百餘年，其間中古漢語語音發生了一定變化，因此切韻音系與韻圖音系是兩個不同的音系。本韻圖是專爲切韻音系新設計的，故名切韻新韻圖。'
     with open(文件名, 'w', encoding='utf-8') as 文件:
         文件.writelines('\n'.join([
             '<!DOCTYPE html>',
@@ -727,7 +735,7 @@ def 輸出網頁文件(文件名):
             '<body onload="tableLoaded(40)">', '<div class="site">', '<div class="content not-loaded" id="content">',
             '<h1>切韻新韻圖</h1>',
             '<p class="author-info">unt<hanla></hanla>設計、校訂、製作</p>',
-            '<p>《切韻》成書與首款《韻鏡》式韻圖誕生相隔二百年，其間中古漢語語音發生了一定變化，因此切韻音系和《韻鏡》式韻圖音系是兩個不同的音系。本韻圖是專爲切韻音系新設計的，故名切韻新韻圖。</p>',
+            f'<p>{首段}</p>',
             '<p>切韻三等還可根據介音的不同分爲<hanla></hanla>A、B、C<hanla></hanla>三類；本韻圖將它們分置三列。C<hanla></hanla>類韻簡單來說就是非前元音三等韻。</p>',
             '<p>特別感謝<hanla></hanla><a href="https://nk2028.shn.hk/" title="The Ngiox Khyen 2028 Project" target="_blank">nk2028</a><hanla></hanla>的支持。</p>',
         ]))
@@ -743,7 +751,7 @@ def 輸出網頁文件(文件名):
             '<div class="icon icon4"></div><div class="legality">強非法</div><div class="desc">範圍廣（&gt; 50<hanla></hanla>個音節）且例外少（&lt; 4%）的音系規則所禁止的情況</div>',
             '<div class="icon"></div><div class="legality"></div><div class="desc">（兩個非法圓圈僅在格子有字時顯示）</div>',
             '</div>',
-            '<p>在小韻字頭上懸停鼠標或點擊可查看其音韻地位、<a href="https://phesoca.com/tshet/">切韻拼音</a>（斜體顯示）、<a href="https://phesoca.com/aws/309/">unt<hanla></hanla>切韻擬音<hanla></hanla>J</a>（正體顯示）、反切及韻典網鏈接。</p>',
+            '<p>在小韻字頭上懸停鼠標或點擊可查看其音韻地位、<a href="https://phesoca.com/tshet/">切韻拼音</a>（斜體顯示）、<a href="https://phesoca.com/aws/309/">unt<hanla></hanla>切韻擬音<hanla></hanla>J</a>（新版）（正體顯示）、反切及韻典網鏈接。</p>',
         ]))
         for 圖號, 韻圖 in enumerate(韻圖列表):
             結果 = '\n'.join([get韻圖標題(圖號), '<table>'] +
