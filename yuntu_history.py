@@ -1,4 +1,7 @@
 版本歷史字典 = {
+    '2022.9.6': [
+        '調整<hanla></hanla>409<hanla></hanla>礥小韻',
+    ],
     '2022.8.29': [
         '再次更新音韻地位描述和<hanla></hanla>unt<hanla></hanla>切韻擬音<hanla></hanla>J',
     ],
@@ -13,7 +16,6 @@
     ],
     '2022.7.16': [
         '韻類的國際音標改用韻部擬音標註',
-        '調整<hanla></hanla>409<hanla></hanla>礥小韻',
     ],
     '2022.5.13': [
         '調整<hanla></hanla>1420<hanla></hanla>㧳、1422<hanla></hanla>扮兩小韻',

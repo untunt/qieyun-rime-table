@@ -407,7 +407,7 @@
 406	仁	如鄰	cVA	njin	ɲin	ɲin	ȵin˧
 407	神	食鄰	bVA	zjin	ʑin	ʑin	ʑin˧
 408	親	七人	OVA	tshin	tsʰin	tsʰin	tsʰin˧
-409	礥	下珍	jVA	ghin	ʁin	ʁin	ɦin˧
+409	礥	下殄	jgB	ghenq	ʁén	ʁén	ɦen˧˥
 410	申	失人	aVA	sjin	ɕin	ɕin	ɕin˧
 411	賓	必鄰	AVA	pin	pin	pin	pin˧
 412	㷠	力珍	IVA	lin	lin	lin	lin˧
