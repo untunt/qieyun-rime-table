@@ -623,7 +623,7 @@ def get韻圖標題(圖號, is索引=False):
 def get索引():
     結果 = [
         '<div id="toc">',
-        '<div class="toc-title-container"><p class="toc-title">韻基索引</p></div>',
+        '<div class="toc-title-container"><p class="toc-title">韻基索引（平賅上去入）</p></div>',
         '<nav>',
     ]
     for i in range(len(韻圖列表)):
