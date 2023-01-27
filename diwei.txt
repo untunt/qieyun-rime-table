@@ -1030,7 +1030,7 @@
 1029	兜	當侯	EzA	tou	tu	tu	tu˧
 1030	㔌	徂鉤	PzA	dzou	dzu	dzu	dzu˧
 1031	裒	薄侯	CzA	bou	ᵬu	bu	bu˧
-1032	䜅	千侯	OzA	tshou	tsʰu	tsʰu	tsʰu˧
+1032	䜅	千隹	OGI	tshwi	tsʰwi	tsʰwi	tsʰʷi˧
 1033	呣	亡侯	DzA	mou	ᵯu	mu	mu˧
 1034	幽	於虯	h0A	qiw	ʔiw	ʔiw	ʔiu˧
 1035	虯	渠幽	f0A	giw	ɡiw	ɡiw	ɡiu˧
