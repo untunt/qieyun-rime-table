@@ -1,4 +1,7 @@
 版本歷史字典 = {
+    '2023.8.29': [
+        '修正<hanla></hanla>1830<hanla></hanla>𩦠、2852<hanla></hanla>縛兩小韻位置',
+    ],
     '2023.1.27': [
         '調整<hanla></hanla>1032<hanla></hanla>䜅小韻',
     ],
