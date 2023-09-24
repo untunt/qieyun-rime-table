@@ -1,4 +1,7 @@
 版本歷史字典 = {
+    '2023.9.24': [
+        '調整<hanla></hanla>unt<hanla></hanla>切韻擬音<hanla></hanla>J：j<hanla></hanla>韻尾去聲一律作<hanla></hanla>j',
+    ],
     '2023.8.29': [
         '修正<hanla></hanla>1830<hanla></hanla>𩦠、2852<hanla></hanla>縛兩小韻位置',
     ],
