@@ -1,5 +1,6 @@
 function show(rime) {
     if (rime.classList.contains('hovered')) return;
+    let windowInnerWidth = window.innerWidth;
     let rimeId = rime.id.slice(5);
     let rimeIdNum = rimeId.replace(/[a-z]/g, '');
     let [性質, 反切, 描述, 全部字, 切韻拼音, unt切韻擬音J, 備註] = qy[rimeId].split(',');
@@ -32,14 +33,13 @@ function show(rime) {
     if (!性質.includes('增補'))
         toolHTML += `<span class="separator"></span><a href="https://ytenx.org/kyonh/sieux/${rimeIdNum}/" target="_blank">韻典網</a></div>`;
     if (全部字)
-        toolHTML += `<div class="rime-chars">${全部字}</div>`;
+        toolHTML += `<div class="rime-chars"${全部字.length >= 6 ? ' style="min-width: 9.6em"' : ''}>${全部字}</div>`;
     toolHTML += `</span>`;
     rime.insertAdjacentHTML('afterend', toolHTML);
     let tool = rime.nextElementSibling;
     let icon = rime.parentElement.parentElement.previousElementSibling;
     rime.classList.add('hovered');
     if (icon) icon.classList.add('hovered');
-    let windowInnerWidth = window.innerWidth;
     tool.style.left = 0;
     let offset = windowInnerWidth - tool.offsetLeft - tool.scrollWidth - 20;
     if (offset < 0) {
