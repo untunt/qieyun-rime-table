@@ -1,4 +1,7 @@
 版本歷史字典 = {
+    '2023.12.10': [
+        '優化頁面，縮減文件大小',
+    ],
     '2023.9.24': [
         '調整<hanla></hanla>unt<hanla></hanla>切韻擬音<hanla></hanla>J：j<hanla></hanla>韻尾去聲一律作<hanla></hanla>j',
     ],

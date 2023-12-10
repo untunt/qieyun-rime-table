@@ -181,13 +181,6 @@ class 小韻屬性類:
             描述 = f'{描述[:-2]}{self.來源韻}<sup>→{描述[-2]}</sup>{描述[-1]}'
         return 描述
 
-    def __rime_prop內容(self) -> str:
-        結果 = '<span class="tshet">' + self.拼音和擬音['切韻拼音'] + \
-            '</span> ' + self.拼音和擬音['unt切韻擬音J']
-        if self.is當刪小韻:
-            return 結果
-        return self.描述 + ' ' + 結果
-
     def __rime_comment內容(self) -> str:
         if self.is當刪小韻:
             return 當刪小韻字典[self.小韻號][1]
@@ -195,40 +188,30 @@ class 小韻屬性類:
             return '如正常演變應讀' + 茝等字典[self.小韻號]
         return ''
 
-    def __rime_num內容(self) -> str:
-        結果列表 = []
-
-        小韻號 = self.小韻號
-        小韻號後綴 = self.小韻號後綴
-        名字 = '小韻'
+    def get_tooltip_box內容(self) -> list[str]:
+        # 0: 小韻, 1: 增補小韻, 2: 當刪
+        小韻性質 = 0
         if self.is增補小韻:
-            小韻號後綴 = '-' + str(int(小韻號 / 10000)) if int(小韻號 / 10000) else ''
-            小韻號 = 小韻號 % 10000
-            名字 = '增補小韻' if 小韻號 > 4000 else '增補可能讀音'
-            if 小韻號 > 4000:
-                小韻號 -= 4000
-        當刪 = ' <span class="rime-deleted">(當刪)</span>' if self.is當刪小韻 else ''
-        結果列表.append(f'{名字}<hanla></hanla>{小韻號}{小韻號後綴}{當刪}')
-
+            小韻性質 += 1
+        if self.is當刪小韻:
+            小韻性質 += 2
+        反切 = ''
         if self.小韻號 in 直音字典:
-            結果列表.append(直音字典[self.小韻號])
+            反切 = 直音字典[self.小韻號]
         elif self.反切:
-            結果列表.append(self.反切 if self.反切[-1] == '反' else self.反切 + '切')
+            反切 = self.反切 if self.反切[-1] == '反' else self.反切 + '切'
 
-        if not self.is增補小韻:
-            結果列表.append(
-                f'<a href="https://ytenx.org/kyonh/sieux/{self.小韻號}/" target="_blank">韻典網</a>')
-
-        return '<span class="separator"></span>'.join(結果列表)
-
-    def __tooltip_box內容(self) -> str:
-        rime_comment內容 = self.__rime_comment內容()
-        return f'<div class="rime-prop">{self.__rime_prop內容()}</div>' + \
-            (f'<div class="rime-comment">{rime_comment內容}</div>' if rime_comment內容 else '') + \
-            f'<div class="rime-num">{self.__rime_num內容()}</div>'
+        備註 = self.__rime_comment內容()
+        result = [
+            小韻性質, 反切, self.描述,
+            self.拼音和擬音['切韻拼音'],
+            self.拼音和擬音['unt切韻擬音J'],
+        ]
+        if 備註:
+            result.append(備註)
+        return result
 
     def toHTML(self) -> str:
-        onmouse字符串 = 'onmouseover="show(this)" onmouseout="hide(this)"'
         小韻class = ['text']
         字頭 = self.字頭
         if self.來源等:
@@ -244,12 +227,7 @@ class 小韻屬性類:
                     '<span style="transform: scaleY(0.6) translateY(0.4em);display: inline-block;margin-left: -1em">父</span>'
         小韻class = ' '.join(小韻class)
 
-        return f'<span class="{小韻class}" {onmouse字符串}>{字頭}</span>' + \
-            f'<span class="tooltip-wrapper" {onmouse字符串}>' + \
-            '<span class="tooltip-hitbox1"></span>' + \
-            '<span class="tooltip-hitbox2"></span>' + \
-            f'<span class="tooltip-box">{self.__tooltip_box內容()}</span>' + \
-            '</span>'
+        return f'<span class="{小韻class}" id="rime-{self.小韻號}{self.小韻號後綴}">{字頭}</span>'
 
     def to小韻列表(self, 合法性符號) -> tuple[str, str]:
         小韻號 = str(self.小韻號) + self.小韻號後綴
@@ -342,7 +320,7 @@ class 格子類:
                 合法性符號class.append('rime-added')
             合法性符號class = ' '.join(合法性符號class)
             格子內容 = f'<span class="{合法性符號class}"></span>' + 格子內容
-        return 添加td(格子內容)
+        return 添加td(格子內容).replace(' class=""', '')
 
 
 韻圖列表 = None
@@ -596,7 +574,7 @@ def 添加td(內容):
 
 
 def get回到索引():
-    return'<a class="back" onclick="scrollToId(\'toc\')"></a>'
+    return '<a class="back" onclick="scrollToId(\'toc\')"></a>'
 
 
 def get韻圖標題(圖號, is索引=False):
@@ -609,7 +587,7 @@ def get韻圖標題(圖號, is索引=False):
         呼 = 韻圖屬性列表[圖號].呼
         呼 = f'（{呼}）' if 呼 and '凡' not in 包含的韻 else ''
         附加 = ' checked="checked"' if 號 == '1' else ''
-        按鈕 = f'<input type="radio" id="show-table" name="show-table" value="{號}" autocomplete="off" onclick="showTable(this)"{附加}>'
+        按鈕 = f'<input type="radio" name="show-table" value="{號}" autocomplete="off" onclick="showTable(this)"{附加}>'
         return f'<label><li>{按鈕}<a onclick="scrollToId(\'table{號}\')"><span class="body">{標題}{包含的韻}</span>{呼}</a></li></label>'
     標題 = 號 + '. ' + 標題 + \
         get回到索引() + \
@@ -701,6 +679,20 @@ def get版本歷史():
     return ['<div class="history">'] + 內容 + ['</div>']
 
 
+def get_tooltip_box字典():
+    字典 = {}
+    for 韻圖 in 韻圖列表:
+        for 行 in 韻圖:
+            for 聲調行 in 行:
+                for 格子 in 聲調行:
+                    for 小韻 in 格子.顯示的小韻列表:
+                        字典[f'\'{小韻.小韻號}{小韻.小韻號後綴}\'' if 小韻.小韻號後綴 else str(小韻.小韻號)] = \
+                            ','.join([str(i) for i in 小韻.get_tooltip_box內容()])
+    return 'const qy = {' + \
+        ''.join([f'{k}:\'{v}\',' for k, v in 字典.items()]) + \
+        '};\n\n'
+
+
 def 輸出網頁文件(文件名):
     with open('yuntu_gen.js', 'r', encoding='utf-8') as 文件:
         script = 文件.read()
@@ -712,7 +704,6 @@ def 輸出網頁文件(文件名):
             '<!DOCTYPE html>',
             '<html lang="zh-CN">',
             '<head>',
-            '<script>', script, '</script>',
             '<meta charset="utf-8">',
             '<meta name="viewport" content="width=device-width">',
             '<meta name="robots" content="index, follow">',
@@ -728,6 +719,7 @@ def 輸出網頁文件(文件名):
             '<link rel="icon" href="https://phesoca.com/wp-content/uploads/logo/cropped-icon-192x192.png" sizes="192x192">',
             '<link rel="apple-touch-icon" href="https://phesoca.com/wp-content/uploads/logo/cropped-icon-180x180.png">',
             '<meta name="msapplication-TileImage" content="https://phesoca.com/wp-content/uploads/logo/cropped-icon-270x270.png">',
+            '<script>', script, '</script>',
             '<style>', style, '</style>',
             '</head>',
             '<body onload="tableLoaded(40)">', '<div class="site">', '<div class="content not-loaded" id="content">',
@@ -758,8 +750,9 @@ def 輸出網頁文件(文件名):
             結果 += '\n'
             文件.writelines([結果])
         文件.writelines('\n'.join([
-            '<h2 id="history" class="shown">版本歷史' + get回到索引() + '</h2>'] +
-            get版本歷史() + [
+            '<script>', get_tooltip_box字典(), '</script>',
+            '<h2 id="history" class="shown">版本歷史' + get回到索引() + '</h2>',
+        ] + get版本歷史() + [
             '<div class="license">',
             '<div class="pic"><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="知識共享許可協議" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png"></a></div>' +
             '<div class="desc">本作品使用的小韻原始數據（反切及音韻地位）來自<a href="https://ytenx.org/" target="_blank">韻典網</a>和<hanla></hanla><a href="https://nk2028.shn.hk/" title="The Ngiox Khyen 2028 Project" target="_blank">nk2028</a>。' +

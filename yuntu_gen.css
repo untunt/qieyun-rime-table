@@ -353,12 +353,9 @@ h2 .back:after {
     line-height: 0;
 }
 .tooltip-wrapper {
-    display: none;
+    display: inline-block;
     position: relative;
     z-index: 100;
-}
-.tooltip-wrapper.hovered {
-    display: inline-block;
 }
 .tooltip-wrapper:last-of-type .tooltip-hitbox1 {
     position: absolute;
@@ -427,7 +424,7 @@ h2 .back:after {
     text-align: center;
     display: inline-block;
 }
-.tshet {
+.tupa {
     font-style: italic;
     padding-right: 0.125em;
 }
