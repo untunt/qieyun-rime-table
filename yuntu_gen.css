@@ -424,6 +424,23 @@ h2 .back:after {
     text-align: center;
     display: inline-block;
 }
+.tooltip-box .rime-chars {
+    white-space: initial;
+    margin-top: 0.25em;
+    line-height: 1.3;
+    letter-spacing: 0.1em;
+    text-indent: 2.2em;
+}
+.tooltip-box .rime-chars:before {
+    content: '轄字：';
+    font-size: 80%;
+    letter-spacing: 0;
+    text-indent: 0;
+    margin-left: -2.75em;
+    width: 2.75em;
+    display: inline-block;
+    white-space: nowrap;
+}
 .tupa {
     font-style: italic;
     padding-right: 0.125em;

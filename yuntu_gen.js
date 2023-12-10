@@ -2,7 +2,7 @@ function show(rime) {
     if (rime.classList.contains('hovered')) return;
     let rimeId = rime.id.slice(5);
     let rimeIdNum = rimeId.replace(/[a-z]/g, '');
-    let [性質, 反切, 描述, 切韻拼音, unt切韻擬音J, 備註] = qy[rimeId].split(',');
+    let [性質, 反切, 描述, 全部字, 切韻拼音, unt切韻擬音J, 備註] = qy[rimeId].split(',');
     性質 = {
         0: '小韻',
         1: rimeIdNum % 10000 > 4000 ? '增補可能讀音' : '增補小韻',
@@ -30,8 +30,10 @@ function show(rime) {
         toolHTML += ` <span class="rime-deleted">(當刪)</span>`;
     toolHTML += `<span class="separator"></span>${反切}`;
     if (!性質.includes('增補'))
-        toolHTML += `<span class="separator"></span><a href="https://ytenx.org/kyonh/sieux/${rimeIdNum}/" target="_blank">韻典網</a>`;
-    toolHTML += `</div></span>`;
+        toolHTML += `<span class="separator"></span><a href="https://ytenx.org/kyonh/sieux/${rimeIdNum}/" target="_blank">韻典網</a></div>`;
+    if (全部字)
+        toolHTML += `<div class="rime-chars">${全部字}</div>`;
+    toolHTML += `</span>`;
     rime.insertAdjacentHTML('afterend', toolHTML);
     let tool = rime.nextElementSibling;
     let icon = rime.parentElement.parentElement.previousElementSibling;
