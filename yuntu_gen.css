@@ -431,6 +431,11 @@ h2 .back:after {
     letter-spacing: 0.2em;
     text-indent: 2.4em;
 }
+.tooltip-box .rime-chars > * {
+    letter-spacing: 0;
+    text-indent: 0;
+    margin-right: 0.2em;
+}
 .tooltip-box .rime-chars:before {
     content: '轄字：';
     font-size: 80%;
