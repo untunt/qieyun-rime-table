@@ -71,11 +71,11 @@ h2, .license {
         display: none;
     }
 }
-p, div.legend, div.history {
+p, div.collapse, div.history {
     margin-left: auto;
     margin-right: auto;
 }
-.content > p, div.legend, div.history {
+.content > p, div.collapse, div.history {
     max-width: 720px;
     min-width: 31em;
 }
@@ -450,17 +450,17 @@ h2 .back:after {
     font-style: italic;
     padding-right: 0.125em;
 }
-.legend > div:first-of-type {
+.collapse > div:first-of-type {
     height: 0.75em;
 }
-.legend .icon {
+.collapse .icon {
     margin-left: 0.5em;
     margin-right: 0.5em;
     float: left;
     height: 1.33em;
     margin-top: 0;
 }
-.legend .legality {
+.collapse .legality {
     width: 5em;
     white-space: nowrap;
     float: left;
@@ -469,8 +469,13 @@ h2 .back:after {
 .desc {
     overflow: hidden;
 }
-.legend .desc:not(:last-of-type) {
+.collapse .desc:not(:last-of-type),
+.collapse#recons div {
     margin-bottom: 0.15em;
+}
+.collapse#recons div,
+.collapse#recons div label {
+    margin-left: 0.5em;
 }
 #toc {
     background: #f8fafc;
@@ -590,34 +595,37 @@ hr {
     margin: 0;
     padding-inline-start: 1.5em;
 }
-.legend-head {
+.collapse-head {
     margin-bottom: 0;
 }
-.legend-head .colon {
+.collapse-head .colon {
     margin-right: 0.5em;
 }
-.legend-head:not(.spread) .colon {
+.collapse-head:not(.spread) .colon {
     color: transparent;
 }
-.legend-head .button {
+.collapse-head .button {
     display: inline-block;
     cursor: pointer;
     color: #95959b;
 }
-.legend-head .button:before {
+.collapse-head .button:before {
     content: '展开 ';
 }
-.legend-head .button:after {
+.collapse-head .button:after {
     content: '>';
     display: inline-block;
 }
-.legend-head.spread .button:before {
+.collapse-head.spread .button:before {
     content: '收起 ';
 }
-.legend-head.spread .button:after {
+.collapse-head.spread#recons-head .button:before {
+    content: '收起並保存 ';
+}
+.collapse-head.spread .button:after {
     transform: rotate(-90deg);
 }
-.legend {
+.collapse {
     max-height: 0;
     overflow: hidden;
     transition: max-height .4s;

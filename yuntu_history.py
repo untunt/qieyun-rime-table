@@ -1,4 +1,8 @@
 版本歷史字典 = {
+    '2024.1.7': [
+        '增加擬音方案選擇',
+        '更新<hanla></hanla>unt<hanla></hanla>切韻擬音<hanla></hanla>J、L<hanla></hanla>並增加<hanla></hanla>unt<hanla></hanla>切韻通俗擬音、潘悟雲擬音',
+    ],
     '2023.12.10': [
         '優化頁面，縮減文件大小',
         '增加各小韻轄字',

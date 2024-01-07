@@ -3,7 +3,7 @@ function show(rime) {
     let windowInnerWidth = window.innerWidth;
     let rimeId = rime.id.slice(5);
     let rimeIdNum = rimeId.replace(/[a-z]/g, '');
-    let [性質, 反切, 描述, 全部字, 切韻拼音, unt切韻擬音J, 備註] = qy[rimeId].split(',');
+    let [性質, 反切, 描述, 全部字, 切韻拼音, unt切韻擬音J, unt切韻擬音L, unt切韻通俗擬音, 潘悟雲擬音, 備註] = qy[rimeId].split(',');
     性質 = {
         0: '小韻',
         1: rimeIdNum % 10000 > 4000 ? '增補可能讀音' : '增補小韻',
@@ -23,7 +23,13 @@ function show(rime) {
     toolHTML += `<span class="tooltip-box"><div class="rime-prop">`;
     if (性質 !== '當刪小韻')
         toolHTML += `${描述} `;
-    toolHTML += `<span class="tupa">${切韻拼音}</span> ${unt切韻擬音J}</div>`;
+    let 擬音 = {
+        'untJ': unt切韻擬音J,
+        'untL': unt切韻擬音L,
+        'unt0': unt切韻通俗擬音,
+        'pan': 潘悟雲擬音,
+    }[document.querySelector('input[name="recons"]:checked').id];
+    toolHTML += `<span class="tupa">${切韻拼音}</span> ${擬音}</div>`;
     if (備註)
         toolHTML += `<div class="rime-comment">${備註}</div>`;
     toolHTML += `<div class="rime-num">${性質}<hanla></hanla>${小韻號}`;
@@ -70,14 +76,14 @@ function setShownTableNum(num) {
     document.getElementById('table' + lastShownNum).classList.remove('shown');
     document.getElementById('table' + num).classList.add('shown');
     lastShownNum = num;
+    localStorage.setItem('lastShownNum', num);
 }
 function checkRadio() {
     document.getElementsByName('show-table')[lastShownNum - 1].checked = true;
 }
 function showTable(x) {
-    if (isShowingAll) return;
-    scrollToId('table' + lastShownNum);
     setShownTableNum(x.value);
+    scrollToId('table' + x.value);
 }
 function showPrevTable(isPrev = true) {
     setShownTableNum(Number(lastShownNum) + (isPrev ? -1 : 1) + '');
@@ -96,21 +102,20 @@ function showAllTables(x) {
     }
 }
 
-function setLegendHeight() {
-    let legend = document.getElementById('legend');
-    legend.style.maxHeight = legend.classList.contains('spread') ? legend.scrollHeight + 'px' : '0px';
+function setCollapseHeight(collapse) {
+    collapse.style.maxHeight = collapse.classList.contains('spread') ? collapse.scrollHeight + 'px' : '0px';
 }
-function legend() {
-    let head = document.getElementById('legend-head');
-    let legend = document.getElementById('legend');
-    if (legend.classList.contains('spread')) {
+function collapse(id = 'legend') {
+    let head = document.getElementById(id + '-head');
+    let collapse = document.getElementById(id);
+    if (collapse.classList.contains('spread')) {
         head.classList.remove('spread');
-        legend.classList.remove('spread');
+        collapse.classList.remove('spread');
     } else {
         head.classList.add('spread');
-        legend.classList.add('spread');
+        collapse.classList.add('spread');
     }
-    setLegendHeight();
+    setCollapseHeight(collapse);
 }
 function tableLoaded(i) {
     if (i == 40) {
@@ -123,6 +128,10 @@ function tableLoaded(i) {
     if (i == 34) {
         document.getElementById('content').classList.remove('not-loaded');
         return;
+    }
+    if (i == (localStorage.getItem('lastShownNum') || '1')) {
+        setShownTableNum(i);
+        checkRadio();
     }
     if (i % 10) return;
     document.getElementById('toc-list' + (i / 10 - 1)).classList.remove('not-loaded');

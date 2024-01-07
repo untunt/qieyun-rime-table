@@ -151,7 +151,9 @@ class 小韻屬性類:
         self.is增補小韻 = False
         self.is當刪小韻 = False
         if self.小韻號 == 892:  # 浜
-            self.拼音和擬音['unt切韻擬音J'] = self.拼音和擬音['unt切韻擬音J'].replace('e', 'a')
+            for k in self.拼音和擬音:
+                if 'unt' in k:
+                    self.拼音和擬音[k] = self.拼音和擬音[k].replace('e', 'a').replace('ɛ', 'æ')
 
     def __repr__(self) -> str:
         結果 = str(self.小韻號) + self.小韻號後綴 + ' ' + self.字頭
@@ -217,11 +219,7 @@ class 小韻屬性類:
         for old, new in 字頭替換字典.items():
             全部字 = 全部字.replace(old, '<span>' + new + '</span>')
         備註 = self.__rime_comment內容()
-        result = [
-            小韻性質, 反切, self.描述, 全部字,
-            self.拼音和擬音['切韻拼音'],
-            self.拼音和擬音['unt切韻擬音J'],
-        ]
+        result = [小韻性質, 反切, self.描述, 全部字, *self.拼音和擬音.values()]
         if 備註:
             result.append(備註)
         return result
@@ -258,8 +256,7 @@ class 小韻屬性類:
                 等和重紐, 韻母 = 剩餘[:-3], 剩餘[-3:]
         return (小韻號, '\t'.join([
             小韻號, self.字頭, self.反切, '' if self.is當刪小韻 else self.地位.編碼,
-            self.拼音和擬音['切韻拼音'],
-            self.拼音和擬音['unt切韻擬音J'],
+            *self.拼音和擬音.values(),
             描述,
             聲母, 開合, 等和重紐, 韻母, 聲調,
             合法性符號,
@@ -404,7 +401,7 @@ def 驗證格子和小韻地位相等(圖號, 行號, 聲號, 列號, 小韻: �
 
 def 讀取一行(一行: str) -> 小韻屬性類:
     小韻號, 字頭, 全部字, 反切, 編碼, \
-        切韻拼音, unt切韻擬音L, unt切韻擬音J, 潘悟雲擬音 \
+        切韻拼音, unt切韻擬音J, unt切韻擬音L, unt切韻通俗擬音, 潘悟雲擬音 \
         = 一行.strip('\n').split('\t')
     小韻號後綴 = ''
     if 小韻號[-1] in ['a', 'b']:
@@ -412,8 +409,9 @@ def 讀取一行(一行: str) -> 小韻屬性類:
     小韻號 = int(小韻號)
     拼音和擬音 = {
         '切韻拼音': 切韻拼音,
-        'unt切韻擬音L': unt切韻擬音L,
         'unt切韻擬音J': unt切韻擬音J,
+        'unt切韻擬音L': unt切韻擬音L,
+        'unt切韻通俗擬音': unt切韻通俗擬音,
         '潘悟雲擬音': 潘悟雲擬音,
     }
     地位 = None if 編碼 == '(deleted)' else 音韻地位.from編碼(編碼)
@@ -563,7 +561,7 @@ def 輸出小韻列表(文件名):
                         小韻字典[小韻號] = 內容
     小韻列表 = []
     小韻列表.append(
-        '小韻號 首字 反切 編碼 切韻拼音 unt切韻擬音J 描述 聲母 開合 等和重紐 韻母 聲調 合法性 備註\n'.replace(' ', '\t'))
+        '小韻號 首字 反切 編碼 切韻拼音 unt切韻擬音L unt切韻擬音J unt切韻通俗擬音 潘悟雲擬音 描述 聲母 開合 等和重紐 韻母 聲調 合法性 備註\n'.replace(' ', '\t'))
     for 小韻號 in sorted(小韻字典):
         小韻列表.append(小韻字典[小韻號] + '\n')
     with open(文件名, 'w', encoding='utf-8') as 文件:
@@ -600,13 +598,12 @@ def get韻圖標題(圖號, is索引=False):
         呼 = f'（{呼}）' if 呼 and '凡' not in 包含的韻 else ''
         附加 = ' checked="checked"' if 號 == '1' else ''
         按鈕 = f'<input type="radio" name="show-table" value="{號}" autocomplete="off" onclick="showTable(this)"{附加}>'
-        return f'<label><li>{按鈕}<a onclick="scrollToId(\'table{號}\')"><span class="body">{標題}{包含的韻}</span>{呼}</a></li></label>'
+        return f'<label><li>{按鈕}<a><span class="body">{標題}{包含的韻}</span>{呼}</a></li></label>'
     標題 = 號 + '. ' + 標題 + \
         get回到索引() + \
         '<span class="she"><span class="brac">（</span><span class="she-sub">演變成：</span>' + \
         韻圖屬性列表[圖號].對應攝 + '<span class="brac">）</span></span>'
-    附加 = ' class="shown"' if 號 == '1' else ''
-    return f'<h2 id="table{號}"{附加}>{標題}</h2>'
+    return f'<h2 id="table{號}">{標題}</h2>'
 
 
 def get索引():
@@ -743,8 +740,8 @@ def 輸出網頁文件(文件名):
         ]))
         文件.writelines(get索引())
         文件.writelines('\n'.join([
-            '<p class="legend-head" id="legend-head">格子合法性圖例及說明<span class="colon">：</span><span class="button" onclick="legend()"></span></p>',
-            '<div class="legend" id="legend">',
+            '<p class="collapse-head" id="legend-head">格子合法性圖例及說明<span class="colon">：</span><span class="button" onclick="collapse(\'legend\')"></span></p>',
+            '<div class="collapse" id="legend">',
             '<div></div>',
             '<div class="icon icon0"></div><div class="legality">強合法</div><div class="desc">非以下的情況（圓圈僅在格子無字時顯示）</div>',
             '<div class="icon icon1"></div><div class="legality">稀有合法</div><div class="desc">語音學上沒有明確的約束，但範圍內有字率低于<hanla></hanla>15%<hanla></hanla>而不都是僻字的情況</div>',
@@ -753,7 +750,15 @@ def 輸出網頁文件(文件名):
             '<div class="icon icon4"></div><div class="legality">強非法</div><div class="desc">範圍廣（&gt; 50<hanla></hanla>個音節）且例外少（&lt; 4%）的音系規則所禁止的情況</div>',
             '<div class="icon"></div><div class="legality"></div><div class="desc">（兩個非法圓圈僅在格子有字時顯示）</div>',
             '</div>',
-            '<p>在小韻字頭上懸停鼠標或點擊可查看其音韻地位、<a href="https://phesoca.com/tshet/">切韻拼音</a>（斜體顯示）、<a href="https://phesoca.com/aws/309/">unt<hanla></hanla>切韻擬音<hanla></hanla>J</a>（新版）（正體顯示）、反切及韻典網鏈接。</p>',
+            '<p class="collapse-head" id="recons-head">在小韻字頭上懸停鼠標或點擊可查看其音韻地位、<a href="https://phesoca.com/tupa/">切韻拼音</a>（斜體顯示）、擬音（正體顯示）、反切、韻典網鏈接及轄字。擬音方案選擇<span class="colon">：</span><span class="button" onclick="collapse(\'recons\')"></span></p>',
+            '<div class="collapse" id="recons">',
+            '<div></div>',
+            '<div><input type="radio" name="recons" id="untJ" autocomplete="off" onclick="localStorage.setItem(\'recons\',\'untJ\')"><label for="untJ">unt<hanla></hanla>切韻擬音<hanla></hanla>J（<a href="https://phesoca.com/aws/337/">說明</a>）</label></div>',
+            '<div><input type="radio" name="recons" id="untL" autocomplete="off" onclick="localStorage.setItem(\'recons\',\'untL\')"><label for="untL">unt<hanla></hanla>切韻擬音<hanla></hanla>L（<a href="https://phesoca.com/aws/337/">說明</a>）</label></div>',
+            '<div><input type="radio" name="recons" id="unt0" autocomplete="off" onclick="localStorage.setItem(\'recons\',\'unt0\')"><label for="unt0">unt<hanla></hanla>切韻通俗擬音（<a href="https://phesoca.com/aws/337/">說明</a>）</label></div>',
+            '<div><input type="radio" name="recons" id="pan" autocomplete="off" onclick="localStorage.setItem(\'recons\',\'pan\')"><label for="pan">潘悟雲擬音（2013. 漢語中古音. 語言研究 33(2): 1–7）</label></div>',
+            '</div>',
+            '<script>document.getElementById(localStorage.getItem("recons") || "untL").checked = true;</script>'
         ]))
         for 圖號, 韻圖 in enumerate(韻圖列表):
             結果 = '\n'.join([get韻圖標題(圖號), '<table>'] +
