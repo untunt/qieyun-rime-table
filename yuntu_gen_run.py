@@ -2,7 +2,7 @@ from yuntu_gen import *
 
 創建韻圖列表(顯示增補小韻=False)
 讀取文件('diwei.txt')
-讀取文件('diwei_added.txt')
+#讀取文件('diwei_added.txt')
 設置合法性()
 統計合法性()
 統計音節數()
