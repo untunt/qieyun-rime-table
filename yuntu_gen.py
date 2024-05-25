@@ -561,7 +561,7 @@ def 輸出小韻列表(文件名):
                         小韻字典[小韻號] = 內容
     小韻列表 = []
     小韻列表.append(
-        '小韻號 首字 反切 編碼 切韻拼音 unt切韻擬音L unt切韻擬音J unt切韻通俗擬音 潘悟雲擬音 描述 聲母 開合 等和重紐 韻母 聲調 合法性 備註\n'.replace(' ', '\t'))
+        '小韻號 首字 反切 編碼 切韻拼音 unt切韻擬音J unt切韻擬音L unt切韻通俗擬音 潘悟雲擬音 描述 聲母 開合 等和重紐 韻母 聲調 合法性 備註\n'.replace(' ', '\t'))
     for 小韻號 in sorted(小韻字典):
         小韻列表.append(小韻字典[小韻號] + '\n')
     with open(文件名, 'w', encoding='utf-8') as 文件:
@@ -685,7 +685,7 @@ def get版本歷史():
     內容 = ['\n'.join([f'<p><strong>{版本}</strong></p>', '<ul>'] +
                     [f'<li>{條目}</li>' for 條目 in 版本歷史字典[版本]] +
                     ['</ul>']) for 版本 in 版本歷史字典]
-    return ['<div class="history">'] + 內容 + ['</div>']
+    return 內容
 
 
 def get_tooltip_box字典():
@@ -768,8 +768,10 @@ def 輸出網頁文件(文件名):
             文件.writelines([結果])
         文件.writelines('\n'.join([
             '<script>', get_tooltip_box字典(), '</script>',
-            '<h2 id="history" class="shown">版本歷史' + get回到索引() + '</h2>',
+            '<h2 id="history-head" class="collapse-head shown">版本歷史<span class="button" onclick="collapse(\'history\')"></span>' + get回到索引() + '</h2>',
+            '<div id="history" class="collapse history">',
         ] + get版本歷史() + [
+            '</div>',
             '<div class="license">',
             '<div class="pic"><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="知識共享許可協議" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png"></a></div>' +
             '<div class="desc">本作品使用的小韻原始數據（反切及音韻地位）來自<a href="https://ytenx.org/" target="_blank">韻典網</a>和<hanla></hanla><a href="https://nk2028.shn.hk/" title="The Ngiox Khyen 2028 Project" target="_blank">nk2028</a>。' +

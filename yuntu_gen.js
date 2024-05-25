@@ -102,10 +102,14 @@ function showAllTables(x) {
     }
 }
 
-function setCollapseHeight(collapse) {
-    collapse.style.maxHeight = collapse.classList.contains('spread') ? collapse.scrollHeight + 'px' : '0px';
+function setCollapseHeight(collapse = null) {
+    if (collapse) {
+        collapse.style.maxHeight = collapse.classList.contains('spread') ? collapse.scrollHeight + 'px' : '0px';
+        return;
+    }
+    document.querySelectorAll('.collapse').forEach(setCollapseHeight);
 }
-function collapse(id = 'legend') {
+function collapse(id) {
     let head = document.getElementById(id + '-head');
     let collapse = document.getElementById(id);
     if (collapse.classList.contains('spread')) {
@@ -137,5 +141,5 @@ function tableLoaded(i) {
     document.getElementById('toc-list' + (i / 10 - 1)).classList.remove('not-loaded');
 }
 window.onresize = function () {
-    setLegendHeight();
+    setCollapseHeight();
 };

@@ -345,6 +345,9 @@ h2 .back{
     vertical-align: bottom;
     font-weight: initial;
 }
+h2.collapse-head .back {
+    margin-left: 1em;
+}
 h2 .back:after {
     content: '回到索引↩︎';
 }
@@ -587,9 +590,10 @@ hr {
 }
 .history {
     line-height: 1.5em;
+    margin-top: 1em;
 }
 .history p {
-    margin: 0.5em 0;
+    margin: 0.2em 0;
 }
 .history ul {
     margin: 0;
@@ -600,14 +604,21 @@ hr {
 }
 .collapse-head .colon {
     margin-right: 0.5em;
+    transition: .3s;
 }
 .collapse-head:not(.spread) .colon {
-    color: transparent;
+    opacity: 0;
+    transition: .3s .1s;
 }
 .collapse-head .button {
     display: inline-block;
     cursor: pointer;
     color: #95959b;
+}
+h2.collapse-head .button {
+    font-size: 16px;
+    margin-left: 1em;
+    font-weight: initial;
 }
 .collapse-head .button:before {
     content: '展开 ';
@@ -615,15 +626,14 @@ hr {
 .collapse-head .button:after {
     content: '>';
     display: inline-block;
+    transition: .3s .1s;
 }
 .collapse-head.spread .button:before {
     content: '收起 ';
 }
-.collapse-head.spread#recons-head .button:before {
-    content: '收起並保存 ';
-}
 .collapse-head.spread .button:after {
-    transform: rotate(-90deg);
+    transform: rotate(90deg);
+    transition: .3s;
 }
 .collapse {
     max-height: 0;
