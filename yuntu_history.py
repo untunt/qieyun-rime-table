@@ -1,6 +1,7 @@
 版本歷史字典 = {
     '2024.5.25': [
         '版本歷史默認收起',
+        '調整<hanla></hanla>1307<hanla></hanla>㓼、1478<hanla></hanla>笉、1574<hanla></hanla>鄹、1692<hanla></hanla>鷕、2004<hanla></hanla>𩒣、2060<hanla></hanla>孂、2340<hanla></hanla>尠、2767<hanla></hanla>㱇、2991<hanla></hanla>𣢝、3854<hanla></hanla>䀴諸小韻',
     ],
     '2024.1.7': [
         '增加擬音方案選擇',

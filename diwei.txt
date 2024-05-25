@@ -1306,7 +1306,8 @@
 1304	擬	擬儗薿孴譺𥣖	魚紀	gHB	ngyq	ŋɨ́	ŋɨ́	ŋɨ́	ŋɨ˧˥
 1305	齒	齒紕	昌里	YHB	tjhyq	tɕʰɨ́	tɕʰɨ́	tɕʰɨ́	tɕʰɨ˧˥
 1306	恥	恥祉褫	敕里	KHB	trhyq	ʈʰɨ́	ʈʰɨ́	ʈʰɨ́	ʈʰɨ˧˥
-1307	㓼	㓼欼㱀	初紀	THB	tsrhyq	tʂʰɨ́	tʂʰɨ́	tʂʰɨ́	tʂʰɨ˧˥
+1307a	㓼	㓼	初乙	TVD	tsrhyit	tʂʰit	tʂʰit	tʂʰɨit	tʂʰɪt꜊
+1307b	欼	欼㱀	初夬	TRK	tsrhwaejh	tʂʰwàˤj	tʂʰwàˤj	tʂʰuæ̀j	tʂʰʷɣæi˥˩
 1308	滓	滓笫胏䔂𠂔	阻史	SHB	tsryq	tʂɨ́	tʂɨ́	tʂɨ́	tʂɨ˧˥
 1309	譩	譩醷	於擬	hHB	qyq	ʔɨ́	ʔɨ́	ʔɨ́	ʔɨ˧˥
 1310	伱	伱聻	乃里	MHB	nryq	ɳɨ́	ɳɨ́	ɳɨ́	ɳɨ˧˥
@@ -1478,7 +1479,7 @@
 1475	㯸	㯸盡	即忍	NVB	tsinq	tsín	tsín	tsín	tsin˧˥
 1476	牝	牝髕臏猵	毗忍	CVB	binq	bín	bín	bín	bin˧˥
 1477	釿	釿磭𪙤齗听	宜引	gVF	ngyinq	ŋɹín	ŋɹín	ŋɨín	ŋɣin˧˥
-1478	笉	笉	七忍	OVB	tshinq	tsʰín	tsʰín	tsʰín	tsʰin˧˥
+1478	笉	笉	于忍	kVJ	uinq	wɹín	wɹín	ʉín	ɦʷin˧˥
 1479	窘	窘僒莙㖥㻒箘菌䐃蔨蜠	渠殞	fVN	guinq	ɡɹwín	ɡɹwín	ɡʉín	ɡʷɣin˧˥
 1480	引	引𢎢蚓螾弞𠻤𢯼䏖濥廴戭縯鈏靷	余忍	lVB	jinq	jín	jín	jín	jin˧˥
 1481	愍	愍慜憫閔敏敃暋潣簢𥴲𤛎𦌡𨏵鰵	眉殞	DVF	myinq	mɹín	mɹín	mɨín	mɣin˧˥
@@ -1574,7 +1575,7 @@
 1571	伴	伴㚘拌	蒲旱	CcB	banq	bán	ᵬán	bán	bu̯ɑn˧˥
 1572	滿	滿懣𢟮𥲈鏋	莫旱	DcB	manq	mán	ᵯán	mán	mu̯ɑn˧˥
 1573	粄	粄䉽䬳瓪昄	博管	AcB	panq	pán	ᵱán	pán	pu̯ɑn˧˥
-1574	鄹	鄹	辝纂	PcJ	dzwanq	dzwán	dzwán	dzuán	dzʷɑn˧˥
+1574	鄹	鄹	辝矩	PKB	dzuoq	dzjó	dzjó	dzʉó	dzɨu̯o̝˧˥
 1575	斷	斷𩋦緞	徒管	GcJ	dwanq	dwán	dwán	duán	dʷɑn˧˥
 1576	攤	攤	奴但	HcB	nanq	nán	nán	nán	nɑn˧˥
 1577	坢	坢𧺾	普伴	BcB	phanq	pʰán	ᵱʰán	pʰán	pʰu̯ɑn˧˥
@@ -1692,7 +1693,8 @@
 1689	表	表𧘝𧞧䔸	陂矯	AiF	pyewq	pɹéw	pɹéw	pɨéw	pɣiᴇu˧˥
 1690	褾	褾𧢄標㟽	方小	AiB	piewq	pjéw	pjéw	piéw	piᴇu˧˥
 1691	藨	藨𦳤殍莩𠬪㰶㹾𧴎	平表	CiF	byewq	bɹéw	bɹéw	bɨéw	bɣiᴇu˧˥
-1692	鷕	鷕溔舀𦥨抭𩨴䁘	以沼	liB	jiewq	jéw	jéw	jiéw	jiᴇu˧˥
+1692a	鷕	鷕	以水	lGJ	jwiq	jwí	jwí	jyí	jʷi˧˥
+1692b	溔	溔舀𦥨抭𩨴䁘	以沼	liB	jiewq	jéw	jéw	jiéw	jiᴇu˧˥
 1693	悄	悄愀釥	親小	OiB	tshiewq	tsʰjéw	tsʰjéw	tsʰiéw	tsʰiᴇu˧˥
 1694	剿	𠞰𠟯勦漅𨙹𤃭膘𢄺	子小	NiB	tsiewq	tsjéw	tsjéw	tsiéw	tsiᴇu˧˥
 1695	𨲭	𨲭	巨夭	fiF	gyewq	ɡɹéw	ɡɹéw	ɡɨéw	ɡɣiᴇu˧˥
@@ -2004,7 +2006,7 @@
 2001	廞	廞	許錦	i1F	hyimq	xɹím	xɹím	xɨím	hɣim˧˥
 2002	戡	戡㱽	張甚	J1B	trimq	ʈím	ʈím	ʈím	ʈim˧˥
 2003	潭	潭	以荏	l1B	jimq	jím	jím	jím	jim˧˥
-2004	𩒣	𩒣	士㾕	U1B	dzryimq	dʐím	dʐím	dʐɨím	dʐim˧˥
+2004	𩒣	𩒣	丘㾕	e1F	khyimq	kʰɹím	kʰɹím	kʰɨím	kʰɣim˧˥
 2005	感	感𥸡鱤灝贑䤗贛㔶𧆐䃭灨	古禫	d2B	komq	qʌ́m	qʌ́m	kə́m	kəm˧˥
 2006	禫	禫䊤䨢黮窞髧萏𧂄倓𥥦𧡪醰嘾贉譚𣛱	徒感	G2B	domq	dʌ́m	dʌ́m	də́m	dəm˧˥
 2007	晻	晻黭揞唵隌罯黤㞄𤃷	烏感	h2B	qomq	ʔʌ́m	ʡʌ́m	ʔə́m	ʔəm˧˥
@@ -2060,7 +2062,7 @@
 2057	稴	稴溓𤬓	力忝	I5B	lemq	ɫém	ɫém	lém	lem˧˥
 2058	鼸	鼸㺌	胡忝	j5B	ghemq	ʁém	ʁém	ɣém	ɦem˧˥
 2059	憯	憯	青忝	O5B	tshemq	tsʰém	tsʰém	tsʰém	tsʰem˧˥
-2060	孂	孂	兼玷	d5B	kemq	qém	qém	kém	kem˧˥
+2060	孂	孂	居黝	d0B	kiwq	kíw	kíw	kíw	kiu˧˥
 2061	𡕢	𡕢厸	明忝	D5B	memq	mém	ᵯém	mém	mem˧˥
 2062	儼	儼广𠆲㢂礹𢇘曮	魚埯	g8B	ngyomq	ŋɣə́m	ŋə́m	ŋɨə́m	ŋɨam˧˥
 2063	欦	欦𩒥䇜	丘广	e8B	khyomq	kʰɣə́m	kʰə́m	kʰɨə́m	kʰɨam˧˥
@@ -2340,7 +2342,7 @@
 2337	驅	驅𤛐	區遇	eKC	khuoh	kʰɣò	kʰò	kʰʉò	kʰɨu̯o̝˥˩
 2338	菆	菆䜴䐢	芻注	TKC	tsrhuoh	tʂʰò	tʂʰò	tʂʰʉò	tʂʰɨu̯o̝˥˩
 2339	𨳳	𨳳𢨸	丑注	KKC	trhuoh	ʈʰò	ʈʰò	ʈʰʉò	ʈʰɨu̯o̝˥˩
-2340	尠	尠	思句	QKC	suoh	sjò	sjò	sʉò	sɨu̯o̝˥˩
+2340	尠	尠	思典	QfB	sienq	sjén	sjén	sién	siᴇn˧˥
 2341	屢	屢𡀿	良遇	IKC	luoh	lò	lò	lʉò	lɨu̯o̝˥˩
 2342	暮	暮慕募墓慔𥰻	莫故	DLC	moh	mò	ᵯò	mò	mu̯o˥˩
 2343	渡	渡斁鍍度𥯖	徒故	GLC	doh	dò	dò	dò	du̯o˥˩
@@ -2767,7 +2769,8 @@
 2764	𩕐	𩕐尥嫽料嘹鐐璙𦌒炓	力弔	IhC	lewh	ɫèw	ɫèw	lèw	leu˥˩
 2765	顤	顤獟澆𪖐𠹑	五弔	ghC	ngewh	ɴèw	ɴèw	ŋèw	ŋeu˥˩
 2766	窔	窔𥦒	烏叫	hhC	qewh	ʔèw	ʡèw	ʔèw	ʔeu˥˩
-2767	㱇	𢿿嬈娎	火弔	ihC	hewh	χèw	χèw	xèw	heu˥˩
+2767a	㱇	𢿿	火即	iwD	hyk	xɨk	xɨk	xɨk	hɨk꜊
+2767b	嬈	嬈娎	火弔	ihC	hewh	χèw	χèw	xèw	heu˥˩
 2768	笑	𥬇㗛肖韒鞘	私妙	QiC	siewh	sjèw	sjèw	sièw	siᴇu˥˩
 2769	照	照炤詔𨹸𠧙	之少	XiC	tjiewh	tɕèw	tɕèw	tɕièw	tɕiᴇu˥˩
 2770	燿	燿鷂摇覞𧡷耀曜𧢢矅㞁𣤦筄趭鷣䔄艞讑	弋照	liC	jiewh	jèw	jèw	jièw	jiᴇu˥˩
@@ -2991,7 +2994,8 @@
 2988	盛	盛墭晟	承正	ZuC	djiaengh	dʑàŋ	dʑàŋ	dʑiæ̀ŋ	dʑiᴇŋ˥˩
 2989	詺	詺	彌正	DuC	miaengh	mjàŋ	mjàŋ	miæ̀ŋ	miᴇŋ˥˩
 2990	輕	輕	墟正	euC	khiaengh	kʰjàŋ	kʰjàŋ	kʰiæ̀ŋ	kʰiᴇŋ˥˩
-2991	𣢝	𣢝𩈡	許令	iuC	hiaengh	xjàŋ	xjàŋ	xiæ̀ŋ	hiᴇŋ˥˩
+2991a	𣢝	𣢝	許含	i2A	hom	χʌm	χʌm	xəm	həm˧
+2991b	𩈡	𩈡	許令	iuC	hiaengh	xjàŋ	xjàŋ	xiæ̀ŋ	hiᴇŋ˥˩
 2992	精	精	子姓	NuC	tsiaengh	tsjàŋ	tsjàŋ	tsiæ̀ŋ	tsiᴇŋ˥˩
 2993	徑	徑經逕𠲮俓𩰹桱	古定	dvC	kengh	qèŋ	qèŋ	kèŋ	keŋ˥˩
 2994	甯	寗佞濘鸋	乃定	HvC	nengh	nèŋ	nèŋ	nèŋ	neŋ˥˩
@@ -3856,7 +3860,7 @@
 3851	霎	霎歃箑䈉萐喢𧳛	山洽	V6D	sreep	ʂeˤp	ʂeˤp	ʂɛp	ʂɣɛp꜊
 3852	劄	劄𠍹𧉫	竹洽	J6D	treep	ʈeˤp	ʈeˤp	ʈɛp	ʈɣɛp꜊
 3853	𨂁	𨂁凹浥圔	烏洽	h6D	qeep	ʔeˤp	ʡeˤp	ʔɛp	ʔɣɛp꜊
-3854	䀴	䀴	五夾	g6D	ngeep	ɴeˤp	ɴeˤp	ŋɛp	ŋɣɛp꜊
+3854	䀴	䀴	五冷	gvB	ngengq	ɴéŋ	ɴéŋ	ŋéŋ	ŋeŋ˧˥
 3855	𥃐	𥃐	丑㘝	K6D	trheep	ʈʰeˤp	ʈʰeˤp	ʈʰɛp	ʈʰɣɛp꜊
 3856	狎	狎翈霅𠗉柙匣𧆥𦾏𢘉炠笚	胡甲	j7D	ghaep	ʁaˤp	ʁaˤp	ɣæp	ɦɣæp꜊
 3857	𠗨	𠗨喋擖霅𤁳鞢	丈甲	L7D	draep	ɖaˤp	ɖaˤp	ɖæp	ɖɣæp꜊
