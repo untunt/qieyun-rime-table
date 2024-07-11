@@ -1,9 +1,31 @@
+function getNumNull(韻書) {
+    return `<div class="rime-num null"><span class="book">${韻書}</span>無此小韻</div>`;
+}
+function getNumAndChars(韻書, 性質, 小韻號, 反切, 全部字, rimeIdNum) {
+    result = '';
+    result += `<div class="rime-num"><span class="book">${韻書}</span>${小韻號}`;
+    if (性質 === '當刪小韻')
+        result += ` <span class="rime-deleted">(當刪)</span>`;
+    if (反切)
+        result += `<span class="separator"></span>${反切}`;
+    if (韻書 === '廣韻' && !性質.includes('增補'))
+        result += `<span class="separator"></span><a href="https://ytenx.org/kyonh/sieux/${rimeIdNum}/" target="_blank">韻典網</a>`;
+    result += `</div>`;
+    if (全部字)
+        result += `<div class="rime-chars"${全部字.length >= 6 ? ' style="min-width: 9.6em"' : ''}>${全部字.replace(/□/g, '<span class="full-width">□</span>')}</div>`;
+    return result;
+}
 function show(rime) {
     if (rime.classList.contains('hovered')) return;
     let windowInnerWidth = window.innerWidth;
     let rimeId = rime.id.slice(5);
     let rimeIdNum = rimeId.replace(/[a-z]/g, '');
-    let [性質, 反切, 描述, 全部字, 切韻拼音, unt切韻擬音J, unt切韻擬音L, unt切韻通俗擬音, 潘悟雲擬音, 備註] = qy[rimeId].split(',');
+    let line = qy[rimeId].split(',');
+    let [性質, 反切, 描述, 全部字, 切韻拼音, unt切韻擬音J, unt切韻擬音L, unt切韻通俗擬音, 潘悟雲擬音, 備註] = line;
+    let wang3Rimes = [];
+    for (let i = 10; i < line.length; i += 3) {
+        wang3Rimes.push(line.slice(i, i + 3));
+    }
     性質 = {
         0: '小韻',
         1: rimeIdNum % 10000 > 4000 ? '增補可能讀音' : '增補小韻',
@@ -32,14 +54,17 @@ function show(rime) {
     toolHTML += `<span class="tupa">${切韻拼音}</span> ${擬音}</div>`;
     if (備註)
         toolHTML += `<div class="rime-comment">${備註}</div>`;
-    toolHTML += `<div class="rime-num">${性質}<hanla></hanla>${小韻號}`;
-    if (性質 === '當刪小韻')
-        toolHTML += ` <span class="rime-deleted">(當刪)</span>`;
-    toolHTML += `<span class="separator"></span>${反切}`;
-    if (!性質.includes('增補'))
-        toolHTML += `<span class="separator"></span><a href="https://ytenx.org/kyonh/sieux/${rimeIdNum}/" target="_blank">韻典網</a></div>`;
-    if (全部字)
-        toolHTML += `<div class="rime-chars"${全部字.length >= 6 ? ' style="min-width: 9.6em"' : ''}>${全部字}</div>`;
+    if (!(30000 < rimeIdNum && rimeIdNum < 40000)) {
+        toolHTML += getNumAndChars('廣韻', 性質, 小韻號, 反切, 全部字, rimeIdNum);
+    } else {
+        toolHTML += getNumNull('廣韻');
+    }
+    if (wang3Rimes.length == 0) {
+        toolHTML += getNumNull('王三');
+    }
+    wang3Rimes.forEach(([小韻號, 全部字, 反切]) => {
+        toolHTML += getNumAndChars('王三', 性質, 小韻號, 反切, 全部字, null);
+    });
     toolHTML += `</span>`;
     rime.insertAdjacentHTML('afterend', toolHTML);
     let tool = rime.nextElementSibling;

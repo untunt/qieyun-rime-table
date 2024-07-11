@@ -137,6 +137,19 @@ from yuntu_history import *
 }
 
 
+class 王三小韻屬性類:
+    def __init__(self, 小韻號和後綴: str, 全部字: str, 反切: str) -> None:
+        self.小韻號和後綴 = 小韻號和後綴
+        self.全部字 = 全部字
+        self.反切 = 反切
+
+    def to_tuple(self) -> tuple[str, str, str]:
+        小韻號和後綴 = str(self.小韻號和後綴)
+        if 小韻號和後綴.isdigit():
+            小韻號和後綴 = str(int(小韻號和後綴) % 30000)
+        return (小韻號和後綴, self.全部字, self.反切 + '反' if self.反切 else '')
+
+
 class 小韻屬性類:
     def __init__(self, 小韻號: int, 小韻號後綴: str, 字頭: str, 全部字: str, 地位: 音韻地位, 拼音和擬音: dict, 反切: str) -> None:
         self.小韻號 = 小韻號
@@ -150,6 +163,7 @@ class 小韻屬性類:
         self.來源等 = None
         self.is增補小韻 = False
         self.is當刪小韻 = False
+        self.王三小韻列表 = 王三小韻字典.get(str(小韻號) + 小韻號後綴, []) if 小韻號 < 4000 else []
         if self.小韻號 == 892:  # 浜
             for k in self.拼音和擬音:
                 if 'unt' in k:
@@ -220,8 +234,9 @@ class 小韻屬性類:
             全部字 = 全部字.replace(old, '<span>' + new + '</span>')
         備註 = self.__rime_comment內容()
         result = [小韻性質, 反切, self.描述, 全部字, *self.拼音和擬音.values()]
-        if 備註:
-            result.append(備註)
+        result.append(備註)
+        if self.王三小韻列表:
+            result += [i for 小韻 in self.王三小韻列表 for i in 小韻.to_tuple()]
         return result
 
     def toHTML(self) -> str:
@@ -333,6 +348,7 @@ class 格子類:
 
 
 韻圖列表 = None
+王三小韻字典 = {}  # { 廣韻小韻號和後綴: 王三小韻屬性類 }
 
 
 def 創建韻圖列表(顯示增補小韻: bool = False):
@@ -399,7 +415,7 @@ def 驗證格子和小韻地位相等(圖號, 行號, 聲號, 列號, 小韻: �
         print(小韻, '=>', '異常', get音韻地位元組_含無效格子(圖號, 行號, 聲號, 列號))
 
 
-def 讀取一行(一行: str) -> 小韻屬性類:
+def 讀取一行(一行: str, is王三: bool = False) -> 小韻屬性類:
     小韻號, 字頭, 全部字, 反切, 編碼, \
         切韻拼音, unt切韻擬音J, unt切韻擬音L, unt切韻通俗擬音, 潘悟雲擬音 \
         = 一行.strip('\n').split('\t')
@@ -407,6 +423,8 @@ def 讀取一行(一行: str) -> 小韻屬性類:
     if 小韻號[-1] in ['a', 'b']:
         小韻號, 小韻號後綴 = 小韻號[0:-1], 小韻號[-1]
     小韻號 = int(小韻號)
+    if is王三:
+        小韻號 += 30000
     拼音和擬音 = {
         '切韻拼音': 切韻拼音,
         'unt切韻擬音J': unt切韻擬音J,
@@ -415,7 +433,10 @@ def 讀取一行(一行: str) -> 小韻屬性類:
         '潘悟雲擬音': 潘悟雲擬音,
     }
     地位 = None if 編碼 == '(deleted)' else 音韻地位.from編碼(編碼)
-    return 小韻屬性類(小韻號, 小韻號後綴, 字頭, 全部字, 地位, 拼音和擬音, 反切)
+    小韻 = 小韻屬性類(小韻號, 小韻號後綴, 字頭, 全部字, 地位, 拼音和擬音, 反切)
+    if is王三:
+        小韻.王三小韻列表 = [王三小韻屬性類(小韻號, 全部字, 反切)]
+    return 小韻
 
 
 def 插入小韻(小韻: 小韻屬性類) -> None:
@@ -425,7 +446,7 @@ def 插入小韻(小韻: 小韻屬性類) -> None:
 
     圖號, 行號, 聲號, 列號 = get圖中位置(小韻.地位)
 
-    if 小韻.小韻號 > 4000:
+    if 小韻.小韻號 > 4000 and not (30000 < 小韻.小韻號 and 小韻.小韻號 < 40000):
         小韻.is增補小韻 = True
         if 小韻.字頭 in '怎吽' and 列號 == get列號('A'):
             小韻.地位.等 = '一'
@@ -451,11 +472,21 @@ def 插入小韻(小韻: 小韻屬性類) -> None:
     韻圖列表[圖號][行號][聲號][列號].add小韻(小韻)
 
 
-def 讀取文件(文件名: str) -> None:
+def 讀取文件(文件名: str, is王三=False) -> None:
     with open(文件名, 'r', encoding='utf-8') as 文件:
         next(文件)
         for 一行 in 文件:
-            插入小韻(讀取一行(一行))
+            插入小韻(讀取一行(一行, is王三))
+
+
+def 讀取王三_對應廣韻小韻號(文件名: str) -> None:
+    with open(文件名, 'r', encoding='utf-8') as 文件:
+        next(文件)
+        for 一行 in 文件:
+            小韻號, 廣韻對應小韻號, 代表字, 全部字, 反切 = 一行.strip('\n').split('\t')
+            if 廣韻對應小韻號 not in 王三小韻字典:
+                王三小韻字典[廣韻對應小韻號] = []
+            王三小韻字典[廣韻對應小韻號].append(王三小韻屬性類(小韻號, 全部字, 反切))
 
 
 def 設置合法性() -> None:
@@ -750,7 +781,7 @@ def 輸出網頁文件(文件名):
             '<div class="icon icon4"></div><div class="legality">強非法</div><div class="desc">範圍廣（&gt; 50<hanla></hanla>個音節）且例外少（&lt; 4%）的音系規則所禁止的情況</div>',
             '<div class="icon"></div><div class="legality"></div><div class="desc">（兩個非法圓圈僅在格子有字時顯示）</div>',
             '</div>',
-            '<p class="collapse-head" id="recons-head">在小韻字頭上懸停鼠標或點擊可查看其音韻地位、<a href="https://phesoca.com/tupa/">切韻拼音</a>（斜體顯示）、擬音（正體顯示）、反切、韻典網鏈接及轄字。擬音方案選擇<span class="colon">：</span><span class="button" onclick="collapse(\'recons\')"></span></p>',
+            '<p class="collapse-head" id="recons-head">在小韻字頭上懸停鼠標或點擊可查看其音韻地位、<a href="https://phesoca.com/tupa/">切韻拼音</a>（斜體顯示）、擬音（正體顯示），小韻在《廣韻》和<abbr data-title="宋濂跋唐写本王仁昫《刊谬补缺切韵》，1947 年发现，通称《王三》、宋跋本、全王本">《王三》</abbr>中的序號、反切、韻典網鏈接及轄字。擬音方案選擇<span class="colon">：</span><span class="button" onclick="collapse(\'recons\')"></span></p>',
             '<div class="collapse" id="recons">',
             '<div></div>',
             '<div><input type="radio" name="recons" id="untJ" autocomplete="off" onclick="localStorage.setItem(\'recons\',\'untJ\')"><label for="untJ">unt<hanla></hanla>切韻擬音<hanla></hanla>J（<a href="https://phesoca.com/aws/337/">說明</a>）</label></div>',

@@ -1,7 +1,9 @@
 from yuntu_gen import *
 
 創建韻圖列表(顯示增補小韻=False)
+讀取王三_對應廣韻小韻號('diwei_wang3.txt')
 讀取文件('diwei.txt')
+讀取文件('diwei_wang3_unique.txt', is王三=True)
 #讀取文件('diwei_added.txt')
 設置合法性()
 統計合法性()
