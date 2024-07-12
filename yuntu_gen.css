@@ -44,7 +44,7 @@ a:hover,
 .content > :last-child {
     margin-bottom: 60px;
 }
-h2, .license {
+h2 {
     margin-top: 3em;
 }
 .site {
@@ -78,6 +78,9 @@ p, div.collapse, div.history {
 .content > p, div.collapse, div.history {
     max-width: 720px;
     min-width: 31em;
+}
+div.statement, div.license {
+    max-width: 760px;
 }
 p, table {
     font-size: 16px;
@@ -604,6 +607,8 @@ hr {
 }
 .history {
     line-height: 1.5em;
+}
+.history > :first-child {
     margin-top: 1em;
 }
 .history p {
@@ -654,9 +659,10 @@ h2.collapse-head .button {
     overflow: hidden;
     transition: max-height .4s;
 }
-
 abbr {
     position: relative;
+}
+:not(a) > abbr {
     border-bottom: 1px dashed #686878;
     transition: all .35s;
     cursor: help;
@@ -674,6 +680,12 @@ abbr[data-title]::before {
     transition: all .3s;
     z-index: 10000;
 }
+@media screen and (max-width: 600px) {
+    .statement abbr[data-title]::after,
+    .statement abbr[data-title]::before {
+        left: 0;
+    }
+}
 abbr[data-title]::after {
     content: attr(data-title);
     transform: translate(-50%, 4px);
@@ -684,6 +696,9 @@ abbr[data-title]::after {
     color: transparent;
     border-radius: 4px;
     line-height: 1.5;
+}
+abbr[data-title="The Ngiox Khyen 2028 Project"]::after {
+    width: 8em;
 }
 abbr[data-title]::before {
     content: '';
@@ -707,6 +722,12 @@ abbr:hover::after {
 abbr:hover::before {
     border-color: transparent transparent #1a1a1e transparent;
     transform: translate(-50%, 4.5px);
+}
+#history + * {
+    margin-top: 2em;
+}
+.statement {
+    margin-bottom: 1em;
 }
 .license {
     display: flex;

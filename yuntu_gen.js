@@ -15,9 +15,8 @@ function getNumAndChars(韻書, 性質, 小韻號, 反切, 全部字, rimeIdNum)
         result += `<div class="rime-chars"${全部字.length >= 6 ? ' style="min-width: 9.6em"' : ''}>${全部字.replace(/□/g, '<span class="full-width">□</span>')}</div>`;
     return result;
 }
-function show(rime) {
-    if (rime.classList.contains('hovered')) return;
-    let windowInnerWidth = window.innerWidth;
+function getTooltipContent(rime) {
+    if (typeof qy === 'undefined') return '韻書數據正在加載，請稍候';
     let rimeId = rime.id.slice(5);
     let rimeIdNum = rimeId.replace(/[a-z]/g, '');
     let line = qy[rimeId].split(',');
@@ -39,34 +38,41 @@ function show(rime) {
         if (小韻號 > 4000) 小韻號 -= 4000;
         小韻號 = str(小韻號) + 小韻號後綴;
     }
-    let toolHTML = `<span class="tooltip-wrapper" id="tool-${rimeId}" onmouseout="hide(this)">`;
-    toolHTML += `<span class="tooltip-hitbox1"></span>`;
-    toolHTML += `<span class="tooltip-hitbox2"></span>`;
-    toolHTML += `<span class="tooltip-box"><div class="rime-prop">`;
+    let result = '';
+    result += `<div class="rime-prop">`;
     if (性質 !== '當刪小韻')
-        toolHTML += `${描述} `;
+        result += `${描述} `;
     let 擬音 = {
         'untJ': unt切韻擬音J,
         'untL': unt切韻擬音L,
         'unt0': unt切韻通俗擬音,
         'pan': 潘悟雲擬音,
     }[document.querySelector('input[name="recons"]:checked').id];
-    toolHTML += `<span class="tupa">${切韻拼音}</span> ${擬音}</div>`;
+    result += `<span class="tupa">${切韻拼音}</span> ${擬音}</div>`;
     if (備註)
-        toolHTML += `<div class="rime-comment">${備註}</div>`;
+        result += `<div class="rime-comment">${備註}</div>`;
     if (!(30000 < rimeIdNum && rimeIdNum < 40000)) {
-        toolHTML += getNumAndChars('廣韻', 性質, 小韻號, 反切, 全部字, rimeIdNum);
+        result += getNumAndChars('廣韻', 性質, 小韻號, 反切, 全部字, rimeIdNum);
     } else {
-        toolHTML += getNumNull('廣韻');
+        result += getNumNull('廣韻');
     }
     if (wang3Rimes.length == 0) {
-        toolHTML += getNumNull('王三');
+        result += getNumNull('王三');
     }
     wang3Rimes.forEach(([小韻號, 全部字, 反切]) => {
-        toolHTML += getNumAndChars('王三', 性質, 小韻號, 反切, 全部字, null);
+        result += getNumAndChars('王三', 性質, 小韻號, 反切, 全部字, null);
     });
-    toolHTML += `</span>`;
-    rime.insertAdjacentHTML('afterend', toolHTML);
+    return result;
+}
+function show(rime) {
+    if (rime.classList.contains('hovered')) return;
+    let windowInnerWidth = window.innerWidth; // The width before the tooltip is shown
+    let rimeId = rime.id.slice(5);
+    let tooltip = `<span class="tooltip-wrapper" id="tool-${rimeId}" onmouseout="hide(this)">`;
+    tooltip += `<span class="tooltip-hitbox1"></span>`;
+    tooltip += `<span class="tooltip-hitbox2"></span>`;
+    tooltip += `<span class="tooltip-box">${getTooltipContent(rime)}</span>`;
+    rime.insertAdjacentHTML('afterend', tooltip);
     let tool = rime.nextElementSibling;
     let icon = rime.parentElement.parentElement.previousElementSibling;
     rime.classList.add('hovered');

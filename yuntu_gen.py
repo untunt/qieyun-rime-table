@@ -373,6 +373,8 @@ def 驗證格子和小韻地位相等(圖號, 行號, 聲號, 列號, 小韻: �
                     3867: 'C',  # 殜
                     3873: 'C',  # 䎎
                     3874: 'C',  # 𦑣
+                    30713: 'C',  # 虵
+                    31876: '4',  # 愀
                 }
                 if 小韻.小韻號 in 來源等字典:
                     小韻.來源等 = 來源等字典[小韻.小韻號]
@@ -450,8 +452,6 @@ def 插入小韻(小韻: 小韻屬性類) -> None:
         小韻.is增補小韻 = True
         if 小韻.字頭 in '怎吽' and 列號 == get列號('A'):
             小韻.地位.等 = '一'
-            列號 = get列號('1')
-        if 小韻.字頭 == '虵':
             列號 = get列號('1')
         if 小韻.字頭 == '礥' and 小韻.地位.母 == '匣':
             列號 = get列號('4')
@@ -587,6 +587,8 @@ def 輸出小韻列表(文件名):
                 for 列號, 格子 in enumerate(聲調行):
                     for 小韻 in 格子.顯示的小韻列表:
                         小韻號, 內容 = 小韻.to小韻列表(合法性名稱字典[格子.合法性符號])
+                        if len(小韻號.replace('a', '').replace('b', '')) == 5 and 小韻號[0] == '3':
+                            continue
                         if len(小韻號) < 4:
                             小韻號 = '0' * (4 - len(小韻號)) + 小韻號
                         小韻字典[小韻號] = 內容
@@ -728,12 +730,20 @@ def get_tooltip_box字典():
                     for 小韻 in 格子.顯示的小韻列表:
                         字典[f'\'{小韻.小韻號}{小韻.小韻號後綴}\'' if 小韻.小韻號後綴 else str(小韻.小韻號)] = \
                             ','.join([str(i) for i in 小韻.get_tooltip_box內容()])
-    return 'const qy = {' + \
-        ''.join([f'{k}:\'{v}\',' for k, v in 字典.items()]) + \
-        '};\n\n'
+    result = 'const qy = {'
+    to小韻號 = lambda k: int(k.replace('\'', '').replace('a', '').replace('b', ''))
+    for k in sorted(字典, key=to小韻號):
+        if to小韻號(k) % 100 == 1:
+            result += '\n'
+        result += f'{k}:\'{字典[k]}\','
+    result += '\n};\n'
+    return result
 
 
 def 輸出網頁文件(文件名):
+    with open('data.js', 'w', encoding='utf-8') as 文件:
+        文件.write(get_tooltip_box字典())
+
     with open('yuntu_gen.js', 'r', encoding='utf-8') as 文件:
         script = 文件.read()
     with open('yuntu_gen.css', 'r', encoding='utf-8') as 文件:
@@ -759,15 +769,16 @@ def 輸出網頁文件(文件名):
             '<link rel="icon" href="https://phesoca.com/wp-content/uploads/logo/cropped-icon-192x192.png" sizes="192x192">',
             '<link rel="apple-touch-icon" href="https://phesoca.com/wp-content/uploads/logo/cropped-icon-180x180.png">',
             '<meta name="msapplication-TileImage" content="https://phesoca.com/wp-content/uploads/logo/cropped-icon-270x270.png">',
+            '<script async src="data.js"></script>',
             '<script>', script, '</script>',
             '<style>', style, '</style>',
             '</head>',
-            '<body onload="tableLoaded(40)">', '<div class="site">', '<div class="content not-loaded" id="content">',
+            '<body>', '<div class="site">', '<div class="content not-loaded" id="content">',
             '<h1>切韻新韻圖</h1>',
             '<p class="author-info">unt<hanla></hanla>設計、校訂、製作</p>',
             f'<p>{首段}</p>',
             '<p>切韻三等還可根據介音的不同分爲<hanla></hanla>A、B、C<hanla></hanla>三類；本韻圖將它們分置三列。C<hanla></hanla>類韻簡單來說就是非前元音三等韻。</p>',
-            '<p>特別感謝<hanla></hanla><a href="https://nk2028.shn.hk/" title="The Ngiox Khyen 2028 Project" target="_blank">nk2028</a><hanla></hanla>的支持。</p>',
+            '<p>特別感謝<hanla></hanla><a href="https://nk2028.shn.hk/" target="_blank"><abbr data-title="The Ngiox Khyen 2028 Project">nk2028</abbr></a><hanla></hanla>的支持。</p>',
         ]))
         文件.writelines(get索引())
         文件.writelines('\n'.join([
@@ -789,7 +800,7 @@ def 輸出網頁文件(文件名):
             '<div><input type="radio" name="recons" id="unt0" autocomplete="off" onclick="localStorage.setItem(\'recons\',\'unt0\')"><label for="unt0">unt<hanla></hanla>切韻通俗擬音（<a href="https://phesoca.com/aws/337/">說明</a>）</label></div>',
             '<div><input type="radio" name="recons" id="pan" autocomplete="off" onclick="localStorage.setItem(\'recons\',\'pan\')"><label for="pan">潘悟雲擬音（2013. 漢語中古音. 語言研究 33(2): 1–7）</label></div>',
             '</div>',
-            '<script>document.getElementById(localStorage.getItem("recons") || "untL").checked = true;</script>'
+            '<script>document.getElementById(localStorage.getItem("recons") || "untL").checked = true;</script>',
         ]))
         for 圖號, 韻圖 in enumerate(韻圖列表):
             結果 = '\n'.join([get韻圖標題(圖號), '<table>'] +
@@ -798,15 +809,15 @@ def 輸出網頁文件(文件名):
             結果 += '\n'
             文件.writelines([結果])
         文件.writelines('\n'.join([
-            '<script>', get_tooltip_box字典(), '</script>',
+            '<script>tableLoaded(40);</script>',
             '<h2 id="history-head" class="collapse-head shown">版本歷史<span class="button" onclick="collapse(\'history\')"></span>' + get回到索引() + '</h2>',
             '<div id="history" class="collapse history">',
         ] + get版本歷史() + [
             '</div>',
+            '<div class="statement">本作品使用的小韻原始數據（反切及音韻地位）來自<a href="https://ytenx.org/" target="_blank">韻典網</a>、<a href="https://nk2028.shn.hk/" target="_blank"><abbr data-title="The Ngiox Khyen 2028 Project">nk2028</abbr></a><hanla></hanla>和<a href="https://suzukish.sakura.ne.jp/search/qieyun/index.php" target="_blank">切韻諸本輯覽</a>。小韻的音韻地位和反切有所校訂，原貌暫請查閱韻書原卷。</div>',
             '<div class="license">',
-            '<div class="pic"><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="知識共享許可協議" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png"></a></div>' +
-            '<div class="desc">本作品使用的小韻原始數據（反切及音韻地位）來自<a href="https://ytenx.org/" target="_blank">韻典網</a>和<hanla></hanla><a href="https://nk2028.shn.hk/" title="The Ngiox Khyen 2028 Project" target="_blank">nk2028</a>。' +
-            '<br>本作品的設計採用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知識共享署名－非商業性使用<hanla></hanla>4.0<hanla></hanla>國際許可協議</a>進行許可。</div>',
+            '<div class="pic"><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="知識共享許可協議" src="https://licensebuttons.net/l/by-nc/4.0/88x31.png"></a></div>',
+            '<div class="desc">本作品的設計採用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知識共享署名－非商業性使用<hanla></hanla>4.0<hanla></hanla>國際許可協議</a>進行許可。</div>',
             '</div>',
             '<div class="footer">'
             '<div><a href="./data.txt" download="廣韻小韻數據（unt修訂）">下載<hanla></hanla>unt<hanla></hanla>修訂的廣韻小韻數據（txt<hanla></hanla>格式</a> / <a href="./data.xlsx" download="廣韻小韻數據（unt修訂）">xlsx<hanla></hanla>格式）</a></div>',
