@@ -188,7 +188,7 @@ td:nth-of-type(6n+9),
 .text {
     z-index: 0;
 }
-.has-2, .has-3, .has-from-div {
+.has-2, .has-3 {
     margin: 0 -5em;
 }
 .has-2 .text {
