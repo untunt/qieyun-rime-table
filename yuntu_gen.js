@@ -100,10 +100,10 @@ function scrollToId(id) {
         behavior: 'smooth',
     });
 }
-var lastShownNum = '1';
+var lastShownNum = 1;
 var isShowingAll = false;
-function setShownTableNum(num) {
-    if (num == lastShownNum) return;
+function setShownTableNum(num, forced=false) {
+    if (num == lastShownNum && !forced) return;
     document.getElementById('table' + lastShownNum).classList.remove('shown');
     document.getElementById('table' + num).classList.add('shown');
     lastShownNum = num;
@@ -162,10 +162,9 @@ function tableLoaded(i) {
     }
     if (i == 34) {
         document.getElementById('content').classList.remove('not-loaded');
-        return;
     }
-    if (i == (localStorage.getItem('lastShownNum') || '1')) {
-        setShownTableNum(i);
+    if (i == (localStorage.getItem('lastShownNum') || 1)) {
+        setShownTableNum(i, true);
         checkRadio();
     }
     if (i % 10) return;
