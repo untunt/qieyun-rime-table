@@ -1,3 +1,4 @@
+import re
 from QieyunEncoder import 常量, 音韻地位
 from yuntu_lib import *
 from yuntu_history import *
@@ -191,21 +192,26 @@ class 小韻屬性類:
         if self.地位.屬於('云母 支脂祭眞臻仙宵麻庚清蒸幽侵鹽韻'):
             描述 = 描述.replace('三', '三B')
         elif self.地位.屬於('幫滂並明見溪羣疑影曉匣母 三等'):
-            描述 = 描述.replace('庚', 'B庚')
+            描述 = 描述.replace('麻', 'A麻')
             描述 = 描述.replace('清', 'A清')
+            描述 = 描述.replace('庚', 'B庚')
+            描述 = 描述.replace('幽', 'B幽' if self.地位.組 == '幫' else 'A幽')
+            描述 = 描述.replace('蒸', 'C蒸' if self.地位.呼 == '開' else 'B蒸')
 
         if self.小韻號 in [965, 996] or \
                 self.小韻號 in [1043, 3708] and self.小韻號後綴 == 'b' or \
                 self.is增補小韻 and self.地位.韻 == '蒸' and self.地位.組 == '見':
             # 硱、𠁫、烋、抑
-            描述 = 描述.replace('三', '三<sup>(B)</sup>')
+            描述 = re.sub(r'三[ABC]?', '三B', 描述)
         elif self.小韻號 == 1830 or \
                 self.is增補小韻 and self.地位.韻 == '幽' and self.地位.組 == '幫':
             # 𩦠
-            描述 = 描述.replace('三', '三<sup>(A)</sup>')
-        elif self.小韻號 in [802, 1871, 1872, 2237] or (self.小韻號 == 1423 and self.小韻號後綴 == 'a'):
-            # 爹、打、冷、地；箉
-            描述 = 描述.replace('二', '三').replace('三', '四<sup>(?)</sup>')
+            描述 = re.sub(r'三[ABC]?', '三A', 描述)
+        elif self.小韻號 in [802, 2237]:
+            # 爹、地
+            描述 = 描述.replace('三', '四')
+        if self.地位.屬於('幫滂並明見溪羣疑影曉匣云母 三等'):
+            描述 = re.sub(r'三(?![ABC])', '三C', 描述)
         if self.來源韻:
             描述 = f'{描述[:-2]}{self.來源韻}<sup>→{描述[-2]}</sup>{描述[-1]}'
         return 描述

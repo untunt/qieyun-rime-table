@@ -17,7 +17,7 @@
 2536	羼	羼	初莧	TeC	tsrheenh	tʂʰèˤn	tʂʰèˤn	tʂʰɛ̀n	tʂʰɣɛn˥˩
 2635	驃	驃		AiC	piewh	pjèw	pjèw	pièw	piᴇu˥˩
 2636	覞	覞	昌召	YiC	tjhiewh	tɕʰèw	tɕʰèw	tɕʰièw	tɕʰiᴇu˥˩
-2671	韜	韜	他到	FkC	thawh	tʰʌ̀w	tʰʌ̀w	tʰàw	tʰɑu˥˩
+2671	韜	韜	他到	FkC	thawh	tʰə̀w	tʰə̀w	tʰàw	tʰɑu˥˩
 2867	熒	熒	胡定	jvK	ghwengh	ʁwèŋ	ʁwèŋ	ɣuèŋ	ɦʷeŋ˥˩
 3138	𧽻	𧽻僪趉𢵮𧾣	其聿	fVL	gwit	ɡwit	ɡwit	ɡyit	ɡʷit꜊
 3152	茁	茁	几律	dVP	kuit	kɹwit	kɹwit	kʉit	kʷɣit꜊

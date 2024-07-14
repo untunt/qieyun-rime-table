@@ -1,4 +1,7 @@
 版本歷史字典 = {
+    '2024.7.14': [
+        '更新音韻地位描述和<hanla></hanla>unt<hanla></hanla>切韻擬音<hanla></hanla>J、L',
+    ],
     '2024.7.11': [
         '調整<span class="cn-quot">“</span>韻基索引<span class="cn-quot">”</span>中的擬音',
         '增加《王三》全部小韻',
