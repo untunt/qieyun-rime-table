@@ -125,18 +125,6 @@ from yuntu_history import *
     3177: '音黯去聲',
 }
 
-字頭替換字典 = {
-    '⿰隺犬':
-        '<span style="transform: translateX(-0.225em) scaleX(0.55);display: inline-block;">隺</span>' +
-        '<span style="transform: translateX(0.25em) scaleX(0.5);display: inline-block;margin-left: -1em;">犬</span>',
-    '⿳艹大雨':
-        '<span style="transform: translateY(-0.25em) scaleY(0.4);display: inline-block;">芖</span>' +
-        '<span style="transform: translateY(0.225em) scaleY(0.6);display: inline-block;margin-left: -1em;">雨</span>',
-    '𣅝':
-        '<span style="transform: translateY(-0.275em) scaleY(0.4);display: inline-block">冂</span>' +
-        '<span style="transform: translateY(0.225em) scaleY(0.6);display: inline-block;margin-left: -1em">父</span>',
-}
-
 
 class 王三小韻屬性類:
     def __init__(self, 小韻號和後綴: str, 全部字: str, 反切: str) -> None:
@@ -236,8 +224,6 @@ class 小韻屬性類:
         elif self.反切:
             反切 = self.反切 if self.反切[-1] == '反' else self.反切 + '切'
         全部字 = self.全部字
-        for old, new in 字頭替換字典.items():
-            全部字 = 全部字.replace(old, '<span>' + new + '</span>')
         備註 = self.__rime_comment內容()
         result = [小韻性質, 反切, self.描述, 全部字, *self.拼音和擬音.values()]
         result.append(備註)
@@ -255,7 +241,6 @@ class 小韻屬性類:
             小韻class.append('rime-added')
         elif self.is當刪小韻:
             小韻class.append('rime-deleted')
-            字頭 = 字頭替換字典.get(字頭, 字頭)
         小韻class = ' '.join(小韻class)
 
         return f'<span class="{小韻class}" id="rime-{self.小韻號}{self.小韻號後綴}">{字頭}</span>'

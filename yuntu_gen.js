@@ -1,3 +1,17 @@
+const charReplacements = {
+    '⿰隺犬':
+        '<span style="transform: translateX(-0.225em) scaleX(0.55);display: inline-block;">隺</span>' +
+        '<span style="transform: translateX(0.25em) scaleX(0.5);display: inline-block;margin-left: -1em;">犬</span>',
+    '⿳艹大雨':
+        '<span style="transform: translateY(-0.25em) scaleY(0.4);display: inline-block;">芖</span>' +
+        '<span style="transform: translateY(0.225em) scaleY(0.6);display: inline-block;margin-left: -1em;">雨</span>',
+    '𣅝':
+        '<span style="transform: translateY(-0.275em) scaleY(0.4);display: inline-block">冂</span>' +
+        '<span style="transform: translateY(0.225em) scaleY(0.6);display: inline-block;margin-left: -1em">父</span>',
+};
+function addSeparatorsToChars(s) {
+    return [...s].map(c => `<span>${c}</span>`).join('');
+}
 function getNumNull(韻書) {
     return `<div class="rime-num null"><span class="book">${韻書}</span>無此小韻</div>`;
 }
@@ -11,8 +25,15 @@ function getNumAndChars(韻書, 性質, 小韻號, 反切, 全部字, rimeIdNum)
     if (韻書 === '廣韻' && !性質.includes('增補'))
         result += `<span class="separator"></span><a href="https://ytenx.org/kyonh/sieux/${rimeIdNum}/" target="_blank">韻典網</a>`;
     result += `</div>`;
-    if (全部字)
-        result += `<div class="rime-chars"${全部字.length >= 6 ? ' style="min-width: 9.6em"' : ''}>${全部字.replace(/□/g, '<span class="full-width">□</span>')}</div>`;
+    if (全部字) {
+        let 全部字_處理後 = 全部字.replace(new RegExp(Object.keys(charReplacements).join('|'), 'g'), '○');
+        全部字 = addSeparatorsToChars(全部字);
+        Object.entries(charReplacements).forEach(([k, v]) => {
+            全部字 = 全部字.replace(addSeparatorsToChars(k), '<span>' + v + '</span>');
+        });
+        result += `<div class="rime-chars"${[...全部字_處理後].length >= 6 ? ' style="min-width: 9.6em"' : ''}>` +
+            全部字 + '</div>';
+    }
     return result;
 }
 function getTooltipContent(rime) {
@@ -102,7 +123,7 @@ function scrollToId(id) {
 }
 var lastShownNum = 1;
 var isShowingAll = false;
-function setShownTableNum(num, forced=false) {
+function setShownTableNum(num, forced = false) {
     if (num == lastShownNum && !forced) return;
     document.getElementById('table' + lastShownNum).classList.remove('shown');
     document.getElementById('table' + num).classList.add('shown');
@@ -159,6 +180,9 @@ function tableLoaded(i) {
             e.setAttribute('onmouseout', 'hide(this)');
         });
         return;
+    }
+    if (i == 28) {
+        document.getElementById('rime-3373').innerHTML = charReplacements['𣅝'];
     }
     if (i == 34) {
         document.getElementById('content').classList.remove('not-loaded');
