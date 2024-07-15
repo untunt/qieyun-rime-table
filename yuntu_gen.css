@@ -144,18 +144,18 @@ th, td {
     text-align: center;
     width: 1.8em;
     min-width: 1.3em;
-    line-height: 1.3em;
-    padding: 1px 0;
+    line-height: 1;
+    padding: 0.2125em 0;
 }
 @media screen and (max-width: 640px) {
     th, td {
         min-width: 1.1em;
-        line-height: 1.2em;
+        padding: 0.1625em 0;
     }
 }
 @media screen and (max-width: 560px) {
     th, td {
-        line-height: 1.1em;
+        padding: 0.1125em 0;
     }
 }
 th:nth-last-of-type(n+25),
@@ -168,11 +168,11 @@ td:nth-last-of-type(n+25) {
 }
 table, th, td {
     border: solid;
-    border-width: 0px;
+    border-width: 0;
     border-color: var(--table-border);
 }
 table {
-    table-layout:fixed;
+    table-layout: fixed;
     border-spacing: 0;
     border-width: 1px 0 0 1px;
     margin: 0 0 1.75em;
@@ -234,57 +234,76 @@ td:nth-of-type(6n+9),
 .from-div0 {
     background-image: var(--div0);
 }
+.text-in-icon-hollow .text {
+    background: none;
+}
 .text.hovered:not(.text-in-icon-hollow),
 .icon.hovered + .has-icon .text-in-icon-hollow .text:not(.hovered) {
     color: var(--text-hovered);
 }
-.text {
-    white-space: nowrap;
-    width: 1em;
-    z-index: 0;
-}
 .has-2, .has-3, .has-from-div {
     margin: 0 -5em;
 }
-.has-2 .text {
+.text {
     display: inline-block;
+    white-space: nowrap;
+    width: 1em;
+    height: 1em;
+    --text-margin-lr: 0;
+    margin: 0 var(--text-margin-lr);
+}
+.from-div {
+    padding: 0.1em;
+    --text-margin-lr: -0.1em;
+    margin-top: -0.1em;
+    margin-bottom: -0.1em;
+    border-radius: 0.25em / 0.25em;
+}
+.has-multiple .from-div {
+    padding: 0.1em 0;
+}
+.has-2 .from-div {
+    border-radius: 0.3125em / 0.25em;
+}
+.has-3 .from-div {
+    border-radius: 0.3571em / 0.25em;
+}
+.has-2 .text {
     transform: scaleX(0.8);
-    margin: 0 -9%;
+    --text-margin-lr: -9%;
 }
 th .has-2 .text {
-    margin: 0 -6%;
+    --text-margin-lr: -6%;
 }
 .has-2.text-in-icon .text {
-    display: inline-block;
     transform: scaleX(0.75);
-    margin: 0 -12%;
+    --text-margin-lr: -12%;
 }
 .has-2.text-in-icon-hollow .text {
     transform: scale(0.6, 0.9);
-    margin: 0 -15%;
+    --text-margin-lr: -15%;
 }
 .has-3 .text {
-    display: inline-block;
     transform: scaleX(0.7);
-    margin: 0 -15%;
+    --text-margin-lr: -15%;
 }
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 40em) {
     .has-2:not(.text-in-icon-hollow) .text {
         transform: scaleX(0.7);
-        margin: 0 -15%;
+        --text-margin-lr: -15%;
     }
     th .has-2:not(.text-in-icon-hollow) .text {
-        margin: 0 -12%;
+        --text-margin-lr: -12%;
     }
 }
-@media screen and (max-width: 560px) {
+@media screen and (max-width: 35em) {
     .has-2:not(.text-in-icon-hollow) .text, .has-3 .text {
         transform: scale(0.6, 0.9);
-        margin: 0 -20%;
+        --text-margin-lr: -20%;
     }
     th .has-2:not(.text-in-icon-hollow) .text {
         transform: scaleX(0.6);
-        margin: 0 -16%;
+        --text-margin-lr: -16%;
     }
 }
 .icon, .has-icon, .has-multiple {
@@ -296,30 +315,14 @@ th .has-2 .text {
     margin-left: -1em;
 }
 .text-in-icon .text {
-    display: inline-block;
     font-size: 75%;
     position: relative;
     bottom: 0.125em;
-    line-height: 0;
 }
 .text-in-icon-larger .text {
-    display: inline-block;
     font-size: 90%;
     position: relative;
     bottom: 0.05em;
-    line-height: 0;
-}
-.from-div {
-    padding: 0 1.5px;
-    border-radius: 4px / 4px;
-}
-.has-2 .from-div {
-    padding: 0;
-    border-radius: 5px / 4px;
-}
-.has-3 .from-div {
-    padding: 0;
-    border-radius: 6.2px / 4px;
 }
 td:nth-of-type(n) .text-in-icon-hollow .from-div2,
 td:nth-of-type(6n+4) .text-in-icon-hollow .text:not(.from-div) {
