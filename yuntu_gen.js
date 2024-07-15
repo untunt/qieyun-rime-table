@@ -197,3 +197,12 @@ function tableLoaded(i) {
 window.onresize = function () {
     setCollapseHeight();
 };
+
+function setColorIntensity() {
+    let v = document.getElementById('color-intensity').value;
+    for (let i = 0; i <= 4; i++) {
+        document.body.classList.remove('color-intensity-' + i);
+    }
+    document.body.classList.add('color-intensity-' + v);
+    localStorage.setItem('colorIntensity', v);
+}
