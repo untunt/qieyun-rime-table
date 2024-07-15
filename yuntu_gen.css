@@ -238,11 +238,12 @@ td:nth-of-type(6n+9),
 .icon.hovered + .has-icon .text-in-icon-hollow .text:not(.hovered) {
     color: var(--text-hovered);
 }
-.text:not(#rime-3373) {
+.text {
+    white-space: nowrap;
     width: 1em;
     z-index: 0;
 }
-.has-2, .has-3 {
+.has-2, .has-3, .has-from-div {
     margin: 0 -5em;
 }
 .has-2 .text {
@@ -320,24 +321,30 @@ th .has-2 .text {
     padding: 0;
     border-radius: 6.2px / 4px;
 }
-td:nth-of-type(6n+4) .text-in-icon-hollow .text {
+td:nth-of-type(n) .text-in-icon-hollow .from-div2,
+td:nth-of-type(6n+4) .text-in-icon-hollow .text:not(.from-div) {
     color: var(--div2);
 }
+td:nth-of-type(n) .text-in-icon-hollow .from-divB,
 td:nth-of-type(6n+5) .text-in-icon-hollow .text,
-tr:nth-of-type(n+5):nth-last-of-type(n+16) td:nth-of-type(6n+6) .text-in-icon-hollow .text {
+tr:nth-of-type(n+5):nth-last-of-type(n+16) td:nth-of-type(6n+6) .text-in-icon-hollow .text:not(.from-div) {
     color: var(--divB);
 }
+td:nth-of-type(n) .text-in-icon-hollow .from-divA,
 td:nth-of-type(6n+6) .text-in-icon-hollow .text,
-tr:nth-of-type(n+10):nth-last-of-type(n+9) td:nth-of-type(6n+5) .text-in-icon-hollow .text {
+tr:nth-of-type(n+10):nth-last-of-type(n+9) td:nth-of-type(6n+5) .text-in-icon-hollow .text:not(.from-div) {
     color: var(--divA);
 }
-td:nth-of-type(6n+7) .text-in-icon-hollow .text {
+td:nth-of-type(n) .text-in-icon-hollow .from-div4,
+td:nth-of-type(6n+7) .text-in-icon-hollow .text:not(.from-div) {
     color: var(--div4);
 }
-td:nth-of-type(6n+8) .text-in-icon-hollow .text {
+td:nth-of-type(n) .text-in-icon-hollow .from-divC,
+td:nth-of-type(6n+8) .text-in-icon-hollow .text:not(.from-div) {
     color: var(--divC);
 }
-td:nth-of-type(6n+9) .text-in-icon-hollow .text {
+td:nth-of-type(n) .text-in-icon-hollow .from-div1,
+td:nth-of-type(6n+9) .text-in-icon-hollow .text:not(.from-div) {
     color: var(--div1);
 }
 .icon {
