@@ -241,7 +241,7 @@ td:nth-of-type(6n+9),
 .icon.hovered + .has-icon .text-in-icon-hollow .text:not(.hovered) {
     color: var(--text-hovered);
 }
-.has-2, .has-3, .has-from-div {
+.has-2, .has-3 {
     margin: 0 -5em;
 }
 .text {

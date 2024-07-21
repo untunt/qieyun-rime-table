@@ -311,9 +311,6 @@ class 格子類:
                 格子內層class.append('has-2')
             else:
                 格子內層class.append('has-3')
-        elif len(self.顯示的小韻列表):
-            if self.顯示的小韻列表[0].來源等:
-                格子內層class.append('has-from-div')
         if self.顯示的合法性符號:
             格子外層class.append('has-icon')
             if self.顯示的合法性符號 in 合法性符號_無字則隱藏列表:
