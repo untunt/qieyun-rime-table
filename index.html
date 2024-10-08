@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <meta name="robots" content="index, follow">
+  <title>切韻新韻圖</title>
+  <meta name="description" content="《切韻》成書與首款《韻鏡》式韻圖誕生相隔二百餘年，其間中古漢語語音發生了一定變化，因此切韻音系與韻圖音系是兩個不同的音系。本韻圖是專爲切韻音系新設計的，故名切韻新韻圖。">
+  <link rel="canonical" href="https://phesoca.com/rime-table/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="切韻新韻圖">
+  <meta property="og:description" content="《切韻》成書與首款《韻鏡》式韻圖誕生相隔二百餘年，其間中古漢語語音發生了一定變化，因此切韻音系與韻圖音系是兩個不同的音系。本韻圖是專爲切韻音系新設計的，故名切韻新韻圖。">
+  <meta property="og:url" content="https://phesoca.com/rime-table/">
+  <meta property="og:site_name" content="绯索卡 · Phesoca">
+  <link rel="icon" href="https://phesoca.com/wp-content/uploads/logo/cropped-icon-32x32.png" sizes="32x32">
+  <link rel="icon" href="https://phesoca.com/wp-content/uploads/logo/cropped-icon-192x192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="https://phesoca.com/wp-content/uploads/logo/cropped-icon-180x180.png">
+  <meta name="msapplication-TileImage" content="https://phesoca.com/wp-content/uploads/logo/cropped-icon-270x270.png">
+  <script src="wang3.js"></script>
+  <script src="tshet-uinh.js"></script>
+  <script src="rime-table.js"></script>
+  <script src="main.js"></script>
+  <link rel="stylesheet" href="main.css" type="text/css">
+  <link rel="stylesheet" href="main-table.css" type="text/css">
+</head>
+
+<body>
+  <div class="site">
+    <div class="content not-loaded" id="content">
+      <h1>切韻新韻圖</h1>
+      <p class="author-info">unt<hanla></hanla>設計、校訂、製作</p>
+      <p>《切韻》成書與首款《韻鏡》式韻圖誕生相隔二百餘年，其間中古漢語語音發生了一定變化，因此切韻音系與韻圖音系是兩個不同的音系。本韻圖是專爲切韻音系新設計的，故名切韻新韻圖。</p>
+      <p>切韻三等在鈍音聲母後根據介音的不同分爲<hanla></hanla>A、B、C<hanla></hanla>三類，它們在圖中分置三列。C<hanla></hanla>類韻即非前元音三等韻。銳音聲母後沒有三類的區別。</p>
+      <div id="toc">
+        <div class="toc-title-container">
+          <p class="toc-title">韻基索引（平賅上去入）</p>
+        </div>
+        <nav>
+          <div class="toc-list-line">
+            <div class="toc-list-container">
+              <ol start="1" id="toc-list-0"></ol>
+            </div>
+            <div class="toc-list-container">
+              <ol start="11" id="toc-list-1"></ol>
+            </div>
+          </div>
+          <hr>
+          <div class="toc-list-line">
+            <div class="toc-list-container">
+              <ol start="21" id="toc-list-2"></ol>
+            </div>
+            <div class="toc-list-container">
+              <ol start="31" id="toc-list-3"></ol>
+              <p><label><input type="checkbox" id="show-all" name="show-all" autocomplete="off" onclick="showAllChanged()">顯示所有韻圖（可能卡頓）</label></p>
+              <p><a onclick="scrollToId('history');">版本歷史</a></p>
+            </div>
+          </div>
+        </nav>
+      </div>
+      <script>initializeToc();</script>
+      <p class="collapse-head" id="legend-head">格子合法性圖例及說明<span class="colon">：</span><span class="button" onclick="collapse('legend')"></span></p>
+      <div class="collapse" id="legend">
+        <div><span class="icon icon-0"></span><span class="legality">強合法</span><span class="desc">非以下的情況（圓圈僅在格子無字時顯示）</span></div>
+        <div><span class="icon icon-1"></span><span class="legality">稀有合法</span><span class="desc">語音學上沒有明確的約束，但範圍內有字率低于<hanla></hanla>15%<hanla></hanla>而不都是僻字的情況</span></div>
+        <div><span class="icon icon-2"></span><span class="legality">弱合法</span><span class="desc">語音學上沒有明確的約束，但範圍內有字率低于<hanla></hanla>15%<hanla></hanla>且都是僻字的情況</span></div>
+        <div><span class="icon icon-3"></span><span class="legality">弱非法</span><span class="desc">範圍小（≤ 50<hanla></hanla>個音節）或例外多（4% ~ 15%）的音系規則所禁止的情況</span></div>
+        <div><span class="icon icon-4"></span><span class="legality">強非法</span><span class="desc">範圍廣（&gt; 50<hanla></hanla>個音節）且例外少（&lt; 4%）的音系規則所禁止的情況</span></div>
+        <div><span class="icon"></span><span class="legality"></span><span class="desc">（兩個非法圓圈僅在格子有字時顯示）</span></div>
+      </div>
+      <p id="color-intensity-head">格子色彩強度<span class="colon">：</span><select id="color-intensity" onchange="setColorIntensity()">
+          <option value="0">0</option>
+          <option value="1">1（預設）</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select></p>
+      <script>initializeColorIntensity();</script>
+      <p class="collapse-head" id="recons-head">在小韻字頭上懸停鼠標或點擊可查看其音韻地位、<a href="https://phesoca.com/tupa/">切韻拼音</a>（斜體顯示）、擬音（正體顯示），小韻在《廣韻》和<abbr data-title="宋濂跋唐寫本王仁昫《刊謬補缺切韻》，現藏於北京故宮博物院，通稱《王三》，也稱宋跋本、全王本、故宮本">《王三》</abbr>中的序號、反切、韻典網鏈接及轄字。擬音方案選擇<span class="colon">：</span><span class="button" onclick="collapse('recons')"></span></p>
+      <div class="collapse" id="recons">
+        <div><input type="radio" name="recons" id="untJ" autocomplete="off" onclick="localStorage.setItem('recons', 'untJ')"><label for="untJ">unt. 2020[2024]. 切韻擬音<hanla></hanla>J.（<a href="https://phesoca.com/aws/337/">說明</a>）</label></div>
+        <div><input type="radio" name="recons" id="untL" autocomplete="off" onclick="localStorage.setItem('recons', 'untL')"><label for="untL">unt. 2022[2024]. 切韻擬音<hanla></hanla>L.（<a href="https://phesoca.com/aws/337/">說明</a>）<span style="color: var(--text-secondary)">★ 首選</span></label></div>
+        <div><input type="radio" name="recons" id="unt0" autocomplete="off" onclick="localStorage.setItem('recons', 'unt0')"><label for="unt0">unt. 2023. 切韻通俗擬音.（<a href="https://phesoca.com/aws/337/">說明</a>）</label></div>
+        <div><input type="radio" name="recons" id="pan2000" autocomplete="off" onclick="localStorage.setItem('recons', 'pan')"><label for="pan2000">潘悟雲. 2000. 漢語歷史音韻學. 上海: 上海教育出版社.</label></div>
+        <div><input type="radio" name="recons" id="pan2013" autocomplete="off" onclick="localStorage.setItem('recons', 'pan')"><label for="pan2013">潘悟雲 & 张洪明. 2013. 漢語中古音. 語言研究 33(2), 1–7.</label></div>
+        <div><input type="radio" name="recons" id="pan2023" autocomplete="off" onclick="localStorage.setItem('recons', 'pan')"><label for="pan2023">潘悟雲. 2023. 漢語古音手冊. 上海: 中西書局.</label></div>
+      </div>
+      <script>initializeRecons();</script>
+      <div id="end-of-tables"></div>
+      <script>initializeTables();</script>
+      <h2 id="history">版本歷史<a class="back" onclick="scrollToId('toc')"></a></h2>
+      <p id="history-2024-head" class="collapse-head">2024<hanla></hanla>年<span class="colon">：</span><span class="button" onclick="collapse('history-2024')"></span></p>
+      <div id="history-2024" class="collapse history">
+        <p>2024.10.8</p>
+        <ul>
+          <li>代碼完全重構，改用<hanla></hanla>JavaScript<hanla></hanla>動態生成頁面</li>
+          <li>增加韻書中的韻目原貌，并給反切下字訛誤導致歸韻錯誤的小韻增加陰影標記</li>
+          <li>韻圖末行的等從數字改爲漢字</li>
+          <li>潘悟雲擬音增加<hanla></hanla>2000<hanla></hanla>版和<hanla></hanla>2023<hanla></hanla>版</li>
+        </ul>
+        <p>2024.7.15</p>
+        <ul>
+          <li>增加格子色彩強度選項</li>
+        </ul>
+        <p>2024.7.14</p>
+        <ul>
+          <li>更新音韻地位描述和<hanla></hanla>unt<hanla></hanla>切韻擬音<hanla></hanla>J、L</li>
+        </ul>
+        <p>2024.7.11</p>
+        <ul>
+          <li>調整<span class="cn-quot">“</span>韻基索引<span class="cn-quot">”</span>中的擬音</li>
+          <li>增加《王三》全部小韻</li>
+        </ul>
+        <p>2024.5.25</p>
+        <ul>
+          <li>版本歷史默認收起</li>
+          <li>調整<hanla></hanla>1307<hanla></hanla>㓼、1478<hanla></hanla>笉、1574<hanla></hanla>鄹、1692<hanla></hanla>鷕、2004<hanla></hanla>𩒣、2060<hanla></hanla>孂、2340<hanla></hanla>尠、2767<hanla></hanla>㱇、2991<hanla></hanla>𣢝、3854<hanla></hanla>䀴諸小韻</li>
+        </ul>
+        <p>2024.1.7</p>
+        <ul>
+          <li>增加擬音方案選擇</li>
+          <li>更新<hanla></hanla>unt<hanla></hanla>切韻擬音<hanla></hanla>J、L<hanla></hanla>並增加<hanla></hanla>unt<hanla></hanla>切韻通俗擬音、潘悟雲擬音</li>
+        </ul>
+      </div>
+      <p id="history-2023-head" class="collapse-head">2023<hanla></hanla>年<span class="colon">：</span><span class="button" onclick="collapse('history-2023')"></span></p>
+      <div id="history-2023" class="collapse history">
+        <p>2023.12.10</p>
+        <ul>
+          <li>優化頁面，縮減文件大小</li>
+          <li>增加各小韻轄字</li>
+        </ul>
+        <p>2023.9.24</p>
+        <ul>
+          <li>調整<hanla></hanla>unt<hanla></hanla>切韻擬音<hanla></hanla>J：j<hanla></hanla>韻尾去聲一律作<hanla></hanla>j</li>
+        </ul>
+        <p>2023.8.29</p>
+        <ul>
+          <li>修正<hanla></hanla>1830<hanla></hanla>𩦠、2852<hanla></hanla>縛兩小韻位置</li>
+        </ul>
+        <p>2023.1.27</p>
+        <ul>
+          <li>調整<hanla></hanla>1032<hanla></hanla>䜅小韻</li>
+        </ul>
+      </div>
+      <p id="history-2022-head" class="collapse-head">2022<hanla></hanla>年<span class="colon">：</span><span class="button" onclick="collapse('history-2022')"></span></p>
+      <div id="history-2022" class="collapse history">
+        <p>2022.9.6</p>
+        <ul>
+          <li>調整<hanla></hanla>409<hanla></hanla>礥小韻</li>
+        </ul>
+        <p>2022.8.29</p>
+        <ul>
+          <li>再次更新音韻地位描述和<hanla></hanla>unt<hanla></hanla>切韻擬音<hanla></hanla>J</li>
+        </ul>
+        <p>2022.8.7</p>
+        <ul>
+          <li>更新設計
+            <ul>
+              <li>知組和來母改用<hanla></hanla>3<span class="inline-note div-3-type">A</span><hanla></hanla>列背景色</li>
+              <li>日母移至章組下方</li>
+              <li>幫組陽韻移至開口圖</li>
+            </ul>
+          </li>
+          <li>調整<hanla></hanla>3670<hanla></hanla>𦳮小韻</li>
+          <li>更新新版<hanla></hanla>unt<hanla></hanla>切韻擬音<hanla></hanla>J</li>
+          <li>更新音韻地位描述</li>
+        </ul>
+        <p>2022.7.16</p>
+        <ul>
+          <li>韻類的國際音標改用韻部擬音標註</li>
+        </ul>
+        <p>2022.5.13</p>
+        <ul>
+          <li>調整<hanla></hanla>1420<hanla></hanla>㧳、1422<hanla></hanla>扮兩小韻</li>
+        </ul>
+        <p>2022.3.17</p>
+        <ul>
+          <li>調整<hanla></hanla>566<hanla></hanla>㺗、569<hanla></hanla>𡰠、2050<hanla></hanla>脥、3647<hanla></hanla>𧾛四小韻</li>
+          <li>更新正式版切韻拼音</li>
+        </ul>
+        <p>2022.3.15</p>
+        <ul>
+          <li>增加切韻拼音</li>
+        </ul>
+        <p>2022.3.13</p>
+        <ul>
+          <li>精組<hanla></hanla>C<hanla></hanla>類韻移至<hanla></hanla>3<span class="inline-note div-3-type">A</span><hanla></hanla>列（根據反切的分類傾向）</li>
+          <li>韻類的國際音標改用大寫元音標註</li>
+        </ul>
+        <p>2022.2.14</p>
+        <ul>
+          <li>莊组祭韻仙韻合口不轉移至低元音</li>
+        </ul>
+        <p>2022.2.9</p>
+        <ul>
+          <li>增加莊組支韻合口的小韻背景</li>
+        </ul>
+        <p>2022.1.20</p>
+        <ul>
+          <li>調整<hanla></hanla>unt<hanla></hanla>切韻擬音<hanla></hanla>J：云母改爲<hanla></hanla>w</li>
+          <li>對于從其他同等韻轉來的小韻，增加繪製小韻背景</li>
+        </ul>
+        <p>2022.1.5</p>
+        <ul>
+          <li>微調<hanla></hanla>3<span class="inline-note div-3-type">B</span>、3<span class="inline-note div-3-type">A</span><hanla></hanla>兩列背景色，使二者更易區分</li>
+          <li>調整<hanla></hanla>1033<hanla></hanla>呣、1016<hanla></hanla>莓兩小韻</li>
+          <li>調整<hanla></hanla>unt<hanla></hanla>切韻擬音<hanla></hanla>J：明母尤侯韻均改爲<hanla></hanla>mu</li>
+        </ul>
+      </div>
+      <p id="history-2021-head" class="collapse-head">2021<hanla></hanla>年<span class="colon">：</span><span class="button" onclick="collapse('history-2021')"></span></p>
+      <div id="history-2021" class="collapse history">
+        <p>2021.12.31</p>
+        <ul>
+          <li>調整<hanla></hanla>unt<hanla></hanla>切韻擬音<hanla></hanla>J
+            <ul>
+              <li>簡化聲調符號</li>
+              <li>二等元音改用咽化<hanla></hanla>ˤ<hanla></hanla>標記</li>
+              <li>魚、虞、鍾韻改爲<hanla></hanla>ɨʌ、ʉɔ、ʉɔŋ</li>
+              <li>肴韻改爲<hanla></hanla>aˤw</li>
+            </ul>
+          </li>
+        </ul>
+        <p>2021.10.24</p>
+        <ul>
+          <li>調整<hanla></hanla>965<hanla></hanla>硱小韻</li>
+        </ul>
+        <p>2021.10.9</p>
+        <ul>
+          <li>優化格子合法性圖例及說明的折疊效果</li>
+          <li>調整<hanla></hanla>1830<hanla></hanla>𩦠小韻</li>
+        </ul>
+        <p>2021.10.8</p>
+        <ul>
+          <li>加入顯示單張韻圖的模式，並作爲默認模式</li>
+          <li>優化表格佈局</li>
+          <li>加入頁內平滑跳轉</li>
+          <li>修正反切字形</li>
+          <li>加入小韻數據下載鏈接</li>
+          <li>調整<hanla></hanla>1487<hanla></hanla>蝡、2852<hanla></hanla>縛兩小韻</li>
+        </ul>
+        <p>2021.9.30（測試）</p>
+        <ul>
+          <li>適配手機端屏幕尺寸</li>
+          <li>在標題後添加<span class="cn-quot">“</span>回到索引<span class="cn-quot">”</span></li>
+          <li>使小韻信息懸浮窗不超出頁面</li>
+        </ul>
+        <p>2021.9.29（測試）</p>
+        <ul>
+          <li>網頁版切韻新韻圖完成</li>
+          <li>前期準備工作：
+            <ul>
+              <li>7.31 修訂一些邊緣小韻的<hanla></hanla>unt<hanla></hanla>切韻朗讀音</li>
+              <li>7.10 完成格子合法性判斷規則</li>
+              <li>6.30 完成《廣韻》爭議小韻和邊緣小韻考校</li>
+              <li>6.12 完成切韻新韻圖設計</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <p class="statement">本作品使用的小韻原始數據（反切及音韻地位）來自<a href="https://ytenx.org/" target="_blank">韻典網</a>、<a href="https://nk2028.shn.hk/" target="_blank"><abbr data-title="The Ngyoq Khuen 2028 Project">nk2028</abbr></a><hanla></hanla>和<a href="https://suzukish.sakura.ne.jp/search/qieyun/index.php" target="_blank">切韻諸本輯覽</a>。小韻的音韻地位和反切有所校訂，原貌暫請查閱韻書原卷。</p>
+      <div class="license">
+        <span class="pic"><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="知識共享許可協議" src="https://licensebuttons.net/l/by-nc/4.0/88x31.png"></a></span>
+        <span class="desc">本作品的設計採用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知識共享署名－非商業性使用<hanla></hanla>4.0<hanla></hanla>國際許可協議</a>進行許可。</span>
+      </div>
+      <div class="footer">
+        <!-- <p><a download="廣韻小韻數據（unt修訂）">下載<hanla></hanla>unt<hanla></hanla>修訂的廣韻小韻數據</a></p> -->
+        <p><a href="./legacy/rev.xlsx" download="廣韻爭議小韻整理">下載<hanla></hanla>unt<hanla></hanla>的廣韻爭議小韻整理表（2022<hanla></hanla>年）</a></p>
+        <p><a href="https://github.com/untunt/qieyun-rime-table">查看切韻新韻圖的<hanla></hanla>GitHub<hanla></hanla>項目</a></p>
+        <p><a href="https://phesoca.com/">回到<hanla></hanla>phesoca.com<hanla></hanla>首頁</a></p>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

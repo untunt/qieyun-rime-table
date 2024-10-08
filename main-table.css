@@ -1,0 +1,317 @@
+table {
+  --cell-width-min: 1.3em;
+  --cell-width-max: 1.8em;
+  --cell-width-max-initials: 1.5em;
+  --cell-height: 1.425em;
+  border-collapse: collapse;
+  border: 1px solid var(--table-border);
+  line-height: 1;
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-rows:
+    repeat(1, var(--cell-height)) 1px
+    repeat(4, var(--cell-height)) 1px
+    repeat(5, var(--cell-height)) 1px
+    repeat(7, var(--cell-height)) 1px
+    repeat(4, var(--cell-height)) 1px
+    repeat(3, var(--cell-height)) 1px
+    repeat(1, var(--cell-height));
+  grid-template-columns:
+    repeat(3, minmax(var(--cell-width-min), var(--cell-width-max-initials))) 1px
+    repeat(6, minmax(var(--cell-width-min), var(--cell-width-max))) 1px
+    repeat(6, minmax(var(--cell-width-min), var(--cell-width-max))) 1px
+    repeat(6, minmax(var(--cell-width-min), var(--cell-width-max))) 1px
+    repeat(6, minmax(var(--cell-width-min), var(--cell-width-max)));
+}
+@media screen and (max-width: 40em) {
+  table {
+    --cell-width-min: 1.1em;
+    --cell-height: 1.325em;
+  }
+}
+@media screen and (max-width: 35em) {
+  table {
+    --cell-height: 1.225em;
+  }
+}
+thead, tbody, tr {
+  display: contents;
+}
+th, td {
+  padding: 0;
+  border: 0 solid var(--table-border);
+  background-color: var(--table-bg);
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+th {
+  font-weight: 700;
+}
+th,
+tr:nth-of-type(4) td,
+tr:nth-of-type(9) td,
+tr:nth-of-type(16) td,
+tr:nth-of-type(20) td,
+tr:nth-of-type(23) td {
+  border-bottom-width: 1px;
+  grid-row: span 2;
+}
+th:nth-of-type(6n+4),
+td:nth-of-type(6n+4) {
+  border-left-width: 1px;
+  grid-column: span 2;
+}
+th > div, td > div {
+  grid-area: 1 / 1 / 2 / 2;
+}
+td:nth-last-of-type(n+25) {
+  color: var(--text-secondary);
+}
+th:nth-of-type(6n+4),
+td:nth-of-type(6n+4),
+.from-div-2 {
+  --table-bg: var(--div-2);
+}
+th:nth-of-type(6n+5),
+td:nth-of-type(6n+5),
+.from-div-B {
+  --table-bg: var(--div-B);
+}
+th:nth-of-type(6n+6),
+td:nth-of-type(6n+6),
+tr:nth-of-type(n+5):nth-last-of-type(n+9) td:nth-of-type(6n+5),
+.from-div-A {
+  --table-bg: var(--div-A);
+}
+th:nth-of-type(6n+7),
+td:nth-of-type(6n+7),
+.from-div-4 {
+  --table-bg: var(--div-4);
+}
+th:nth-of-type(6n+8),
+td:nth-of-type(6n+8),
+.from-div-C {
+  --table-bg: var(--div-C);
+}
+th:nth-of-type(6n+9),
+td:nth-of-type(6n+9),
+.from-div-1 {
+  --table-bg: var(--div-1);
+}
+.rimes-container {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  --margin-lr: 0;
+  --scale-x: 1;
+  --scale-y: 1;
+}
+.rime {
+  width: 1em;
+  white-space: nowrap;
+  text-align: center;
+}
+.from-other::before {
+  display: inline-block;
+  content: '\2003';
+  width: 1em;
+  height: 1em;
+  padding: 0.1em;
+  margin: -0.1em;
+  margin-right: -1.1em;
+  background-color: var(--table-bg);
+  border-radius: 0.25em / 0.25em;
+}
+.from-other-rime::before,
+.color-intensity-0 .from-other::before {
+  background-image: var(--from-other-rime);
+}
+.from-wrong-rime::before,
+.color-intensity-0 .from-other.from-wrong-rime::before {
+  background-image: var(--from-wrong-rime);
+}
+.from-other-rime:not(.from-div)::before,
+.from-wrong-rime:not(.from-div)::before,
+.color-intensity-0 .from-other::before {
+  background-color: initial;
+}
+.has-2-rimes .from-other::before,
+.has-3-rimes .from-other::before {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 0;
+  margin-right: -1em;
+  border-radius: 0.3125em / 0.25em;
+}
+.has-3-rimes .from-other::before {
+  border-radius: 0.3571em / 0.25em;
+}
+.icon-4 + .rimes-container .from-other::before {
+  display: none;
+}
+.rime.hover,
+.icon-4.hover + .rimes-container .rime:not(.hover) {
+  color: var(--text-hover);
+}
+.rime-ext, .rime-to-delete, .rime-to-delete-comment {
+  color: var(--text-invalid);
+}
+.icon-4 + .rimes-container .rime {
+  color: var(--table-bg);
+}
+.icon + .rimes-container .rime,
+th .has-2-rimes div,
+.has-2-rimes .rime,
+.has-3-rimes .rime {
+  transform: scale(var(--scale-x), var(--scale-y));
+  margin: 0 var(--margin-lr);
+}
+.icon + .rimes-container {
+  --scale-x: 0.75;
+  --scale-y: 0.75;
+}
+.icon-1 + .rimes-container, .icon-2 + .rimes-container {
+  --scale-x: 0.9;
+  --scale-y: 0.9;
+}
+.has-2-rimes {
+  --scale-x: 0.8;
+  --margin-lr: -0.09em;
+}
+.icon + .has-2-rimes {
+  --scale-x: 0.75;
+  --margin-lr: -0.12em;
+}
+.icon-4 + .has-2-rimes {
+  --scale-x: 0.45;
+  --scale-y: 0.675;
+  --margin-lr: -0.275em;
+}
+.has-3-rimes {
+  --scale-x: 0.7;
+  --margin-lr: -0.15em;
+}
+@media screen and (max-width: 40em) {
+  .has-2-rimes {
+    --scale-x: 0.7;
+    --margin-lr: -0.15em;
+  }
+}
+@media screen and (max-width: 35em) {
+  .has-2-rimes, .has-3-rimes {
+    --scale-x: 0.6;
+    --scale-y: 0.9;
+    --margin-lr: -0.20em;
+  }
+}
+tr:last-of-type .div-num {
+  transform: scaleX(0.9);
+  width: 0.9em;
+}
+tr:last-of-type .inline-note.div-3-type {
+  margin-left: 0.08em;
+}
+.tooltip {
+  position: relative;
+  z-index: 100;
+}
+.tooltip:last-of-type .tooltip-hitbox-1 {
+  position: absolute;
+  top: -0.5em;
+  width: 0.8em;
+  height: 1em;
+  background: transparent;
+  transform: skewY(30deg);
+  z-index: -10;
+}
+.has-2-rimes .tooltip:last-of-type .tooltip-hitbox-1 {
+  width: 0.45em;
+}
+.has-3-rimes .tooltip:last-of-type .tooltip-hitbox-1 {
+  width: 0.3em;
+}
+.tooltip-hitbox-2 {
+  position: absolute;
+  left: -1em;
+  width: 1em;
+  height: 0.4em;
+  background: transparent;
+  z-index: -10;
+}
+.tooltip-box {
+  border: 1px solid var(--border);
+  position: absolute;
+  font-size: 0.9em;
+  left: -0.3em;
+  top: 0.1em;
+  background-color: white;
+  text-align: left;
+  padding: 0.5em;
+  border-radius: 10px;
+  white-space: nowrap;
+  box-shadow: 4px 4px 5px #00000052;
+}
+.tooltip-box .rime-to-delete-comment::before {
+  content: ' ';
+}
+.rime-to-delete + .tooltip .rime-props::before {
+  content: '(';
+}
+.rime-to-delete + .tooltip .rime-props::after {
+  content: ')';
+}
+.tooltip-box .rime-comment,
+.tooltip-box .rime-source {
+  font-size: 80%;
+  margin-top: 0.4em;
+}
+.tooltip-box div:not(.rime-chars) + .rime-source {
+  margin-top: 0.5em;
+}
+.tooltip-box .rime-source .book-title::before {
+  content: '【';
+  margin-left: -0.5em;
+}
+.tooltip-box .rime-source .book-title::after {
+  content: '】';
+  margin-right: -0.15em;
+}
+.tooltip-box .rime-source hanla {
+  font-size: 75%;
+}
+.tooltip-box .rime-source .separator::before {
+  content: '·';
+  width: 0.9em;
+  text-align: center;
+  display: inline-block;
+}
+.from-wrong-rime + .tooltip .rime-muk {
+  color: var(--text-invalid);
+}
+.tooltip-box .rime-source {
+  margin-bottom: 0.1em;
+}
+.tooltip-box .rime-chars {
+  white-space: initial;
+  margin-top: 0.2em;
+  line-height: 1.3;
+  text-indent: 2.4em;
+}
+.tooltip-box .rime-chars > * {
+  display: inline-block;
+  width: 1em;
+  white-space: nowrap;
+  text-indent: 0;
+  text-align: center;
+  margin-right: 0.2em;
+}
+.tooltip-box .rime-chars::before {
+  content: '轄字：';
+  font-size: 80%;
+  text-indent: 0;
+  margin-left: -3em;
+  width: 3em;
+  display: inline-block;
+  white-space: nowrap;
+}
