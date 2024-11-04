@@ -110,7 +110,6 @@ const bookTitleToUnirimeBlock = Object.fromEntries(Object.entries(unirimeBlockTo
 const 韻目to韻 = Object.fromEntries([
   '東董送屋', '冬宋沃', '鍾腫用燭', '江講絳覺', '支紙寘', '脂旨至', '之止志', '微尾未', '魚語御', '虞麌遇', '模姥暮', '齊薺霽', '祭', '泰', '佳蟹卦', '皆駭怪', '夬', '灰賄隊', '咍海代', '廢', '真眞軫震質諄準稕術', '臻櫛', '文吻問物', '殷欣隱焮迄', '元阮願月', '魂混慁沒', '痕很恨', '寒旱翰曷桓緩換末', '刪潸諫鎋', '山產産襇襉黠', '先銑霰屑', '仙獮線薛', '蕭篠嘯', '宵小笑', '肴巧效', '豪晧号', '歌哿箇戈果過', '麻馬禡', '陽養漾藥', '唐蕩宕鐸', '庚梗映陌', '耕耿諍麥', '清靜勁昔', '青迥徑錫', '蒸拯證職', '登等嶝德', '尤有宥', '侯厚候', '幽黝幼', '侵寑沁緝', '覃感勘合', '談敢闞盍', '鹽琰豔葉', '添忝㮇怗', '咸豏陷洽', '銜檻鑑狎', '嚴儼釅業', '凡范梵乏',
 ].map(韻目列表 => [...韻目列表].map(韻目 => [韻目, 韻目列表[0]])).flat());
-韻目to韻.䰟 = '魂'; // 王三
 const specifiedChars = {
   '3521b': '揭', // 用代表字“揭”而不是首字“訐”
 };
@@ -119,7 +118,6 @@ const propsRimeToDelete = {
   646: ['端開四齊平', '𡰖(端開四齊平)之音，𡰢(匣合四齊平)之訛字'], // 𡰝
   2021: ['書開三鹽上', '㴸(書開三鹽上)之音，㶒(書開三侵上)之字'], // 㶒
   3373: ['透合一魂入', '突(透合一魂入)之音，𠬛(明一魂入)之訛字'], // 𣅝
-  3647: ['羣合三C陽入', '𧾵(羣合三C陽入)之訛字'], // 𧾛
 };
 const propsRimeSpecial = {
   319: '日開三支平',  // 臡
@@ -284,16 +282,16 @@ const validityIconsToHideIfHasRimes = ['○'];
 const validityIconsToHideIfHasNoRime = ['◎', '●'];
 const charInsertionsAfter = {
   𣤇: ['⿰隺犬', '至也高也'], // 3276 㱿
-  桼: ['⿳艹大雨', '俗（膠桼說文曰木汁可以䰍物从木象形桼如水滴而下也經典通用漆）'], // 3291 七
+  桼: ['⿱芖雨', '俗（膠桼說文曰木汁可以䰍物从木象形桼如水滴而下也經典通用漆）'], // 3291 七
 };
 const charReplacements = {
   // TODO: 使能複製原字
   '⿰隺犬': // 3276 㱿
     '<span style="transform: translateX(-0.225em) scaleX(0.55);display: inline-block;">隺</span>' +
     '<span style="transform: translateX(0.25em) scaleX(0.5);display: inline-block;margin-left: -1em;">犬</span>',
-  '⿳艹大雨': // 3291 七
-    '<span style="transform: translateY(-0.25em) scaleY(0.4);display: inline-block;">芖</span>' +
-    '<span style="transform: translateY(0.225em) scaleY(0.6);display: inline-block;margin-left: -1em;">雨</span>',
+  '⿱芖雨': // 3291 七
+    '<span style="transform: translateY(-0.2em) scaleY(0.55);display: inline-block;">芖</span>' +
+    '<span style="transform: translateY(0.225em) scaleY(0.6) scaleX(0.9);display: inline-block;margin-left: -1em;">雨</span>',
   '𣅝': // 3373 𣅝
     '<span style="transform: translateY(-0.275em) scaleY(0.4);display: inline-block">冂</span>' +
     '<span style="transform: translateY(0.225em) scaleY(0.6);display: inline-block;margin-left: -1em">父</span>',
