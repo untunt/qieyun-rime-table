@@ -205,6 +205,19 @@ th .has-2-rimes div,
     --margin-lr: -0.20em;
   }
 }
+.rime-count,
+.rime-num {
+  display: inline-block;
+  width: 4em;
+  margin: 0 -1.5em;
+}
+.rime-num {
+  transform: scale(0.7, 0.8);
+}
+.has-2-rimes .rime-num,
+.has-3-rimes .rime-num {
+  transform: rotate(-45deg) scale(0.8);
+}
 tr:last-of-type .div-num {
   transform: scaleX(0.9);
   width: 0.9em;

@@ -51,9 +51,27 @@ function setColorIntensity() {
   document.body.classList.add('color-intensity-' + v);
   localStorage.setItem('colorIntensity', v);
 }
+function setToShowAsRime() {
+  let v = document.getElementById('to-show-as-rime').value;
+  localStorage.setItem('toShowAsRime', v);
+  if (document.querySelector('.rime-table')) showTable(lastShownNum, false, true);
+}
+function setBookSources() {
+  let v = document.getElementById('book-sources').value;
+  localStorage.setItem('bookSources', v);
+  if (document.querySelector('.rime-table')) showTable(lastShownNum, false, true);
+}
 function initializeColorIntensity() {
   document.getElementById('color-intensity').value = localStorage.getItem('colorIntensity') || '1';
   setColorIntensity();
+}
+function initializeToShowAsRime() {
+  document.getElementById('to-show-as-rime').value = localStorage.getItem('toShowAsRime') || '小韻代表字';
+  setToShowAsRime();
+}
+function initializeBookSources() {
+  document.getElementById('book-sources').value = localStorage.getItem('bookSources') || '廣韻,王三';
+  setBookSources();
 }
 function initializeRecons() {
   let e = document.getElementById(localStorage.getItem('recons')) || document.getElementById('untL');
@@ -315,6 +333,10 @@ const intials = 各等類聲母列表[0].map((_, 聲母idx) => {
   return result;
 });
 function getRime(rime) {
+  let bookSources = document.getElementById('book-sources').value.split(',');
+  let bookTitle = bookSources.find(bookTitle => rime.來源?.[bookTitle]?.length);
+  if (!bookTitle) return null;
+
   let e = document.createElement('div');
   e.classList.add('rime');
   let coords = unirimeNumToCoords[rime.unirime號];
@@ -374,7 +396,26 @@ function getRime(rime) {
   if (fromWrongRime) e.classList.add('from-other', 'from-wrong-rime');
   if (rime.is當刪小韻) e.classList.add('rime-to-delete');
   // if (rime.is增補小韻) e.classList.add('rime-ext');
-  e.innerHTML = charReplacements[rime.代表字] ?? rime.代表字;
+  let 反切 = rime.來源[bookTitle][0].反切 || '';
+  e.innerHTML = {
+    '小韻代表字': bookTitle === '廣韻' ? rime.代表字 : rime.來源[bookTitle][0].轄字列表[0],
+    '反切上字': [...反切][0],
+    '反切下字': [...反切].pop(),
+    '轄字數': '<span class="rime-count">' + rime.來源[bookTitle][0].轄字列表.length + '</span>',
+    '小韻號': '<span class="rime-num">' + rime.來源[bookTitle][0].小韻號 + '</span>',
+    'Unirime 號': '<span class="rime-num">' + (
+      parseInt(rime.unirime號) / 10000 > 1 ?
+      `<strong style="margin-left: -0.5em;">${rime.unirime號[0]}</strong>${rime.unirime號.slice(1)}` :
+      rime.unirime號
+    ) + '</span>',
+    '韻目原貌': rime.來源[bookTitle][0].韻目,
+    '來源文獻名': bookTitle[0],
+    '聲母': rime.音韻地位.母,
+    '開合': rime.音韻地位.呼 || '中',
+    '等類': rime.音韻地位.類 || rime.音韻地位.等,
+    '韻母': rime.音韻地位.韻,
+    '聲調': rime.音韻地位.聲,
+  }[document.getElementById('to-show-as-rime').value];
   e.id = `rime-${rime.unirime號}`;
   e.onmouseover = () => showTooltip(rime.unirime號);
   e.onmouseout = () => hideTooltip(rime.unirime號);
@@ -407,12 +448,13 @@ function getHeadCell(members = null, validityIcon = null) {
 }
 function getRimesCell(cell) {
   let validityIcon = cell.合法性.圖標;
-  if (cell.小韻列表.length && validityIconsToHideIfHasRimes.includes(validityIcon)) validityIcon = '';
-  if (!cell.小韻列表.length && validityIconsToHideIfHasNoRime.includes(validityIcon)) validityIcon = '';
-  if (cell.小韻列表.length > 3) {
+  let members = cell.小韻列表.map(getRime).flatMap(e => e ?? []);
+  if (members.length && validityIconsToHideIfHasRimes.includes(validityIcon)) validityIcon = '';
+  if (!members.length && validityIconsToHideIfHasNoRime.includes(validityIcon)) validityIcon = '';
+  if (members.length > 3) {
     console.log(`${cell} has more than 3 rimes`);
   }
-  return getCell(cell.小韻列表.map(getRime), validityIcon);
+  return getCell(members, validityIcon);
 }
 function getTable(num) {
   let table = document.createElement('table');

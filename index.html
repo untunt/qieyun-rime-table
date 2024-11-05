@@ -68,14 +68,41 @@
         <div><span class="icon icon-4"></span><span class="legality">強非法</span><span class="desc">範圍廣（&gt; 50<hanla></hanla>個音節）且例外少（&lt; 4%）的音系規則所禁止的情況</span></div>
         <div><span class="icon"></span><span class="legality"></span><span class="desc">（兩個非法圓圈僅在格子有字時顯示）</span></div>
       </div>
-      <p id="color-intensity-head">格子色彩強度<span class="colon">：</span><select id="color-intensity" onchange="setColorIntensity()">
-          <option value="0">0</option>
-          <option value="1">1（預設）</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-        </select></p>
-      <script>initializeColorIntensity();</script>
+      <p id="selects">
+        <span class="select-container">格子色彩強度<span class="colon">：</span><select id="color-intensity" onchange="setColorIntensity()">
+            <option>0</option>
+            <option value="1">1（預設）</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+          </select></span>
+        <span class="select-container">格子中顯示<span class="colon">：</span><select id="to-show-as-rime" onchange="setToShowAsRime()">
+            <option>小韻代表字</option>
+            <option>反切上字</option>
+            <option>反切下字</option>
+            <option>轄字數</option>
+            <option>小韻號</option>
+            <option>Unirime 號</option>
+            <option>韻目原貌</option>
+            <option>來源文獻名</option>
+            <option>聲母</option>
+            <option>開合</option>
+            <option>等類</option>
+            <option>韻母</option>
+            <option>聲調</option>
+          </select></span>
+        <span class="select-container">來源文獻<span class="colon">：</span><select id="book-sources" onchange="setBookSources()">
+            <option value="廣韻,王三">《廣韻》+《王三》</option>
+            <option value="王三,廣韻">《王三》+《廣韻》</option>
+            <option value="廣韻">僅《廣韻》</option>
+            <option value="王三">僅《王三》</option>
+          </select></span>
+      </p>
+      <script>
+        initializeColorIntensity();
+        initializeToShowAsRime();
+        initializeBookSources();
+      </script>
       <p class="collapse-head" id="recons-head">在小韻字頭上懸停鼠標或點擊可查看其音韻地位、<a href="https://phesoca.com/tupa/">切韻拼音</a>（斜體顯示）、擬音（正體顯示），小韻在《廣韻》和<abbr data-title="宋濂跋唐寫本王仁昫《刊謬補缺切韻》，現藏於北京故宮博物院，通稱《王三》，也稱宋跋本、全王本、故宮本">《王三》</abbr>中的序號、反切、韻典網鏈接及轄字。擬音方案選擇<span class="colon">：</span><span class="button" onclick="collapse('recons')"></span></p>
       <div class="collapse" id="recons">
         <div><input type="radio" name="recons" id="untJ" autocomplete="off" onclick="localStorage.setItem('recons', 'untJ')"><label for="untJ">unt. 2020[2024]. 切韻擬音<hanla></hanla>J.（<a href="https://phesoca.com/aws/337/">說明</a>）</label></div>
@@ -91,6 +118,11 @@
       <h2 id="history">版本歷史<a class="back" onclick="scrollToId('toc')"></a></h2>
       <p id="history-2024-head" class="collapse-head">2024<hanla></hanla>年<span class="colon">：</span><span class="button" onclick="collapse('history-2024')"></span></p>
       <div id="history-2024" class="collapse history">
+        <p>2024.11.5</p>
+        <ul>
+          <li>增加格子中顯示的值選項和來源文獻選項</li>
+          <li>修正《王三》韻目原貌</li>
+        </ul>
         <p>2024.10.8</p>
         <ul>
           <li>代碼完全重構，改用<hanla></hanla>JavaScript<hanla></hanla>動態生成頁面</li>

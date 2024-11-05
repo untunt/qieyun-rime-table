@@ -417,7 +417,15 @@ abbr:hover::before {
   white-space: nowrap;
   flex-shrink: 0;
 }
-#color-intensity {
+#selects {
+  display: flex;
+  flex-wrap: wrap;
+}
+.select-container:not(:last-child) {
+  margin-right: 1.5em;
+  margin-bottom: 0.5em;
+}
+select {
   height: 1.75em;
   margin: -1em 0;
 }
