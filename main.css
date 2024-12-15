@@ -441,7 +441,7 @@ h2 .back {
   font-weight: initial;
 }
 h2 .back::after {
-  content: '回到索引↩︎';
+  content: '回到索引 ↩︎';
 }
 h2 .rime-group {
   display: block;

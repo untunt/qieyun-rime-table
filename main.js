@@ -125,9 +125,26 @@ const unirimeBlockToBookTitle = {
   60000: '集韻',
 };
 const bookTitleToUnirimeBlock = Object.fromEntries(Object.entries(unirimeBlockToBookTitle).map(([k, v]) => [v, parseInt(k)]));
-const 韻目to韻 = Object.fromEntries([
-  '東董送屋', '冬宋沃', '鍾腫用燭', '江講絳覺', '支紙寘', '脂旨至', '之止志', '微尾未', '魚語御', '虞麌遇', '模姥暮', '齊薺霽', '祭', '泰', '佳蟹卦', '皆駭怪', '夬', '灰賄隊', '咍海代', '廢', '真眞軫震質諄準稕術', '臻櫛', '文吻問物', '殷欣隱焮迄', '元阮願月', '魂混慁沒', '痕很恨', '寒旱翰曷桓緩換末', '刪潸諫鎋', '山產産襇襉黠', '先銑霰屑', '仙獮線薛', '蕭篠嘯', '宵小笑', '肴巧效', '豪晧号', '歌哿箇戈果過', '麻馬禡', '陽養漾藥', '唐蕩宕鐸', '庚梗映陌', '耕耿諍麥', '清靜勁昔', '青迥徑錫', '蒸拯證職', '登等嶝德', '尤有宥', '侯厚候', '幽黝幼', '侵寑沁緝', '覃感勘合', '談敢闞盍', '鹽琰豔葉', '添忝㮇怗', '咸豏陷洽', '銜檻鑑狎', '嚴儼釅業', '凡范梵乏',
-].map(韻目列表 => [...韻目列表].map(韻目 => [韻目, 韻目列表[0]])).flat());
+const 韻目to韻 = Object.fromEntries(Object.entries(所有韻目字典)
+  .map(([韻, 韻目列表]) => [韻目列表, 韻])
+  .concat([
+    // 被其他韻寄於的韻
+    ['腫', '鍾'], // not to 冬
+    ['震', '真'], // not to 臻
+    ['隱', '殷'], // not to 臻
+    ['沒', '魂'], // not to 痕
+    // 王三
+    ['广', '嚴'], // 去聲韻目也是嚴
+    // 廣韻
+    ['眞諄準稕術', '真'],
+    ['欣', '殷'],
+    ['很', '痕'],
+    ['曷桓緩換', '寒'],
+    ['戈果過', '歌'],
+    ['映', '庚'],
+    ['儼釅', '嚴'],
+  ])
+  .flatMap(([韻目列表, 韻]) => [...韻目列表.replace(/　/g, '')].map(韻目 => [韻目, 韻])));
 const specifiedChars = {
   '3521b': '揭', // 用代表字“揭”而不是首字“訐”
 };
@@ -405,8 +422,8 @@ function getRime(rime) {
     '小韻號': '<span class="rime-num">' + rime.來源[bookTitle][0].小韻號 + '</span>',
     'Unirime 號': '<span class="rime-num">' + (
       parseInt(rime.unirime號) / 10000 > 1 ?
-      `<strong style="margin-left: -0.5em;">${rime.unirime號[0]}</strong>${rime.unirime號.slice(1)}` :
-      rime.unirime號
+        `<strong style="margin-left: -0.5em;">${rime.unirime號[0]}</strong>${rime.unirime號.slice(1)}` :
+        rime.unirime號
     ) + '</span>',
     '韻目原貌': rime.來源[bookTitle][0].韻目,
     '來源文獻名': bookTitle[0],
