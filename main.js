@@ -183,7 +183,9 @@ function readRimesFromBooks() {
   for (const 條目列表 of TshetUinh.資料.廣韻.iter小韻()) {
     const rime = {
       unirime號: 條目列表[0].來源.小韻號,
-      代表字: specifiedChars[條目列表[0].來源.小韻號] ?? 條目列表[0].字頭,
+      代表字: {
+        廣韻: specifiedChars[條目列表[0].來源.小韻號] ?? 條目列表[0].字頭,
+      },
       音韻地位: 條目列表[0].音韻地位,
       來源: {
         廣韻: [{
@@ -211,6 +213,7 @@ function readRimesFromBooks() {
   wang3.corresponding.split('|').forEach(line => {
     let [小韻號, 對應廣韻小韻號, 代表字, 全部字, 反切, 韻目] = line.split(',');
     if (!rimes[對應廣韻小韻號]) console.log(line);
+    if (!rimes[對應廣韻小韻號].代表字.王三) rimes[對應廣韻小韻號].代表字.王三 = 代表字;
     rimes[對應廣韻小韻號].來源.王三.push({
       小韻號,
       反切,
@@ -225,7 +228,9 @@ function readRimesFromBooks() {
     let unirime號 = 小韻號拆分[0] + bookTitleToUnirimeBlock.王三 + 小韻號拆分[1];
     const rime = {
       unirime號: unirime號,
-      代表字,
+      代表字: {
+        王三: 代表字,
+      },
       音韻地位: TshetUinh.音韻地位.from描述(音韻地位描述, false, ['云母開口']),
       來源: {
         廣韻: [],
@@ -244,7 +249,7 @@ function readRimesFromBooks() {
   });
   Object.keys(rimes).sort(unirimeNumCompare).forEach(unirimeNum => {
     let rime = rimes[unirimeNum];
-    rime.toString = function () { return [this.unirime號, this.代表字, this.音韻地位].join(' '); };
+    rime.toString = function () { return [this.unirime號, Object.values(this.代表字)[0], this.音韻地位].join(' '); };
     let coords = get坐標from音韻地位(rime.音韻地位);
     unirimeNumToCoords[unirimeNum] = coords;
     rimeTables[coords.韻圖idx][coords.等類idx][coords.聲母idx][coords.聲調idx].小韻列表.push(rime);
@@ -415,7 +420,7 @@ function getRime(rime) {
   // if (rime.is增補小韻) e.classList.add('rime-ext');
   let 反切 = rime.來源[bookTitle][0].反切 || '';
   e.innerHTML = {
-    '小韻代表字': bookTitle === '廣韻' ? rime.代表字 : rime.來源[bookTitle][0].轄字列表[0],
+    '小韻代表字': rime.代表字[bookTitle],
     '反切上字': [...反切][0],
     '反切下字': [...反切].pop(),
     '轄字數': '<span class="rime-count">' + rime.來源[bookTitle][0].轄字列表.length + '</span>',
@@ -532,8 +537,8 @@ function getRimeProps(rime) {
   let e = document.createElement('div');
   e.classList.add('rime-props');
   e.append(rime.音韻地位.描述 + ' ');
-  let tupa = derive(rime.音韻地位, rime.代表字, 'tupa');
-  let recon = derive(rime.音韻地位, rime.代表字, document.querySelector('input[name="recons"]:checked').id);
+  let tupa = derive(rime.音韻地位, null, 'tupa');
+  let recon = derive(rime.音韻地位, null, document.querySelector('input[name="recons"]:checked').id);
   if (tupa && recon) {
     let tupaSpan = document.createElement('span');
     tupaSpan.classList.add('tupa');
