@@ -380,7 +380,7 @@ function getRime(rime) {
     }
   } else if (理論韻 === 韻目折合韻) { // 一般的情況
     if (rime.音韻地位.屬於('莊組 三等 支麻庚韻')) from等類 = 'B';
-  } else if (韻目 === 韻圖屬性.韻目列表[coords.聲調idx][coords.等類idx]) { // 寄韻的情況
+  } else if (韻目 === 韻圖屬性.韻目列表[coords.聲調idx][coords.等類idx] && !'嚴凡'.includes(韻目折合韻)) { // 寄韻的情況
     // 無需處理
   } else if (韻圖屬性.韻串.includes(韻目折合韻)) { // 韻目被調整，但仍在同一張圖內的情況
     if (韻目折合韻 === '幽' && is銳音聲母(rime.音韻地位.母)) { // 1037 鏐
