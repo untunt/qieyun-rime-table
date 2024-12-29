@@ -120,21 +120,31 @@ td:nth-of-type(6n+9),
   padding: 0.1em;
   margin: -0.1em;
   margin-right: -1.1em;
-  background-color: var(--table-bg);
   border-radius: 0.25em / 0.25em;
 }
-.from-other-rime::before,
-.color-intensity-0 .from-other::before {
-  background-image: var(--from-other-rime);
+.from-div::before {
+  background-color: var(--table-bg);
 }
-.from-wrong-rime::before,
-.color-intensity-0 .from-other.from-wrong-rime::before {
-  background-image: var(--from-wrong-rime);
-}
-.from-other-rime:not(.from-div)::before,
-.from-wrong-rime:not(.from-div)::before,
-.color-intensity-0 .from-other::before {
+.color-intensity-0 .from-div::before {
   background-color: initial;
+}
+.upper-from-div::before {
+  background-color: initial;
+  background-image: linear-gradient(var(--table-bg) 50%, transparent 50%);
+}
+.lower-from-div::before {
+  background-color: initial;
+  background-image: linear-gradient(transparent 50%, var(--table-bg) 50%);
+}
+.from-other-initial::before,
+.from-other-rounding::before,
+.color-intensity-0 .upper-from-div::before {
+  background-image: linear-gradient(var(--div-0), transparent 70%);
+}
+.from-other-rime::before,
+.from-wrong-rime::before,
+.color-intensity-0 .lower-from-div::before {
+  background-image: linear-gradient(transparent 30%, var(--div-0));
 }
 .has-2-rimes .from-other::before,
 .has-3-rimes .from-other::before {

@@ -16,8 +16,6 @@ body {
   --div-2: #eacfed;
   --div-4: #cfe2f1;
   --div-0: rgba(0, 0, 0, 0.2);
-  --from-other-rime: linear-gradient(180deg, transparent 30%, var(--div-0));
-  --from-wrong-rime: linear-gradient(0deg, transparent 30%, var(--div-0));
   font-family: Tahoma, -apple-system, "Helvetica Neue", Helvetica, "Nimbus Sans L", Arial, "Liberation Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
   background-color: var(--page-border);
   margin: 0;

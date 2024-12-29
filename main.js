@@ -336,6 +336,79 @@ const charReplacements = {
     '<span style="transform: translateY(-0.275em) scaleY(0.4);display: inline-block">冂</span>' +
     '<span style="transform: translateY(0.225em) scaleY(0.6);display: inline-block;margin-left: -1em">父</span>',
 };
+const 上字等類s = {
+  // 端知類隔
+  84: '1', // 樁
+  180: '1', // 胝
+  350: '1', // 尵
+  357: '1', // 搱
+  549: '1', // 奻
+  888: '1', // 鬤
+  1310: '1', // 伱
+  1332: '1', // 貯
+  1413: '1', // 嬭
+  1582: '1', // 赧
+  1702: '1', // 㺒
+  1789: '1', // 觰
+  1793: '1', // 䋈
+  1869: '1', // 瑒
+  2066: '1', // 湛
+  2793: '1', // 罩
+  2801: '1', // 橈
+  2886: '1', // 䏧
+  2961: '1', // 牚
+  3092: '1', // 賃
+  3321: '1', // 蛭
+  3431: '1', // 窡
+  3452: '1', // 獺
+  3456: '1', // 鵽
+  3722: '1', // 𡮞
+  // 802: 'A', // 爹
+  1439: 'A', // 𩬳
+  3693: 'A', // 𣤩
+
+  // 精莊類隔
+  574: '1', // 虥
+  1774: '1', // 𡎬
+  2506: '1', // 啐
+  3171: '1', // 覱
+  1041: '2', // 犙
+  1972: '2', // 鯫
+
+  // 特殊類隔
+  1281: 'A', // 𧿲
+  1462: 'A', // 疓
+  3466: 'A', // 𩭿
+
+  // 匣喻類隔
+  3406: 'A', // 䔾
+  3645: 'C', // 㩇
+};
+const 下字等類s = {
+  // 上字定等
+  18: '1', // 豐
+  570: '2', // 𡰝
+  // 884: '2', // 生
+  2093: '1', // 鳳
+  // 2852: '1', // 縛
+  3647: '2', // 𧾛
+
+  // 特殊定等
+  762: 'A', // 脞
+  763: 'A', // 侳
+
+  // 特殊定類
+  1478: 'A', // 笉
+  3083: 'B', // 䠗
+  // '3708b': 'C', // 抑
+  // 996: 'A', // 𠁫
+  2386: 'A', // 衛
+  161: 'A', // 葵
+  2176: 'B', // 企
+  149: 'A', // 飢
+  612: 'A', // 嘕
+  1493: 'A', // 𦃢
+};
 const from等類forCrossTableRimes = {
   2021: '1', // 㶒: 鹽 < 談
   3647: '2', // 𧾛: 庚三 < 耕
@@ -344,6 +417,17 @@ const from等類forCrossTableRimes = {
 const from等類forWrongRimes = {
   '1307a': 'B', // 㓼: 臻 < 真 < 之
 };
+const wrongInitials = new Set([
+  '1574', // 鄹
+  '1301', // 俟
+]);
+const wrong下字s = new Set([
+  '555', // 鰥
+  '568', // 窀
+  '573', // 湲
+  '1600', // 㦃
+  '3177', // 𪒠
+]);
 const intials = 各等類聲母列表[0].map((_, 聲母idx) => {
   let result = [
     各等類聲母列表[等類列表.indexOf('2')][聲母idx],
@@ -365,9 +449,14 @@ function getRime(rime) {
   let 韻圖屬性 = 韻圖屬性列表[coords.韻圖idx];
   let 理論音韻地位 = coords.to音韻地位(true);
   let 理論韻 = 理論音韻地位.韻;
-  let 韻目 = rime.來源?.廣韻[0]?.韻目 || rime.來源?.王三[0]?.韻目;
+  let 廣韻韻目 = rime.來源?.廣韻[0]?.韻目 || null;
+  let 韻目 = 廣韻韻目 || rime.來源?.王三[0]?.韻目;
   let 韻目折合韻 = 韻目to韻[韻目];
   let from等類 = null;
+  let 上字等類 = 上字等類s[rime.unirime號] || null;
+  let 下字等類 = 下字等類s[rime.unirime號] || null;
+  let fromOtherInitial = false;
+  let fromOtherRounding = false;
   let fromOtherRime = false;
   let fromWrongRime = false;
   if (!理論韻) { // 特殊格子
@@ -380,11 +469,18 @@ function getRime(rime) {
     }
   } else if (理論韻 === 韻目折合韻) { // 一般的情況
     if (rime.音韻地位.屬於('莊組 三等 支麻庚韻')) from等類 = 'B';
+    if (
+      韻目折合韻 === '真' && (rime.音韻地位.屬於('合口 (A類 或 銳音 非 莊組)') !== '諄準稕術'.includes(廣韻韻目)) ||
+      韻目折合韻 === '寒' && (rime.音韻地位.屬於('非 開口') !== '桓緩換末'.includes(廣韻韻目)) ||
+      韻目折合韻 === '歌' && (rime.音韻地位.屬於('非 (一等 開口)') !== '戈果過'.includes(廣韻韻目))
+    ) {
+      fromOtherRounding = true;
+    }
   } else if (韻目 === 韻圖屬性.韻目列表[coords.聲調idx][coords.等類idx] && !'嚴凡'.includes(韻目折合韻)) { // 寄韻的情況
     // 無需處理
   } else if (韻圖屬性.韻串.includes(韻目折合韻)) { // 韻目被調整，但仍在同一張圖內的情況
     if (韻目折合韻 === '幽' && is銳音聲母(rime.音韻地位.母)) { // 1037 鏐
-      from等類 = '4'; // 故意用四等顏色的背景
+      fromOtherRime = true;
     } else {
       let 候選等類列表 = 等類列表.filter(等類 => 韻to單個韻(韻圖屬性.韻字典[等類], rime.音韻地位.母) === 韻目折合韻);
       if (候選等類列表.length === 1) { // 莊三化二及 355 唻、570 𡰝、996 𠁫、3667 碧、30938 𠠳
@@ -393,7 +489,7 @@ function getRime(rime) {
         from等類 = '2C'.includes(等類列表[coords.等類idx]) ? 'B' : 'A';
       } else if ('嚴凡'.includes(韻目折合韻)) {
         if (等類列表[coords.等類idx] !== 'C') from等類 = 'C'; // 2091 𠑆、3873 䎎、3874 𦑣
-        fromOtherRime = true; // 2089 凵、3158 𦲯、3180 劒、3181 欠、3182 俺、3872 猲
+        fromOtherRounding = true; // 2089 凵、3158 𦲯、3180 劒、3181 欠、3182 俺、3872 猲
       } else if (韻目折合韻 === '歌') { // 765 𦣛、30713 虵
         from等類 = 'C';
       } else {
@@ -402,7 +498,7 @@ function getRime(rime) {
     }
   } else { // 韻目被調整，且超出一張圖的情況
     if (韻目折合韻 === '咍' && rime.音韻地位.組 === '幫') { // 開合配對的韻圖
-      fromOtherRime = true;
+      fromOtherRounding = true;
     } else if (from等類forCrossTableRimes[rime.unirime號]) { // 相鄰的韻圖
       from等類 = from等類forCrossTableRimes[rime.unirime號];
       fromOtherRime = true;
@@ -412,8 +508,14 @@ function getRime(rime) {
       // console.log(`${rime} ${理論韻} < ${韻目折合韻}`);
     }
   }
-  // TODO: 給其他經過了調整的小韻（如類隔切、反切校正）增加標記
+  if (wrongInitials.has(rime.unirime號)) fromOtherInitial = true;
+  if (wrong下字s.has(rime.unirime號)) fromOtherRime = true;
+  // TODO: 給其他反切經過了校正的小韻增加標記
   if (from等類) e.classList.add('from-other', 'from-div', `from-div-${from等類}`);
+  if (上字等類) e.classList.add('from-other', 'upper-from-div', `from-div-${上字等類}`);
+  if (下字等類) e.classList.add('from-other', 'lower-from-div', `from-div-${下字等類}`);
+  if (fromOtherInitial) e.classList.add('from-other', 'from-other-initial');
+  if (fromOtherRounding) e.classList.add('from-other', 'from-other-rounding');
   if (fromOtherRime) e.classList.add('from-other', 'from-other-rime');
   if (fromWrongRime) e.classList.add('from-other', 'from-wrong-rime');
   if (rime.is當刪小韻) e.classList.add('rime-to-delete');
