@@ -33,7 +33,7 @@ function initializeToc() {
     let child = document.createElement('label');
     child.innerHTML = [
       `<li>`,
-      `<input type="radio" name="show-table" value="${韻圖idx + 1}" autocomplete="off" onclick="showTable(${韻圖idx + 1})">`,
+      `<input type="radio" name="show-table" value="${韻圖idx + 1}" autocomplete="off" onclick="showTable(${韻圖idx + 1}, false, true)">`,
       `<a><span class="body">`,
       `<span class="ipa-wildcards">${韻圖屬性.國際音標}</span>`,
       `<span class="rhymes">${顯示的韻列表}</span>`,
@@ -54,12 +54,12 @@ function setColorIntensity() {
 function setToShowAsRime() {
   let v = document.getElementById('to-show-as-rime').value;
   localStorage.setItem('toShowAsRime', v);
-  if (document.querySelector('.rime-table')) showTable(lastShownNum, false, true);
+  if (document.querySelector('.rime-table')) showTable(lastShownNum, true);
 }
 function setBookSources() {
   let v = document.getElementById('book-sources').value;
   localStorage.setItem('bookSources', v);
-  if (document.querySelector('.rime-table')) showTable(lastShownNum, false, true);
+  if (document.querySelector('.rime-table')) showTable(lastShownNum, true);
 }
 function initializeColorIntensity() {
   document.getElementById('color-intensity').value = localStorage.getItem('colorIntensity') || '1';
@@ -258,12 +258,13 @@ function readRimesFromBooks() {
 readRimesFromBooks();
 
 // Table operations
-function removeAllTables() {
-  document.querySelectorAll('[id^=table]').forEach(e => {
-    e.nextElementSibling.remove();
-    e.remove();
-  });
-  document.querySelectorAll('.buttons-for-table').forEach(e => e.remove());
+function removeTable(num) {
+  let h2 = document.getElementById('table-' + num);
+  if (!h2) return;
+  let e = h2.nextElementSibling.nextElementSibling;
+  if (e.classList.contains('buttons-for-table')) e.remove();
+  h2.nextElementSibling.remove();
+  h2.remove();
 }
 function insertTable(num, buttons = true) {
   let 韻圖屬性 = 韻圖屬性列表[num - 1];
@@ -276,44 +277,49 @@ function insertTable(num, buttons = true) {
   ].join('');
   let table = getTable(num);
   if (!buttons) {
-    document.getElementById('end-of-tables').before(h2, table);
+    document.getElementById('start-of-tables').after(h2, table);
     return;
   }
   let div = document.createElement('div');
   div.classList.add('buttons-for-table');
-  let prevAddedAttr = num == 1 ? 'disabled' : `onclick="showTable(${num - 1}, 0);"`;
-  let nextAddedAttr = num == 韻圖屬性列表.length ? 'disabled' : `onclick="showTable(${num + 1}, 0);"`;
+  let prevAddedAttr = num == 1 ? 'disabled' : `onclick="showTable(${num - 1})"`;
+  let nextAddedAttr = num == 韻圖屬性列表.length ? 'disabled' : `onclick="showTable(${num + 1})"`;
   div.innerHTML = [
     `<input type="button" id="button-prev" value="< 上一圖" autocomplete="off" ${prevAddedAttr}>`,
     `<input type="button" id="button-next" value="下一圖 >" autocomplete="off" ${nextAddedAttr}>`,
   ].join('');
-  document.getElementById('end-of-tables').before(h2, table, div);
+  document.getElementById('start-of-tables').after(h2, table, div);
 }
 let lastShownNum = parseInt(localStorage.getItem('lastShownNum')) || 1;
-function showTable(num, scroll = num, forced = false) {
+function showTable(num, forcedUpdate = false, scroll = false) {
   let isShowingAll = document.getElementById('show-all').checked;
-  if (forced || !isShowingAll && num != lastShownNum) {
-    removeAllTables();
+  if (forcedUpdate) {
+    for (let i = 韻圖屬性列表.length; i > 0; i--) {
+      removeTable(i);
+    }
     if (isShowingAll) {
-      for (let i = 1; i <= 韻圖屬性列表.length; i++) {
+      for (let i = 韻圖屬性列表.length; i > 0; i--) {
         insertTable(i, false);
       }
     } else {
       insertTable(num);
     }
-    lastShownNum = num;
-    localStorage.setItem('lastShownNum', num);
+  } else if (num != lastShownNum && !isShowingAll) {
+    insertTable(num);
+    removeTable(lastShownNum);
   }
+  // when showing all but not forced update, no need to modify tables
+  lastShownNum = num;
+  localStorage.setItem('lastShownNum', num);
   document.getElementsByName('show-table')[num - 1].checked = true;
-  if (scroll) scrollToId('table-' + scroll);
-  return;
+  if (scroll) scrollToId('table-' + num);
 }
 function showAllChanged() {
-  let isShowingAll = document.getElementById('show-all').checked;
-  showTable(lastShownNum, +isShowingAll, true);
+  showTable(lastShownNum, true);
+  if (document.getElementById('show-all').checked) scrollToId('table-1');
 }
 function initializeTables() {
-  showTable(lastShownNum, 0, true);
+  showTable(lastShownNum, true);
 }
 
 // Table UI
